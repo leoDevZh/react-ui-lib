@@ -8,7 +8,16 @@ import packageJson from "./package.json" with { type: "json" };
 export default [
     {
         input: 'src/index.ts',
-        external: ['react', 'react-dom', 'react/jsx-runtime'],
+        external: [
+            'react',
+            'react-dom',
+            'react/jsx-runtime',
+            /@testing-library\/.*/,
+            'jest',
+            'ts-jest',
+            'identity-obj-proxy',
+            'jest-environment-jsdom'
+        ],
         output: [
             {
                 file: packageJson.main,
