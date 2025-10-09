@@ -16,7 +16,8 @@ export default [
             'jest',
             'ts-jest',
             'identity-obj-proxy',
-            'jest-environment-jsdom'
+            'jest-environment-jsdom',
+            '@fontsource/inter'
         ],
         output: [
             {
