@@ -1,0 +1,23 @@
+{
+  "name": "leo-ui",
+  "version": "1.0.0",
+  "description": "UI Library - Highly dynamic UI Library you can actually use for your project",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Andrin Fassbind",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.2",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "@types/react": "^19.2.2",
+    "react": "^19.2.0",
+    "rollup": "^4.52.4",
+    "rollup-plugin-dts": "^6.2.3",
+    "typescript": "^5.9.3"
+  }
+}
