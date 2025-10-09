@@ -1,13 +1,14 @@
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "@rollup/plugin-typescript";
-import resolve from '@rollup/plugin-node-resolve';
-import dts from 'rollup-plugin-dts'
+import dts from 'rollup-plugin-dts';
+import postcss from 'rollup-plugin-postcss';
 
-const packageJson = resolve('./package.json')
+import packageJson from "./package.json" with { type: "json" };
 
 export default [
     {
         input: 'src/index.ts',
+        external: ['react', 'react-dom', 'react/jsx-runtime'],
         output: [
             {
                 file: packageJson.main,
@@ -20,11 +21,19 @@ export default [
                 sourcemap: true
             }
         ],
-        plugins: [resolve(), commonjs(), typescript({tsconfig: './tsconfig.json'})]
+        plugins: [
+            commonjs(),
+            typescript({tsconfig: './tsconfig.json'}),
+            postcss({
+                extensions: ['.css'],
+                inject: true
+            })
+        ]
     },
     {
-        input: 'dist/esm/types/index.d.ts',
+        input: 'dist/types/index.d.ts',
         output: [{file: 'dist/index.d.ts', format: 'esm'}],
-        plugins: [dts()]
+        plugins: [dts()],
+        external: [/\.css$/]
     }
 ]
