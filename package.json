@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "clean": "rm -r dist",
+    "clean": "rm -rf dist",
     "dev": "rollup -c --watch",
     "build": "npm run clean && rollup -c",
     "test": "jest --passWithNoTests",
