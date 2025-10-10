@@ -17,7 +17,10 @@ export default [
             'ts-jest',
             'identity-obj-proxy',
             'jest-environment-jsdom',
-            '@fontsource/inter'
+            '@fontsource/inter',
+            'gsap',
+            'gsap/DrawSVGPlugin',
+            'gsap/ScrollTrigger'
         ],
         output: [
             {
