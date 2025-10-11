@@ -20,7 +20,9 @@ export default [
             '@fontsource/inter',
             'gsap',
             'gsap/DrawSVGPlugin',
-            'gsap/ScrollTrigger'
+            'gsap/ScrollTrigger',
+            'react-router-dom',
+            'react-router'
         ],
         output: [
             {
