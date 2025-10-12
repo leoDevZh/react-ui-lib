@@ -21,6 +21,7 @@ export default [
             'gsap',
             'gsap/DrawSVGPlugin',
             'gsap/ScrollTrigger',
+            'gsap/MorphSVGPlugin',
             'react-router-dom',
             'react-router'
         ],
