@@ -1,0 +1,43 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.xs, .sm {
+    gap: var(--spacing-sm);
+}
+
+.btn>span:nth-child(2) {
+    width: var(--computed-font-size);
+    height: var(--computed-font-size);
+}
+
+
+/* Morph */
+@property --gradient-start {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 100%;
+}
+
+.btnMorph {
+    position: relative;
+    background: linear-gradient(hsl(from var(--colors-background-primaryColor) h s l / .2) var(--gradient-start), hsl(from var(--colors-accent-secondaryColor) h s l / .2)) padding-box;
+    backdrop-filter: blur(12px);
+    border: solid 2px hsl(from var(--colors-accent-secondaryColor) h s l / .4);
+    color: var(--colors-accent-primaryColor);
+}
+
+.pressedMorph {
+    --gradient-start: 0%;
+    border: solid 2px hsl(from var(--colors-accent-secondaryColor) h s l / .6);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .btnMorph:hover {
+        --gradient-start: 0%;
+        border: solid 2px hsl(from var(--colors-accent-secondaryColor) h s l / .6);
+    }
+}
