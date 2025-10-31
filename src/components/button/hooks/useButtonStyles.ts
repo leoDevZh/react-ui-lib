@@ -2,6 +2,7 @@ import {ComponentSize} from "../../provider";
 import {useCallback, useState} from "react";
 import styles from "./button.module.css";
 
+// TODO: Remove className??
 interface UseButtonStylesOptions {
     size?: ComponentSize;
     enableContentSelect?: boolean;
