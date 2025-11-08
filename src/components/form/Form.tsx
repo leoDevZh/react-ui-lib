@@ -4,13 +4,21 @@ import React, {PropsWithChildren} from "react";
 import {Button} from "../button";
 import {ComponentSize} from "../provider";
 import styles from "./form.module.css"
+import {TextArea} from "./input/textarea/TextArea";
+
+interface InputConfig {
+    size?: ComponentSize
+    rows?: number
+    max?: number
+}
 
 interface FieldConfig<T extends FieldValues> {
     name: keyof T
     label: string
-    type: "text" | "number"
+    type: "text" | "number" | "textarea"
     required: boolean | string
     validationFn: (value: any) => boolean | string
+    inputConfig?: InputConfig
 }
 
 interface FormProps<T extends FieldValues> extends PropsWithChildren, React.FormHTMLAttributes<HTMLFormElement> {
@@ -26,7 +34,8 @@ const Form = <T extends FieldValues,>({fields, onSubmitFn, submitLabel, componen
         handleSubmit,
         register,
         formState: { isSubmitting, errors },
-        watch
+        watch,
+        setValue
     } = useForm<T>()
 
     const finalClass = [className, styles.form].join(' ')
@@ -36,12 +45,28 @@ const Form = <T extends FieldValues,>({fields, onSubmitFn, submitLabel, componen
         switch (field.type) {
             case "number":
                 return (
-                    <BasicInput field={field} errorMsg={errorMsg} register={register} currentValue={watch(field.name as Path<T>)}/>
+                    <BasicInput
+                        field={field}
+                        errorMsg={errorMsg}
+                        register={register}
+                        currentValue={watch(field.name as Path<T>)}/>
                 )
             case "text":
                 return (
-                    <BasicInput field={field} errorMsg={errorMsg} register={register} currentValue={watch(field.name as Path<T>)}/>
+                    <BasicInput
+                        field={field}
+                        errorMsg={errorMsg}
+                        register={register}
+                        currentValue={watch(field.name as Path<T>)}/>
                 )
+            case "textarea":
+                return <TextArea
+                    field={field}
+                    register={register}
+                    errorMsg={errorMsg}
+                    currentValue={watch(field.name as Path<T>)}
+                    setValue={setValue}
+                />
         }
     }
 
