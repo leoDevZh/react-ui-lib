@@ -15,7 +15,7 @@ interface InputConfig {
 interface FieldConfig<T extends FieldValues> {
     name: keyof T
     label: string
-    type: "text" | "number" | "textarea"
+    type: "text" | "number" | "password" | "email" | "textarea"
     required: boolean | string
     validationFn: (value: any) => boolean | string
     inputConfig?: InputConfig
@@ -44,14 +44,9 @@ const Form = <T extends FieldValues,>({fields, onSubmitFn, submitLabel, componen
         const errorMsg = (errors[field.name]?.message as string) ?? null
         switch (field.type) {
             case "number":
-                return (
-                    <BasicInput
-                        field={field}
-                        errorMsg={errorMsg}
-                        register={register}
-                        currentValue={watch(field.name as Path<T>)}/>
-                )
             case "text":
+            case "password":
+            case "email":
                 return (
                     <BasicInput
                         field={field}
