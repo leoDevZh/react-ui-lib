@@ -37,9 +37,10 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "@fontsource/inter": "^5.2.8",
-    "gsap": "^3.13.0",
-    "react": "^19.2.0",
-    "react-router-dom": "^7.9.4"
+    "@fontsource/inter": "5.2.8",
+    "gsap": "3.13.0",
+    "react": "19.2.0",
+    "react-router-dom": "7.9.4",
+    "react-hook-form": "7.65.0"
   }
 }

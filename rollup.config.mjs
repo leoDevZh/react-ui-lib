@@ -10,7 +10,6 @@ export default [
         input: 'src/index.ts',
         external: [
             'react',
-            'react-dom',
             'react/jsx-runtime',
             /@testing-library\/.*/,
             'jest',
@@ -23,7 +22,8 @@ export default [
             'gsap/ScrollTrigger',
             'gsap/MorphSVGPlugin',
             'react-router-dom',
-            'react-router'
+            'react-router',
+            'react-hook-form'
         ],
         output: [
             {

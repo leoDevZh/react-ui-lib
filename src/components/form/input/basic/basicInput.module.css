@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: block;
+    position: relative;
+    height: calc(var(--calc-font-size) * 2 + var(--spacing-xl));
+    margin: 0;
+    padding: 0;
+    border-radius: var(--radius-md);
+    box-sizing: border-box;
+}
+
+.container::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--colors-accent-primaryColor);
+    transition: all var(--motion-duration-normal) ease;
+}
+
+.container:focus-within::after, .content::after {
+    width: 100%;
+}
+
+.wrapper {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: calc(var(--spacing-xl) + var(--calc-font-size));
+    border-radius: inherit;
+    background-color: hsl( from var(--colors-accent-primaryColor) h s l / .1);
+}
+
+.container:focus-within > .wrapper, .content > .wrapper {
+    background-color: transparent;
+}
+
+.wrapper > label {
+    position: absolute;
+    font-size: var(--calc-font-size);
+    font-family: var(--typography-fontFamily);
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all var(--motion-duration-slow) ease;
+    width: fit-content;
+}
+
+.container:focus-within > .wrapper > label, .content > .wrapper > label {
+    font-size: calc(var(--calc-font-size) * .9);
+    left: 0;
+    top: 0;
+    transform: translateY(calc(-100% - var(--calc-font-size) * .2));
+}
+
+.wrapper > input {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    font-size: var(--calc-font-size);
+    height: 100%;
+    width: 100%;
+    outline: none;
+}
+
+.wrapper > input[type="number"]::-webkit-outer-spin-button,
+.wrapper > input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.wrapper > input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+
+.error {
+    margin-bottom: var(--calc-error-height, 16px);
+}
+
+.error::after {
+    background-color: var(--colors-status-danger);
+    width: 100%;
+}
+
+.container > span {
+    color: var(--colors-status-danger);
+    font-size: calc(var(--calc-font-size) * .8);
+    font-family: var(--typography-fontFamily);
+    position: absolute;
+    bottom: 0;
+    transform: translateY(calc(var(--calc-error-height, 16px) + var(--spacing-sm)));
+}
+
+.xs {
+    font-size: var(--typography-fontSize-xs);
+}
+
+.sm {
+    font-size: var(--typography-fontSize-sm);
+}
+
+.md {
+    font-size: var(--typography-fontSize-md);
+}
+
+.lg {
+    font-size: var(--typography-fontSize-lg);
+}
+
+.xl {
+    font-size: var(--typography-fontSize-xl);
+}
