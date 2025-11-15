@@ -1,0 +1,72 @@
+/* Classic */
+@property --circle-radius {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 0%;
+}
+
+.pressedClassic {
+    --circle-radius: 100%;
+    color: var(--colors-background-primaryColor);
+}
+
+.btnClassic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at var(--dot-position), var(--colors-accent-primaryColor) var(--circle-radius), transparent 0%) padding-box;
+    transition:
+        --circle-radius var(--motion-duration-slow) var(--motion-easing),
+        color var(--motion-duration-slow) var(--motion-easing);
+    ;
+}
+
+.xs, .sm {
+    column-gap: var(--spacing-sm);
+}
+
+.md, .lg, .xl {
+    column-gap: var(--spacing-md);
+}
+
+.btnClassic>span:nth-child(1) {
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--colors-accent-primaryColor);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .btnClassic:hover {
+        --circle-radius: 100%;
+        color: var(--colors-background-primaryColor);
+    }
+}
+
+/* morphism */
+@property --gradient-start {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 100%;
+}
+
+.btnMorph {
+    position: relative;
+    background: linear-gradient(hsl(from var(--colors-background-primaryColor) h s l / .2) var(--gradient-start), hsl(from var(--colors-accent-secondaryColor) h s l / .2)) padding-box;
+    backdrop-filter: blur(12px);
+    border: solid 2px hsl(from var(--colors-accent-secondaryColor) h s l / .4);
+    color: var(--colors-accent-primaryColor);
+}
+
+.pressedMorph {
+    --gradient-start: 0%;
+    border: solid 2px hsl(from var(--colors-accent-secondaryColor) h s l / .6);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .btnMorph:hover {
+        --gradient-start: 0%;
+        border: solid 2px hsl(from var(--colors-accent-secondaryColor) h s l / .6);
+    }
+}

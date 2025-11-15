@@ -9,9 +9,9 @@
     "dist"
   ],
   "scripts": {
-    "clean": "rm -r dist",
+    "clean": "rm -rf dist",
     "dev": "rollup -c --watch",
-    "build": "rollup -c",
+    "build": "npm run clean && rollup -c",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch"
   },
@@ -37,6 +37,9 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "react": "^19.2.0"
+    "@fontsource/inter": "^5.2.8",
+    "gsap": "^3.13.0",
+    "react": "^19.2.0",
+    "react-router-dom": "^7.9.4"
   }
 }

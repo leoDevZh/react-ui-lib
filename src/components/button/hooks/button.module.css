@@ -1,0 +1,53 @@
+.leoBtn {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: solid 2px var(--colors-border-primaryColor);
+    border-radius: var(--radius-md);
+    background-color: var(--colors-background-primaryColor);
+    color: var(--colors-font-tertiaryColor);
+    font-family: var(--typography-fontFamily), 'sans-serif';
+    letter-spacing: var(--typography-letterSpacing-cta);
+    transition: all var(--motion-duration-normal) var(--motion-easing);
+    cursor: pointer;
+}
+
+.xs {
+    padding: var(--spacing-sm);
+    font-size: var(--typography-fontSize-xs);
+    line-height: calc(var(--typography-fontSize-xs) * var(--typography-lineHeight-cta));
+}
+.sm {
+    padding: var(--spacing-sm);
+    font-size: var(--typography-fontSize-sm);
+}
+.md {
+    padding: var(--spacing-md);
+    font-size: var(--typography-fontSize-md);
+}
+.lg {
+    padding: var(--spacing-md);
+    font-size: var(--typography-fontSize-lg);
+}
+.xl {
+    padding: var(--spacing-md);
+    font-size: var(--typography-fontSize-xl);
+}
+
+.pressed {
+    border: solid 2px var(--colors-border-secondaryColor);
+}
+
+.preventSelect {
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* old Edge/IE */
+    -webkit-tap-highlight-color: transparent; /* removes gray tap flash on iOS */
+    touch-action: manipulation; /* prevents double-tap zoom */
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .leoBtn:hover {
+        border: solid 2px var(--colors-border-secondaryColor);
+    }
+}

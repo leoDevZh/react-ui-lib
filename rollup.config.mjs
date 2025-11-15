@@ -16,7 +16,14 @@ export default [
             'jest',
             'ts-jest',
             'identity-obj-proxy',
-            'jest-environment-jsdom'
+            'jest-environment-jsdom',
+            '@fontsource/inter',
+            'gsap',
+            'gsap/DrawSVGPlugin',
+            'gsap/ScrollTrigger',
+            'gsap/MorphSVGPlugin',
+            'react-router-dom',
+            'react-router'
         ],
         output: [
             {

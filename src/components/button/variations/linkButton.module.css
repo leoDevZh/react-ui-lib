@@ -1,0 +1,70 @@
+/* Classic */
+
+.aClassic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    text-decoration: unset;
+}
+.xs, .sm {
+    gap: var(--spacing-sm);
+}
+
+.aClassic>span {
+    display: flex;
+    height: var(--computed-font-size);
+    transition: width var(--motion-duration-fast) var(--motion-easing);
+}
+.aClassic>span:nth-child(2) {
+    align-items: center;
+}
+.aClassic>span:nth-child(3) {
+    width: var(--computed-font-size);
+}
+.aClassic>span:nth-child(1) {
+    width: 0;
+}
+
+.pressedClassic>span:nth-child(3) {
+    width: 0;
+}
+.pressedClassic>span:nth-child(1) {
+    width: var(--computed-font-size);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .aClassic:hover>span:nth-child(3) {
+        width: 0;
+    }
+    .aClassic:hover>span:nth-child(1) {
+        width: var(--computed-font-size);
+    }
+}
+
+/* Morph */
+@property --gradient-start {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 100%;
+}
+
+.aMorph {
+    position: relative;
+    background: linear-gradient(hsl(from var(--colors-background-primaryColor) h s l / .2) var(--gradient-start), hsl(from var(--colors-accent-secondaryColor) h s l / .2)) padding-box;
+    backdrop-filter: blur(12px);
+    border: solid 2px hsl(from var(--colors-accent-secondaryColor) h s l / .4);
+    color: var(--colors-accent-primaryColor);
+}
+
+.pressedMorph {
+    --gradient-start: 0%;
+    border: solid 2px hsl(from var(--colors-accent-secondaryColor) h s l / .6);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .aMorph:hover {
+        --gradient-start: 0%;
+        border: solid 2px hsl(from var(--colors-accent-secondaryColor) h s l / .6);
+    }
+}
