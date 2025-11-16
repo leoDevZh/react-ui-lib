@@ -5,6 +5,7 @@
     align-items: end;
     position: relative;
     font-family: var(--typography-fontFamily);
+    box-sizing: border-box;
 }
 
 .label {
@@ -13,13 +14,13 @@
 }
 
 .text {
-    background-color: hsl( from var(--colors-accent-primaryColor) h s l / .1);
+    background-color: transparent;
     font-family: var(--typography-fontFamily);
     font-size: var(--typography-fontSize-sm);
     width: 100%;
     box-sizing: border-box;
     resize: none;
-    border: solid 2px var(--colors-border-primaryColor);
+    border: solid 1px var(--colors-border-tertiaryColor);
     border-radius: var(--radius-md);
     outline: none;
     padding: var(--spacing-sm);

@@ -10,11 +10,11 @@ interface TextInputProps<T extends FieldValues> extends React.FormHTMLAttributes
     currentValue: any
 }
 
-const BasicInput = <T extends FieldValues,>({field, register, errorMsg, currentValue}: TextInputProps<T>) => {
+const BasicInput = <T extends FieldValues,>({field, register, errorMsg, currentValue, className}: TextInputProps<T>) => {
 
     const divRef = useRef<HTMLDivElement>(null);
     const errorRef = useRef<HTMLSpanElement>(null)
-    const finalClasses = [styles.container , styles[field?.inputConfig?.size ?? 'md'], currentValue ? styles.content : '', errorMsg ? styles.error : ''].filter(Boolean).join(' ')
+    const finalClasses = [className, styles.container , styles[field?.inputConfig?.size ?? 'md'], currentValue ? styles.content : '', errorMsg ? styles.error : ''].filter(Boolean).join(' ')
 
     useLayoutEffect(() => {
         if (divRef?.current) {

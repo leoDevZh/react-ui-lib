@@ -34,8 +34,8 @@
     bottom: 0;
     width: 100%;
     height: calc(var(--spacing-xl) + var(--calc-font-size));
-    border-radius: inherit;
-    background-color: hsl( from var(--colors-accent-primaryColor) h s l / .1);
+    border-radius: 0;
+    border-bottom: 1px solid var(--colors-border-tertiaryColor);
 }
 
 .container:focus-within > .wrapper, .content > .wrapper {

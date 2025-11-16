@@ -11,11 +11,11 @@ interface TextAreaProps<T extends FieldValues> extends React.TextareaHTMLAttribu
     setValue: UseFormSetValue<T>
 }
 
-const TextArea = <T extends FieldValues,>({ field, register, currentValue, setValue, errorMsg }: TextAreaProps<T>) => {
+const TextArea = <T extends FieldValues,>({ field, register, currentValue, setValue, errorMsg, className }: TextAreaProps<T>) => {
     const divRef = useRef<HTMLDivElement>(null)
     const errorRef = useRef<HTMLSpanElement>(null)
 
-    const containerClasses = [style.container, errorMsg ? style.error : ''].filter(Boolean).join(' ')
+    const containerClasses = [className, style.container, errorMsg ? style.error : ''].filter(Boolean).join(' ')
     const limitClasses = [style.limit, field.inputConfig?.max ? '' : style.hide].filter(Boolean).join(' ')
     const textClasses = [style.text, currentValue?.length > 0 ? style.content : ''].filter(Boolean).join(' ')
 
