@@ -1,7 +1,6 @@
 .container {
     display: flex;
     flex-direction: column;
-    row-gap: var(--spacing-sm);
     align-items: end;
     position: relative;
     font-family: var(--typography-fontFamily);
@@ -11,6 +10,7 @@
 .label {
     font-size: calc(var(--calc-font-size) * .9);
     align-self: start;
+    margin-bottom: var(--spacing-lg);
 }
 
 .text {
@@ -41,6 +41,7 @@
 
 .error > .text {
     border: solid 2px var(--colors-status-danger);
+    margin-bottom: var(--spacing-md);
 }
 
 .errorSpan {

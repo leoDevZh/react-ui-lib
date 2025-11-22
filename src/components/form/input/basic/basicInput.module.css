@@ -6,11 +6,12 @@
 .container {
     display: block;
     position: relative;
-    height: calc(var(--calc-font-size) * 2 + var(--spacing-xl));
+    height: calc(var(--calc-font-size) + var(--spacing-md) + var(--spacing-lg) + var(--calc-font-size) * .9);
     margin: 0;
     padding: 0;
     border-radius: var(--radius-md);
     box-sizing: border-box;
+    color: var(--colors-font-primaryColor);
 }
 
 .container::after {
@@ -19,13 +20,18 @@
     left: 0;
     bottom: 0;
     width: 0;
-    height: 2px;
+    height: 1px;
     background-color: var(--colors-accent-primaryColor);
     transition: all var(--motion-duration-normal) ease;
+    -webkit-mask: -webkit-linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
+    mask: linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
 }
 
 .container:focus-within::after, .content::after {
     width: 100%;
+}
+.container:focus-within .wrapper, .content .wrapper, .error .wrapper {
+    border-bottom: none;
 }
 
 .wrapper {
@@ -33,7 +39,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    height: calc(var(--spacing-xl) + var(--calc-font-size));
+    height: calc(var(--spacing-md) + var(--calc-font-size));
     border-radius: 0;
     border-bottom: 1px solid var(--colors-border-tertiaryColor);
 }
@@ -42,7 +48,7 @@
     background-color: transparent;
 }
 
-.wrapper > label {
+.label {
     position: absolute;
     font-size: var(--calc-font-size);
     font-family: var(--typography-fontFamily);
@@ -53,22 +59,21 @@
     width: fit-content;
 }
 
-.container:focus-within > .wrapper > label, .content > .wrapper > label {
+.container:focus-within > .label, .content > .label {
     font-size: calc(var(--calc-font-size) * .9);
     left: 0;
     top: 0;
-    transform: translateY(calc(-100% - var(--calc-font-size) * .2));
+    transform: translateY(0%);
 }
 
 .wrapper > input {
     position: absolute;
     left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
     border: none;
     background: transparent;
     font-size: var(--calc-font-size);
-    height: 100%;
+    height: var(--calc-font-size);
     width: 100%;
     outline: none;
 }
@@ -85,7 +90,7 @@
 
 
 .error {
-    margin-bottom: var(--calc-error-height, 16px);
+    margin-bottom: calc(var(--spacing-md) + var(--calc-error-height, 16px));
 }
 
 .error::after {
@@ -99,7 +104,7 @@
     font-family: var(--typography-fontFamily);
     position: absolute;
     bottom: 0;
-    transform: translateY(calc(var(--calc-error-height, 16px) + var(--spacing-sm)));
+    transform: translateY(calc(var(--calc-error-height, 16px) + var(--spacing-md)));
 }
 
 .xs {

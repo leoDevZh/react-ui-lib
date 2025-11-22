@@ -5,7 +5,7 @@ export const defaultTheme: Theme = {
         background: {
             primaryColor: 'hsl(0, 0%, 95%)',
             secondaryColor: 'hsl(0, 0%, 90%)',
-            tertiaryColor: 'hsl(0, 0%, 85%)'
+            tertiaryColor: 'hsl(0, 0%, 88%)'
         },
         font: {
             primaryColor: 'hsl(0, 0%, 15%)',
@@ -25,7 +25,7 @@ export const defaultTheme: Theme = {
         border: {
             primaryColor: 'hsl(0, 0%, 90%)',
             secondaryColor: 'hsl(0, 0%, 85%)',
-            tertiaryColor: 'hsl(0, 0%, 80%)'
+            tertiaryColor: 'hsl(255, 0%, 15%)'
         },
         status: {
             success: 'hsl(125, 73%, 42%)',
@@ -64,6 +64,13 @@ export const defaultTheme: Theme = {
         md: '6px',
         lg: '12px',
         round: '50%'
+    },
+    zIndex: {
+        zero: 0,
+        low: 2,
+        mid: 4,
+        heigh: 8,
+        full: 16
     },
     motion: {
         duration: {

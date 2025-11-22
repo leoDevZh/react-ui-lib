@@ -32,10 +32,10 @@ const BasicInput = <T extends FieldValues,>({field, register, errorMsg, currentV
             className={finalClasses}
             ref={divRef}
         >
+            <label className={styles.label}>
+                {field.label}
+            </label>
             <div className={styles.wrapper}>
-                <label>
-                    {field.label}
-                </label>
                 <input
                     type={field.type}
                     {...register(field.name as Path<T>,
