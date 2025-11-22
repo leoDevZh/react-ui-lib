@@ -20,6 +20,7 @@
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.2",
     "@rollup/plugin-typescript": "^12.1.4",
     "@testing-library/jest-dom": "^6.9.1",
@@ -40,7 +41,7 @@
     "@fontsource/inter": "5.2.8",
     "gsap": "3.13.0",
     "react": "19.2.0",
-    "react-router-dom": "7.9.4",
-    "react-hook-form": "7.65.0"
+    "react-hook-form": "7.65.0",
+    "react-router-dom": "7.9.4"
   }
 }
