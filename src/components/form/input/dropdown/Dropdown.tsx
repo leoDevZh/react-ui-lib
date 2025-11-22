@@ -1,18 +1,10 @@
-import {FieldValues, Path, UseFormRegister, UseFormSetValue} from "react-hook-form";
-import {FieldConfig, SelectionNode} from "../../Form";
+import {FieldValues, Path} from "react-hook-form";
+import {InputProps, SelectionNode} from "../../Form";
 import style from "./dropdown.module.css";
 import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
 import styles from "../basic/basicInput.module.css";
 
-interface DropdownInputProps<T extends FieldValues> extends React.InputHTMLAttributes<HTMLInputElement> {
-    field: FieldConfig<T>
-    errorMsg: null | string
-    register: UseFormRegister<T>
-    currentValue: any
-    setValue: UseFormSetValue<T>
-}
-
-const Dropdown = <T extends FieldValues,> ({ field, register, errorMsg, setValue, currentValue, className }: DropdownInputProps<T>) => {
+const Dropdown = <T extends FieldValues,> ({ field, registerFn, errorMsg, setValueFn, currentValue, className }: InputProps<T>) => {
     const [openDropdown, setOpenDropDown] = useState<boolean>(false)
 
     const divRef = useRef<HTMLDivElement>(null)
@@ -23,7 +15,7 @@ const Dropdown = <T extends FieldValues,> ({ field, register, errorMsg, setValue
 
     useEffect(() => {
         if (!field.inputConfig?.placeholder) {
-            setValue(field.name as Path<T>, field.inputConfig?.selection?.at(0)?.value)
+            setValueFn(field.name as Path<T>, field.inputConfig?.selection?.at(0)?.value)
         }
     }, []);
     
@@ -57,7 +49,7 @@ const Dropdown = <T extends FieldValues,> ({ field, register, errorMsg, setValue
                 key={key}
                 className={style.option}
                 onClick={() => {
-                    setValue(field.name as Path<T>, opt.value, {shouldValidate: true})
+                    setValueFn(field.name as Path<T>, opt.value, {shouldValidate: true})
                     setOpenDropDown(false)
                 }}
             >
@@ -100,7 +92,7 @@ const Dropdown = <T extends FieldValues,> ({ field, register, errorMsg, setValue
             </div>
             <div
                 className={dropdownClasses}
-                {...register(field.name as Path<T>,
+                {...registerFn(field.name as Path<T>,
                     {
                         required: field.required,
                         validate: field.validationFn
@@ -116,4 +108,4 @@ const Dropdown = <T extends FieldValues,> ({ field, register, errorMsg, setValue
     )
 }
 
-export {Dropdown, type DropdownInputProps}
+export {Dropdown}

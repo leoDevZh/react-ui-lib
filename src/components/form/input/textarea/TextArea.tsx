@@ -1,17 +1,9 @@
-import {FieldValues, type Path, UseFormRegister, UseFormSetValue} from "react-hook-form";
-import {FieldConfig} from "../../Form";
-import React, {useLayoutEffect, useRef} from "react";
+import {FieldValues, type Path} from "react-hook-form";
+import {InputProps} from "../../Form";
+import {useLayoutEffect, useRef} from "react";
 import style from "./textArea.module.css"
 
-interface TextAreaProps<T extends FieldValues> extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-    field: FieldConfig<T>
-    errorMsg: null | string
-    register: UseFormRegister<T>
-    currentValue: any
-    setValue: UseFormSetValue<T>
-}
-
-const TextArea = <T extends FieldValues,>({ field, register, currentValue, setValue, errorMsg, className }: TextAreaProps<T>) => {
+const TextArea = <T extends FieldValues,>({ field, registerFn, currentValue, setValueFn, errorMsg, className }: InputProps<T>) => {
     const divRef = useRef<HTMLDivElement>(null)
     const errorRef = useRef<HTMLSpanElement>(null)
 
@@ -33,7 +25,7 @@ const TextArea = <T extends FieldValues,>({ field, register, currentValue, setVa
     function limitChars(event: any) {
         const newValue: string = event.target.value
         if (field.inputConfig?.max && newValue.length > field.inputConfig?.max) {
-            setValue(field.name as Path<T>, newValue.substring(0, field.inputConfig?.max) as any)
+            setValueFn(field.name as Path<T>, newValue.substring(0, field.inputConfig?.max) as any)
         }
     }
 
@@ -46,7 +38,7 @@ const TextArea = <T extends FieldValues,>({ field, register, currentValue, setVa
             <textarea
                 className={textClasses}
                 rows={field.inputConfig?.rows ?? 10}
-                {...register(field.name as Path<T>, {
+                {...registerFn(field.name as Path<T>, {
                     onChange: limitChars,
                     required: field.required,
                     validate: field.validationFn
@@ -60,4 +52,4 @@ const TextArea = <T extends FieldValues,>({ field, register, currentValue, setVa
     )
 }
 
-export {TextArea, type TextAreaProps}
+export {TextArea}

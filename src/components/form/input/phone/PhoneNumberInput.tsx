@@ -1,18 +1,10 @@
-import {FieldValues, Path, useForm, UseFormRegister, UseFormSetValue} from "react-hook-form";
-import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
-import {FieldConfig, SelectionNode} from "../../Form";
+import {FieldValues, Path, useForm} from "react-hook-form";
+import {useEffect, useLayoutEffect, useRef, useState} from "react";
+import {InputProps, SelectionNode} from "../../Form";
 import {Dropdown} from "../dropdown/Dropdown";
 import countries from "./assets/countries.json"
 import style from "./phoneNumber.module.css"
 import styles from "../basic/basicInput.module.css";
-
-interface PhoneInputProps<T extends FieldValues> extends React.InputHTMLAttributes<HTMLInputElement> {
-    field: FieldConfig<T>
-    errorMsg: null | string
-    registerInp: UseFormRegister<T>
-    currentValue: any
-    setValueFn: UseFormSetValue<T>
-}
 
 interface FlagFormType {
     country: string
@@ -44,7 +36,7 @@ let countriesSelection: SelectionNode[] = countries.map((c1: Country) => {
     }})
     .sort((c1, c2) => c1.label.localeCompare(c2.label))
 
-const PhoneNumberInput = <T extends FieldValues,> ({field, registerInp, errorMsg, currentValue, setValueFn, className}: PhoneInputProps<T>) => {
+const PhoneNumberInput = <T extends FieldValues,> ({field, registerFn, errorMsg, currentValue, setValueFn, className}: InputProps<T>) => {
     const {register, watch, setValue} = useForm<FlagFormType>()
     const divRef = useRef<HTMLDivElement>(null)
     const errorRef = useRef<HTMLSpanElement>(null)
@@ -102,10 +94,10 @@ const PhoneNumberInput = <T extends FieldValues,> ({field, registerInp, errorMsg
                             selection: countriesSelection
                         }
                     }}
-                    register={register}
+                    registerFn={register}
                     currentValue={watch('country')}
                     errorMsg={null}
-                    setValue={(_, value) => {
+                    setValueFn={(_, value) => {
                         setValue('country', value)
                         setDialCode(countries.filter(c => c.full_name === value)?.pop()?.dial_code)
                     }}
@@ -117,7 +109,7 @@ const PhoneNumberInput = <T extends FieldValues,> ({field, registerInp, errorMsg
                 />
             </div>
             <div
-                {...registerInp(field.name as Path<T>,{
+                {...registerFn(field.name as Path<T>,{
                     required: field.required,
                     validate: field.validationFn
                 })}>
@@ -127,4 +119,4 @@ const PhoneNumberInput = <T extends FieldValues,> ({field, registerInp, errorMsg
     )
 }
 
-export {PhoneNumberInput, type PhoneInputProps}
+export {PhoneNumberInput}

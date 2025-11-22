@@ -1,4 +1,11 @@
-import {type FieldValues, type Path, type SubmitHandler, useForm} from "react-hook-form";
+import {
+    type FieldValues,
+    type Path,
+    type SubmitHandler,
+    useForm,
+    UseFormRegister,
+    UseFormSetValue
+} from "react-hook-form";
 import {BasicInput} from "./input/basic/BasicInput";
 import React, {PropsWithChildren} from "react";
 import {Button} from "../button";
@@ -44,6 +51,14 @@ interface SelectionNode {
     placeholderOption?: React.ReactNode
 }
 
+interface InputProps<T extends FieldValues> extends React.InputHTMLAttributes<HTMLInputElement> {
+    field: FieldConfig<T>
+    errorMsg: null | string
+    registerFn: UseFormRegister<T>
+    currentValue: any
+    setValueFn: UseFormSetValue<T>
+}
+
 const Form = <T extends FieldValues,>({fields, onSubmitFn, submitLabel, componentSize = 'sm', children, className}: FormProps<T>) => {
     const {
         handleSubmit,
@@ -66,8 +81,10 @@ const Form = <T extends FieldValues,>({fields, onSubmitFn, submitLabel, componen
                     <BasicInput
                         field={field}
                         errorMsg={errorMsg}
-                        register={register}
-                        currentValue={watch(field.name as Path<T>)}/>
+                        registerFn={register}
+                        currentValue={watch(field.name as Path<T>)}
+                        setValueFn={setValue}
+                    />
                 )
             case "textarea":
                 return <TextArea
@@ -81,15 +98,15 @@ const Form = <T extends FieldValues,>({fields, onSubmitFn, submitLabel, componen
                 return <Dropdown
                     field={field}
                     errorMsg={errorMsg}
-                    register={register}
+                    registerFn={register}
                     currentValue={watch(field.name as Path<T>)}
-                    setValue={setValue}
+                    setValueFn={setValue}
                 />
             case "phone":
                 return <PhoneNumberInput
                     field={field}
                     errorMsg={errorMsg}
-                    registerInp={register}
+                    registerFn={register}
                     currentValue={watch(field.name as Path<T>)}
                     setValueFn={setValue}
                 />
@@ -110,4 +127,4 @@ const Form = <T extends FieldValues,>({fields, onSubmitFn, submitLabel, componen
     )
 }
 
-export { Form, type FieldConfig, type FormProps, type SelectionNode }
+export { Form, type FieldConfig, type FormProps, type SelectionNode, type InputProps }
