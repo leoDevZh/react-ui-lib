@@ -19,19 +19,21 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 0;
+    width: 100%;
     height: 1px;
+    transform: scaleX(0);
+    transform-origin: center;
     background-color: var(--colors-accent-primaryColor);
-    transition: all var(--motion-duration-normal) ease;
+    transition: all var(--motion-duration-normal) var(--motion-easing);
     -webkit-mask: -webkit-linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
     mask: linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
 }
 
-.container:focus-within::after, .content::after {
-    width: 100%;
+.container:focus-within::after, .container:hover::after, .content::after {
+    transform: scaleX(1);
 }
-.container:focus-within .wrapper, .content .wrapper, .error .wrapper {
-    border-bottom: none;
+.container:focus-within .wrapper, .container:hover .wrapper, .content .wrapper, .error .wrapper {
+    border-color: transparent;
 }
 
 .wrapper {
@@ -42,6 +44,7 @@
     height: calc(var(--spacing-md) + var(--calc-font-size));
     border-radius: 0;
     border-bottom: 1px solid var(--colors-border-tertiaryColor);
+    transition: all var(--motion-duration-normal) var(--motion-easing);
 }
 
 .container:focus-within > .wrapper, .content > .wrapper {
@@ -95,7 +98,7 @@
 
 .error::after {
     background-color: var(--colors-status-danger);
-    width: 100%;
+    transform: scaleX(1);
 }
 
 .container > span {

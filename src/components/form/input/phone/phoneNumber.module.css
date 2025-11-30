@@ -18,25 +18,28 @@
     padding-bottom: var(--spacing-md);
     align-items: center;
     border-bottom: 1px solid var(--colors-border-tertiaryColor);
+    transition: all var(--motion-duration-normal) var(--motion-easing);
 }
-.inputContainer.selected, .inputContainer:focus-within {
+.inputContainer.selected, .inputContainer:focus-within, .inputContainer:hover {
     width: 100%;
-    border-bottom: none;
+    border-color: transparent;
 }
 .inputContainer::after {
     content: "";
     position: absolute;
     left: 0;
     bottom: -1px;
-    width: 0;
+    width: 100%;
     height: 1px;
+    transform: scaleX(0);
+    transform-origin: center;
     background-color: var(--colors-accent-primaryColor);
-    transition: all var(--motion-duration-normal) ease;
+    transition: all var(--motion-duration-normal) var(--motion-easing);
     -webkit-mask: -webkit-linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
     mask: linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
 }
-.inputContainer.selected::after, .inputContainer:focus-within::after {
-    width: 100%;
+.inputContainer.selected::after, .inputContainer:focus-within::after, .inputContainer:hover::after {
+    transform: scaleX(1);
 }
 
 .countrySelect {
@@ -74,11 +77,11 @@
 }
 
 .error>.inputContainer::after {
-    width: 100%;
+    transform: scaleX(1);
     background-color: var(--colors-status-danger);
 }
 .error>.inputContainer {
-    border-bottom: none;
+    border-color: transparent;
 }
 
 .errorSpan {

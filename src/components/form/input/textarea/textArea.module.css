@@ -25,7 +25,7 @@
     outline: none;
     padding: var(--spacing-sm);
 }
-.content, .text:focus {
+.content, .text:focus, .text:hover {
     background-color: transparent;
     border-color: var(--colors-accent-primaryColor);
 }
@@ -40,7 +40,7 @@
 }
 
 .error > .text {
-    border: solid 2px var(--colors-status-danger);
+    border-color: var(--colors-status-danger);
     margin-bottom: var(--spacing-md);
 }
 
