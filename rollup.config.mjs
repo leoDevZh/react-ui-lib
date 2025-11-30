@@ -24,7 +24,8 @@ export default [
             'gsap/MorphSVGPlugin',
             'react-router-dom',
             'react-router',
-            'react-hook-form'
+            'react-hook-form',
+            'luxon'
         ],
         output: [
             {

@@ -14,6 +14,7 @@ import styles from "./form.module.css"
 import {TextArea} from "./input/textarea/TextArea";
 import {Dropdown} from "./input/dropdown/Dropdown";
 import {PhoneNumberInput} from "./input/phone/PhoneNumberInput";
+import {CalendarInput} from "./input/calendar/Calendar";
 
 interface InputConfig {
     size?: ComponentSize
@@ -26,12 +27,14 @@ interface InputConfig {
     dropdownHeight?: string
     // Phone
     countryWhiteList?: string[]
+    // Calendar
+    yearsToSelect?: number[]
 }
 
 interface FieldConfig<T extends FieldValues> {
     name: keyof T
     label: string
-    type: "text" | "number" | "password" | "email" | "textarea" | "dropdown" | "phone"
+    type: "text" | "number" | "password" | "email" | "textarea" | "dropdown" | "phone" | "calendar"
     required: boolean | string
     validationFn: (value: any) => boolean | string
     inputConfig?: InputConfig
@@ -89,10 +92,10 @@ const Form = <T extends FieldValues,>({fields, onSubmitFn, submitLabel, componen
             case "textarea":
                 return <TextArea
                     field={field}
-                    register={register}
+                    registerFn={register}
                     errorMsg={errorMsg}
                     currentValue={watch(field.name as Path<T>)}
-                    setValue={setValue}
+                    setValueFn={setValue}
                 />
             case "dropdown":
                 return <Dropdown
@@ -104,6 +107,14 @@ const Form = <T extends FieldValues,>({fields, onSubmitFn, submitLabel, componen
                 />
             case "phone":
                 return <PhoneNumberInput
+                    field={field}
+                    errorMsg={errorMsg}
+                    registerFn={register}
+                    currentValue={watch(field.name as Path<T>)}
+                    setValueFn={setValue}
+                />
+            case "calendar":
+                return <CalendarInput
                     field={field}
                     errorMsg={errorMsg}
                     registerFn={register}

@@ -8,3 +8,5 @@ export { TextArea } from './input/textarea/TextArea'
 export { Dropdown } from './input/dropdown/Dropdown'
 
 export { PhoneNumberInput } from './input/phone/PhoneNumberInput'
+
+export { CalendarInput } from "./input/calendar/Calendar";

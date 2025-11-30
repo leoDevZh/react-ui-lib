@@ -1,0 +1,88 @@
+.container {
+    position: relative;
+    display: grid;
+    font-family: var(--typography-fontFamily), 'sans-serif';
+    color: var(--colors-font-primaryColor);
+}
+
+.label {
+    margin-bottom: var(--spacing-lg);
+}
+
+.wrapper {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--colors-border-tertiaryColor);
+    transition: border-bottom-color var(--motion-duration-normal) var(--motion-easing);
+    cursor: pointer;
+}
+.wrapper.selected, .wrapper:hover {
+    border-color: transparent;
+}
+.wrapper::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    transform: scaleX(0);
+    transform-origin: center;
+    width: 100%;
+    height: 1px;
+    background-color: var(--colors-accent-primaryColor);
+    transition: all var(--motion-duration-normal) var(--motion-easing);
+    -webkit-mask: -webkit-linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
+    mask: linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
+}
+.wrapper.selected::after, .wrapper:hover::after {
+    transform: scaleX(1);
+}
+
+.icon {
+    cursor: pointer;
+    width: 20px;
+    fill: var(--colors-font-primaryColor);
+}
+
+.selectedDate {
+    color: var(--colors-font-secondaryColor);
+}
+
+.calendar {
+    display: none;
+    position: absolute;
+    z-index: var(--zIndex-mid);
+    top: 0;
+    left: 0;
+}
+
+.show .calendar {
+    display: block;
+    width: 100%;
+    min-width: 200px;
+}
+
+.error .wrapper {
+    border-color: transparent;
+}
+
+.error .wrapper::after {
+    transform: scaleX(1);
+    background-color: var(--colors-status-danger);
+}
+
+.errorSpan {
+    margin-top: var(--spacing-md);
+    color: var(--colors-status-danger);
+    font-size: calc(var(--calc-font-size) * .8);
+    font-family: var(--typography-fontFamily);
+    align-self: start;
+}
+
+@media(max-width: 412px) {
+    .container {
+        position: unset;
+    }
+}
