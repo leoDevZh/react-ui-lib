@@ -1,0 +1,111 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--typography-fontFamily), 'sans-serif';
+    color: var(--colors-font-primaryColor);
+}
+
+.label {
+    font-size: calc(var(--calc-font-size) * .9);
+    margin-bottom: var(--spacing-md);
+}
+
+.inputContainer {
+    position: relative;
+    display: grid;
+    gap: var(--spacing-sm);
+    grid-template-columns: max-content max-content 1fr;
+    padding-bottom: var(--spacing-md);
+    align-items: center;
+    border-bottom: 1px solid var(--colors-border-tertiaryColor);
+    transition: all var(--motion-duration-normal) var(--motion-easing);
+}
+.inputContainer.selected, .inputContainer:focus-within, .inputContainer:hover {
+    width: 100%;
+    border-color: transparent;
+}
+.inputContainer::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: center;
+    background-color: var(--colors-accent-primaryColor);
+    transition: all var(--motion-duration-normal) var(--motion-easing);
+    -webkit-mask: -webkit-linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
+    mask: linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
+}
+.inputContainer.selected::after, .inputContainer:focus-within::after, .inputContainer:hover::after {
+    transform: scaleX(1);
+}
+
+.countrySelect {
+    width: 38px;
+}
+
+.countrySelect > label {
+    margin-bottom: 0;
+}
+
+.countrySelect > div {
+    border-bottom: none !important;
+    padding-bottom: 0;
+}
+.countrySelect > div::after {
+    height: 0 !important;
+}
+.countrySelect > span {
+    margin-top: 0;
+}
+
+.inputContainer > span {
+    width: fit-content;
+    font-size: calc(var(--calc-font-size) * .9);
+    color: var(--colors-font-secondaryColor);
+}
+
+.inputContainer > input {
+    color: var(--colors-font-primaryColor);
+    width: 100%;
+    font-size: calc(var(--calc-font-size));
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+.error>.inputContainer::after {
+    transform: scaleX(1);
+    background-color: var(--colors-status-danger);
+}
+.error>.inputContainer {
+    border-color: transparent;
+}
+
+.errorSpan {
+    margin-top: var(--spacing-md);
+    color: var(--colors-status-danger);
+    font-size: calc(var(--calc-font-size) * .8);
+}
+
+.xs {
+    font-size: var(--typography-fontSize-xs);
+}
+
+.sm {
+    font-size: var(--typography-fontSize-sm);
+}
+
+.md {
+    font-size: var(--typography-fontSize-md);
+}
+
+.lg {
+    font-size: var(--typography-fontSize-lg);
+}
+
+.xl {
+    font-size: var(--typography-fontSize-xl);
+}

@@ -75,6 +75,13 @@ type Theme = {
         }
         easing: string
     }
+    zIndex: {
+        zero: number
+        low: number
+        mid: number
+        heigh: number
+        full: number
+    }
     style: 'morphism' | 'classic'
 }
 

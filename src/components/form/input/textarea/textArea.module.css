@@ -1,30 +1,31 @@
 .container {
     display: flex;
     flex-direction: column;
-    row-gap: var(--spacing-sm);
     align-items: end;
     position: relative;
     font-family: var(--typography-fontFamily);
+    box-sizing: border-box;
 }
 
 .label {
     font-size: calc(var(--calc-font-size) * .9);
     align-self: start;
+    margin-bottom: var(--spacing-lg);
 }
 
 .text {
-    background-color: hsl( from var(--colors-accent-primaryColor) h s l / .1);
+    background-color: transparent;
     font-family: var(--typography-fontFamily);
     font-size: var(--typography-fontSize-sm);
     width: 100%;
     box-sizing: border-box;
     resize: none;
-    border: solid 2px var(--colors-border-primaryColor);
+    border: solid 1px var(--colors-border-tertiaryColor);
     border-radius: var(--radius-md);
     outline: none;
     padding: var(--spacing-sm);
 }
-.content, .text:focus {
+.content, .text:focus, .text:hover {
     background-color: transparent;
     border-color: var(--colors-accent-primaryColor);
 }
@@ -39,7 +40,8 @@
 }
 
 .error > .text {
-    border: solid 2px var(--colors-status-danger);
+    border-color: var(--colors-status-danger);
+    margin-bottom: var(--spacing-md);
 }
 
 .errorSpan {
