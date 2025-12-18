@@ -14,8 +14,8 @@ const Dropdown = <T extends FieldValues,> ({ field, registerFn, errorMsg, setVal
     let placeholderClasses = [style.placeholder, openDropdown ? style.open : '', (openDropdown || currentValue) ? style.selected : ''].filter(Boolean).join(' ')
 
     useEffect(() => {
-        if (!field.inputConfig?.placeholder) {
-            setValueFn(field.name as Path<T>, field.inputConfig?.selection?.at(0)?.value)
+        if (!field.inputConfig?.dropDown?.placeholder) {
+            setValueFn(field.name as Path<T>, field.inputConfig?.dropDown?.selection?.at(0)?.value)
         }
     }, []);
     
@@ -30,8 +30,8 @@ const Dropdown = <T extends FieldValues,> ({ field, registerFn, errorMsg, setVal
             const computedStyle = window.getComputedStyle(divRef.current)
             divRef.current.style.setProperty('--calc-font-size', computedStyle.fontSize)
             divRef.current.style.setProperty('--calc-width', computedStyle.width)
-            if (field.inputConfig?.dropdownHeight) {
-                divRef.current.style.setProperty('--dropdown-height', field.inputConfig.dropdownHeight)
+            if (field.inputConfig?.dropDown?.dropdownHeight) {
+                divRef.current.style.setProperty('--dropdown-height', field.inputConfig?.dropDown?.dropdownHeight)
             }
         }
     }, []);
@@ -61,8 +61,8 @@ const Dropdown = <T extends FieldValues,> ({ field, registerFn, errorMsg, setVal
     }
 
     function renderPlaceholder() {
-        const emptyPh = field.inputConfig?.placeholder ?? ''
-        const retAr = field.inputConfig?.selection?.
+        const emptyPh = field.inputConfig?.dropDown?.placeholder ?? ''
+        const retAr = field.inputConfig?.dropDown?.selection?.
         filter(opt => opt.value === currentValue)?.
         map(opt => renderOption(opt, '__key__', true))
         const ret = retAr!.pop()
@@ -100,7 +100,7 @@ const Dropdown = <T extends FieldValues,> ({ field, registerFn, errorMsg, setVal
                 )}
             >
                 <div className={style.dropdownInner}>
-                    {field.inputConfig?.selection?.map((opt) => renderOption(opt))}
+                    {field.inputConfig?.dropDown?.selection?.map((opt) => renderOption(opt))}
                 </div>
             </div>
             <span className={style.errorSpan}>{errorMsg}</span>

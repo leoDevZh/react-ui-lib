@@ -19,15 +19,33 @@ import {CalendarInput} from "./input/calendar/Calendar";
 interface InputConfig {
     size?: ComponentSize
     // Textarea
+    textArea?: TextAreaConfig
+    // Dropdown
+    dropDown?: DropDownConfig
+    // Phone
+    phone?: PhoneConfig
+    // Calendar
+    calendar?: CalendarConfig
+    // general
+    autocomplete?: "name" | "given-name" | "family-name" | "email" | "tel" | "address-line1" | "address-line2" | "address-level2" | "address-level1" | "postal-code" | "country-name" | "new-password" | "current-password" | "organization"
+}
+
+interface TextAreaConfig {
     rows?: number
     max?: number
-    // Dropdown
+}
+
+interface DropDownConfig {
     selection?: SelectionNode[]
     placeholder?: string
     dropdownHeight?: string
-    // Phone
+}
+
+interface PhoneConfig {
     countryWhiteList?: string[]
-    // Calendar
+}
+
+interface CalendarConfig {
     yearsToSelect?: number[]
 }
 

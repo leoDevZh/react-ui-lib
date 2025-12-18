@@ -66,8 +66,8 @@ const PhoneNumberInput = <T extends FieldValues,> ({field, registerFn, errorMsg,
     }, [dialCode, watch('phoneNr')]);
 
     useEffect(() => {
-        if (field.inputConfig?.countryWhiteList) {
-            countriesSelection = countriesSelection.filter(c => field.inputConfig?.countryWhiteList?.includes(c.label.toLowerCase()))
+        if (field.inputConfig?.phone?.countryWhiteList) {
+            countriesSelection = countriesSelection.filter(c => field.inputConfig?.phone?.countryWhiteList?.includes(c.label.toLowerCase()))
         }
     }, []);
 
@@ -89,9 +89,11 @@ const PhoneNumberInput = <T extends FieldValues,> ({field, registerFn, errorMsg,
                         required: false,
                         validationFn: () => true,
                         inputConfig: {
-                            placeholder: ' ',
-                            dropdownHeight: field.inputConfig?.dropdownHeight,
-                            selection: countriesSelection
+                            dropDown: {
+                                ...field.inputConfig?.dropDown,
+                                placeholder: ' ',
+                                selection: countriesSelection
+                            },
                         }
                     }}
                     registerFn={register}

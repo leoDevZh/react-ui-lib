@@ -31,6 +31,7 @@ const BasicInput = <T extends FieldValues,>({field, registerFn, errorMsg, curren
             <div className={styles.wrapper}>
                 <input
                     type={field.type}
+                    autoComplete={field.inputConfig?.autocomplete}
                     {...registerFn(field.name as Path<T>,
                         {
                             required: field.required,

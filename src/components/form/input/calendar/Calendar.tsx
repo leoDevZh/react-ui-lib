@@ -91,7 +91,7 @@ const Calendar = <T extends FieldValues,>({field, setSelectedDate}: {field: Fiel
         .map(d => d.start)
         .filter(d => d !== null)
 
-    const yearsToSelect = field.inputConfig?.yearsToSelect ?? years()
+    const yearsToSelect = field.inputConfig?.calendar?.yearsToSelect ?? years()
 
     const divRef = useRef<HTMLDivElement>(null)
 
