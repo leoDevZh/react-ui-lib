@@ -7,7 +7,7 @@ import {
     UseFormSetValue
 } from "react-hook-form";
 import {BasicInput} from "./input/basic/BasicInput";
-import React, {PropsWithChildren} from "react";
+import React, {Dispatch, PropsWithChildren, SetStateAction, useEffect, useLayoutEffect, useMemo, useRef} from "react";
 import {Button} from "../button";
 import {ComponentSize} from "../provider";
 import styles from "./form.module.css"
@@ -62,7 +62,9 @@ interface FormProps<T extends FieldValues> extends PropsWithChildren, React.Form
     fields: FieldConfig<T>[],
     onSubmitFn: SubmitHandler<T>
     submitLabel?: string
-    componentSize?: ComponentSize
+    componentSize?: ComponentSize,
+    errorMsg?: string,
+    setErrorMsg?: Dispatch<SetStateAction<string | undefined>>
 }
 
 interface SelectionNode {
@@ -80,7 +82,16 @@ interface InputProps<T extends FieldValues> extends React.InputHTMLAttributes<HT
     setValueFn: UseFormSetValue<T>
 }
 
-const Form = <T extends FieldValues,>({fields, onSubmitFn, submitLabel, componentSize = 'sm', children, className}: FormProps<T>) => {
+const Form = <T extends FieldValues, >({
+                                           fields,
+                                           onSubmitFn,
+                                           submitLabel,
+                                           componentSize = 'sm',
+                                           children,
+                                           className,
+                                           errorMsg,
+                                           setErrorMsg
+                                       }: FormProps<T>) => {
     const {
         handleSubmit,
         register,
@@ -88,8 +99,25 @@ const Form = <T extends FieldValues,>({fields, onSubmitFn, submitLabel, componen
         watch,
         setValue
     } = useForm<T>()
+    const formRef = useRef<HTMLFormElement>(null)
+
+    useLayoutEffect(() => {
+        if (formRef.current) {
+            const computedStyles = window.getComputedStyle(formRef.current)
+            formRef.current.style.setProperty('--calc-font-size', computedStyles.fontSize)
+        }
+    }, []);
 
     const finalClass = [className, styles.form].join(' ')
+
+    const values = watch()
+    const stableValues = useMemo(() => values, [JSON.stringify(values)])
+
+    useEffect(() => {
+        if (setErrorMsg) {
+            setErrorMsg(undefined)
+        }
+    }, [stableValues])
 
     function getInput(field: FieldConfig<T>) {
         const errorMsg = (errors[field.name]?.message as string) ?? null
@@ -143,7 +171,7 @@ const Form = <T extends FieldValues,>({fields, onSubmitFn, submitLabel, componen
     }
 
     return (
-        <form className={finalClass} onSubmit={handleSubmit(onSubmitFn)}>
+        <form className={finalClass} onSubmit={handleSubmit(onSubmitFn)} ref={formRef}>
             {
                 fields.map((field) => (
                     <div key={field.label}>
@@ -151,6 +179,7 @@ const Form = <T extends FieldValues,>({fields, onSubmitFn, submitLabel, componen
                     </div>
                 ))
             }
+            {errorMsg ? <div className={styles.error}>{errorMsg}</div> : ''}
             {children ? children : <Button disabled={isSubmitting} label={submitLabel ?? "Submit"} type="submit" size={componentSize}/>}
         </form>
     )
