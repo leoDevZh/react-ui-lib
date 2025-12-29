@@ -18,9 +18,9 @@ export const defaultTheme: Theme = {
             tertiaryColor: 'hsl(30, 100%, 60%)'
         },
         shadow: {
-            primaryColor: 'hsl(0, 0%, 95%)',
-            secondaryColor: 'hsl(0, 0%, 95%)',
-            tertiaryColor: 'hsl(0, 0%, 95%)'
+            primaryColor: 'hsla(0, 0%, 15%, .8)',
+            secondaryColor: 'hsla(0, 0%, 20%, .8)',
+            tertiaryColor: 'hsla(0, 0%, 25%, .8)'
         },
         border: {
             primaryColor: 'hsl(0, 0%, 90%)',
