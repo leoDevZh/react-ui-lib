@@ -65,6 +65,7 @@ interface FormProps<T extends FieldValues> extends PropsWithChildren, React.Form
     componentSize?: ComponentSize,
     errorMsg?: string,
     setErrorMsg?: Dispatch<SetStateAction<string | undefined>>
+    onValuesChange?: (values: T) => void
 }
 
 interface SelectionNode {
@@ -90,14 +91,16 @@ const Form = <T extends FieldValues, >({
                                            children,
                                            className,
                                            errorMsg,
-                                           setErrorMsg
+                                           setErrorMsg,
+                                           onValuesChange
                                        }: FormProps<T>) => {
     const {
         handleSubmit,
         register,
-        formState: { isSubmitting, errors },
+        formState: {isSubmitting, errors, isDirty},
         watch,
-        setValue
+        setValue,
+        trigger
     } = useForm<T>()
     const formRef = useRef<HTMLFormElement>(null)
 
@@ -117,7 +120,16 @@ const Form = <T extends FieldValues, >({
         if (setErrorMsg) {
             setErrorMsg(undefined)
         }
+        if (onValuesChange) {
+            onValuesChange(stableValues)
+        }
     }, [stableValues])
+
+    useEffect(() => {
+        if (isDirty) {
+            trigger()
+        }
+    }, [fields]);
 
     function getInput(field: FieldConfig<T>) {
         const errorMsg = (errors[field.name]?.message as string) ?? null
