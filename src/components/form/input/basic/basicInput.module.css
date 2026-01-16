@@ -6,7 +6,7 @@
 .container {
     display: block;
     position: relative;
-    height: calc(var(--calc-font-size) + var(--spacing-md) + var(--spacing-lg) + var(--calc-font-size) * .9);
+    height: calc(var(--calc-font-size) * 1.2 + var(--spacing-md) + var(--spacing-lg) + var(--calc-font-size) * .9);
     margin: 0;
     padding: 0;
     border-radius: var(--radius-md);
@@ -41,7 +41,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    height: calc(var(--spacing-md) + var(--calc-font-size));
+    height: calc(var(--spacing-md) + var(--calc-font-size) * 1.2);
     border-radius: 0;
     border-bottom: 1px solid var(--colors-border-tertiaryColor);
     transition: all var(--motion-duration-normal) var(--motion-easing);
@@ -75,8 +75,9 @@
     top: 0;
     border: none;
     background: transparent;
+    color: var(--colors-font-primaryColor);
     font-size: var(--calc-font-size);
-    height: var(--calc-font-size);
+    height: calc(var(--calc-font-size) * 1.2);
     width: 100%;
     outline: none;
 }
