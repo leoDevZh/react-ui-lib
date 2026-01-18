@@ -2,11 +2,11 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-md);
+    gap: var(--spacing-xs);
 }
 
 .xs, .sm {
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
 }
 
 .btn>span:nth-child(2) {

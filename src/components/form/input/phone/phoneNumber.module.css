@@ -7,15 +7,15 @@
 
 .label {
     font-size: calc(var(--calc-font-size) * .9);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .inputContainer {
     position: relative;
     display: grid;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
     grid-template-columns: max-content max-content 1fr;
-    padding-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
     align-items: center;
     border-bottom: 1px solid var(--colors-border-tertiaryColor);
     transition: all var(--motion-duration-normal) var(--motion-easing);
@@ -85,7 +85,7 @@
 }
 
 .errorSpan {
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-sm);
     color: var(--colors-status-danger);
     font-size: calc(var(--calc-font-size) * .8);
 }

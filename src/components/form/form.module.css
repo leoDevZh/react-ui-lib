@@ -1,18 +1,18 @@
 .form {
     display: flex;
     flex-direction: column;
-    row-gap: var(--spacing-md);
+    row-gap: var(--spacing-sm);
 }
 
 .error {
     color: var(--colors-status-danger);
     font-family: var(--typography-fontFamily);
     font-size: calc(var(--calc-font-size) * .8);
-    padding: var(--spacing-sm);
+    padding: var(--spacing-xs);
     background-color: hsl(from var(--colors-status-danger) h s l / .05);
     border-radius: var(--radius-sm);
 }
 
 .form > button {
-    margin-top: var(--spacing-lg);
+    margin-top: var(--spacing-md);
 }
