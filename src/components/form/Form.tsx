@@ -15,6 +15,7 @@ import {TextArea} from "./input/textarea/TextArea";
 import {Dropdown} from "./input/dropdown/Dropdown";
 import {PhoneNumberInput} from "./input/phone/PhoneNumberInput";
 import {CalendarInput} from "./input/calendar/Calendar";
+import {CheckboxInput} from "./input/checkbox/Checkbox";
 
 interface InputConfig {
     size?: ComponentSize
@@ -28,6 +29,8 @@ interface InputConfig {
     calendar?: CalendarConfig
     // general
     autocomplete?: "name" | "given-name" | "family-name" | "email" | "tel" | "address-line1" | "address-line2" | "address-level2" | "address-level1" | "postal-code" | "country-name" | "new-password" | "current-password" | "organization"
+    // Checkbox
+    checkbox?: CheckboxConfig
 }
 
 interface TextAreaConfig {
@@ -41,6 +44,13 @@ interface DropDownConfig {
     dropdownHeight?: string
 }
 
+interface SelectionNode {
+    label: string
+    value: any
+    option?: React.ReactNode,
+    placeholderOption?: React.ReactNode
+}
+
 interface PhoneConfig {
     countryWhiteList?: string[]
 }
@@ -49,10 +59,14 @@ interface CalendarConfig {
     yearsToSelect?: number[]
 }
 
+interface CheckboxConfig {
+    selection?: SelectionNode[]
+}
+
 interface FieldConfig<T extends FieldValues> {
     name: keyof T
     label: string
-    type: "text" | "number" | "password" | "email" | "textarea" | "dropdown" | "phone" | "calendar"
+    type: "text" | "number" | "password" | "email" | "textarea" | "dropdown" | "phone" | "calendar" | "checkbox"
     required: boolean | string
     validationFn: (value: any) => boolean | string
     inputConfig?: InputConfig
@@ -66,13 +80,6 @@ interface FormProps<T extends FieldValues> extends PropsWithChildren, React.Form
     errorMsg?: string,
     setErrorMsg?: Dispatch<SetStateAction<string | undefined>>
     onValuesChange?: (values: T) => void
-}
-
-interface SelectionNode {
-    label: string
-    value: any
-    option?: React.ReactNode,
-    placeholderOption?: React.ReactNode
 }
 
 interface InputProps<T extends FieldValues> extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -173,6 +180,14 @@ const Form = <T extends FieldValues, >({
                 />
             case "calendar":
                 return <CalendarInput
+                    field={field}
+                    errorMsg={errorMsg}
+                    registerFn={register}
+                    currentValue={watch(field.name as Path<T>)}
+                    setValueFn={setValue}
+                />
+            case "checkbox":
+                return <CheckboxInput
                     field={field}
                     errorMsg={errorMsg}
                     registerFn={register}
