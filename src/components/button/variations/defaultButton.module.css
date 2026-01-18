@@ -22,11 +22,11 @@
 }
 
 .xs, .sm {
-    column-gap: var(--spacing-sm);
+    column-gap: var(--spacing-xs);
 }
 
 .md, .lg, .xl {
-    column-gap: var(--spacing-md);
+    column-gap: var(--spacing-sm);
 }
 
 .btnClassic>span:nth-child(1) {

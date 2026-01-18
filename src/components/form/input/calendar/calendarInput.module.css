@@ -6,7 +6,7 @@
 }
 
 .label {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .wrapper {
@@ -14,7 +14,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
     border-bottom: 1px solid var(--colors-border-tertiaryColor);
     transition: border-bottom-color var(--motion-duration-normal) var(--motion-easing);
     cursor: pointer;
@@ -74,7 +74,7 @@
 }
 
 .errorSpan {
-    margin-top: var(--spacing-md);
+    margin-top: var(--spacing-sm);
     color: var(--colors-status-danger);
     font-size: calc(var(--calc-font-size) * .8);
     font-family: var(--typography-fontFamily);

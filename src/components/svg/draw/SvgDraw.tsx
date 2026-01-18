@@ -8,8 +8,8 @@ import {
     useRef
 } from "react";
 import gsap from 'gsap';
-import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
+import {DrawSVGPlugin} from "gsap/DrawSVGPlugin"
 
 interface SvgDrawProps extends PropsWithChildren {
     triggerMode?: 'manual' | 'scroll'
@@ -31,7 +31,9 @@ interface SvgDrawProps extends PropsWithChildren {
     end?: string
     toggleActions?: string
     scrub?: boolean | number
-    markers?: boolean
+    markers?: boolean,
+
+    className?: string
 }
 
 interface SvgDrawRef {
@@ -62,7 +64,8 @@ const SvgDraw = forwardRef<SvgDrawRef, SvgDrawProps>(
             toggleActions = 'play none none none',
             scrub = false,
             markers = false,
-            children
+            children,
+            className
         },
         ref
     ) => {
@@ -78,7 +81,6 @@ const SvgDraw = forwardRef<SvgDrawRef, SvgDrawProps>(
 
             const ctx = gsap.context(() => {
                 gsap.registerPlugin(DrawSVGPlugin)
-
                 animRef.current = gsap.from(path, initTweenVars())
             })
 
@@ -125,7 +127,7 @@ const SvgDraw = forwardRef<SvgDrawRef, SvgDrawProps>(
             return tweenVars
         }
 
-        return <div ref={container}>{children}</div>
+        return <div ref={container} className={className}>{children}</div>
     })
 
 export {SvgDraw, type SvgDrawRef, type SvgDrawProps}

@@ -13,24 +13,24 @@
 }
 
 .xs {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-xs);
     font-size: var(--typography-fontSize-xs);
     line-height: calc(var(--typography-fontSize-xs) * var(--typography-lineHeight-cta));
 }
 .sm {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-xs);
     font-size: var(--typography-fontSize-sm);
 }
 .md {
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     font-size: var(--typography-fontSize-md);
 }
 .lg {
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     font-size: var(--typography-fontSize-lg);
 }
 .xl {
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     font-size: var(--typography-fontSize-xl);
 }
 

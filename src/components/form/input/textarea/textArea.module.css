@@ -10,7 +10,7 @@
 .label {
     font-size: calc(var(--calc-font-size) * .9);
     align-self: start;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .text {
@@ -23,7 +23,7 @@
     border: solid 1px var(--colors-border-tertiaryColor);
     border-radius: var(--radius-md);
     outline: none;
-    padding: var(--spacing-sm);
+    padding: var(--spacing-xs);
 }
 .content, .text:focus, .text:hover {
     background-color: transparent;
@@ -41,7 +41,7 @@
 
 .error > .text {
     border-color: var(--colors-status-danger);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .errorSpan {
