@@ -1,6 +1,6 @@
 .container {
     --checkbox-gap: var(--spacing-sm);
-    --checkbox-size: 20px;
+    --checkbox-size: 16px;
     display: flex;
     flex-direction: column;
     margin: 0;
@@ -20,11 +20,13 @@
     display: grid;
     gap: var(--spacing-md);
     grid-template-columns: repeat(auto-fit, minmax(var(--checkbox-min-width), 1fr));
+    align-items: center;
 }
 
 .checkbox {
     display: flex;
     gap: var(--checkbox-gap);
+    align-items: center;
     width: fit-content;
 }
 
@@ -60,12 +62,12 @@
 
 .xs {
     font-size: var(--typography-fontSize-xs);
-    --checkbox-size: 14px;
+    --checkbox-size: 10px;
 }
 
 .sm {
     font-size: var(--typography-fontSize-sm);
-    --checkbox-size: 16px;
+    --checkbox-size: 12px;
 }
 
 .md {
@@ -74,10 +76,10 @@
 
 .lg {
     font-size: var(--typography-fontSize-lg);
-    --checkbox-size: 24px;
+    --checkbox-size: 20px;
 }
 
 .xl {
     font-size: var(--typography-fontSize-xl);
-    --checkbox-size: 28px;
+    --checkbox-size: 24px;
 }
