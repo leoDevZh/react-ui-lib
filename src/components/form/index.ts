@@ -9,4 +9,6 @@ export { Dropdown } from './input/dropdown/Dropdown'
 
 export { PhoneNumberInput } from './input/phone/PhoneNumberInput'
 
-export { CalendarInput } from "./input/calendar/Calendar";
+export {CalendarInput} from "./input/calendar/Calendar"
+
+export {CheckboxInput} from "./input/checkbox/Checkbox"
