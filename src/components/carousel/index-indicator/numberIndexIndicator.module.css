@@ -1,0 +1,25 @@
+.container {
+    color: var(--colors-font-secondaryColor);
+    font-family: var(--typography-fontFamily);
+    right: var(--spacing-xs);
+}
+
+.xs {
+    font-size: var(--typography-fontSize-xs);
+}
+
+.sm {
+    font-size: var(--typography-fontSize-sm);
+}
+
+.md {
+    font-size: var(--typography-fontSize-md);
+}
+
+.lg {
+    font-size: var(--typography-fontSize-lg);
+}
+
+.xl {
+    font-size: var(--typography-fontSize-xl);
+}
