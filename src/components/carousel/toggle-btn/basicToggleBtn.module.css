@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.container > svg {
+    width: 100%;
+}
