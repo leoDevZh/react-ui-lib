@@ -1,0 +1,71 @@
+.outer {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.container {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    overflow-y: hidden;
+    overflow-x: scroll;
+    -ms-overflow-style: none;  /* IE, Edge */
+    scrollbar-width: none;     /* Firefox */
+    scroll-snap-type: x mandatory;
+}
+.container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--item-gap);
+    width:fit-content;
+    height: 100%;
+}
+
+.wrapper > * {
+    flex-shrink: 0;
+    scroll-snap-align: center;
+}
+
+.toggleBtn {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 32px;
+    color: var(--colors-font-secondaryColor);
+    opacity: var(--toggle-opacity);
+    transition: all var(--motion-duration-fast) var(--motion-easing);
+}
+
+.toggleBtn.left {
+    left: 0;
+}
+.toggleBtn.right {
+    right: 0;
+}
+
+.hide {
+    opacity: 0 !important;
+}
+
+.indexIndicator {
+    display: block;
+    position: absolute;
+    height: fit-content;
+    width: fit-content;
+    bottom: var(--spacing-xs);
+    opacity: var(--toggle-opacity);
+    transition: all var(--motion-duration-fast) var(--motion-easing);
+}
+
+.outerDesktop:hover .toggleBtn, .outerDesktop:hover .indexIndicator, .pressed .toggleBtn, .pressed .indexIndicator {
+    opacity: 1;
+}
