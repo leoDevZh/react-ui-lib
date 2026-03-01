@@ -43,6 +43,7 @@ type Theme = {
             md: string
             lg: string
             xl: string
+            xxl: string
         }
         letterSpacing: {
             cta: string

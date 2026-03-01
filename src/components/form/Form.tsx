@@ -16,6 +16,7 @@ import {Dropdown} from "./input/dropdown/Dropdown";
 import {PhoneNumberInput} from "./input/phone/PhoneNumberInput";
 import {CalendarInput} from "./input/calendar/Calendar";
 import {CheckboxInput} from "./input/checkbox/Checkbox";
+import {PlainInput} from "./input/plain/PlainInput";
 
 interface InputConfig {
     size?: ComponentSize
@@ -31,6 +32,10 @@ interface InputConfig {
     autocomplete?: "name" | "given-name" | "family-name" | "email" | "tel" | "address-line1" | "address-line2" | "address-level2" | "address-level1" | "postal-code" | "country-name" | "new-password" | "current-password" | "organization"
     // Checkbox
     checkbox?: CheckboxConfig
+    // Text
+    text?: TextConfig
+    // Styling
+    isPlain?: boolean
 }
 
 interface TextAreaConfig {
@@ -61,6 +66,10 @@ interface CalendarConfig {
 
 interface CheckboxConfig {
     selection?: SelectionNode[]
+}
+
+interface TextConfig {
+    placeholder?: string
 }
 
 interface FieldConfig<T extends FieldValues> {
@@ -146,6 +155,10 @@ const Form = <T extends FieldValues, >({
             case "password":
             case "email":
                 return (
+                    field.inputConfig?.isPlain ?
+                        <PlainInput field={field} registerFn={register}
+                                    placeholder={field.inputConfig.text?.placeholder}/>
+                        :
                     <BasicInput
                         field={field}
                         errorMsg={errorMsg}

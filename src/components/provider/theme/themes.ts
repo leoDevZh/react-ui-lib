@@ -9,8 +9,8 @@ export const defaultTheme: Theme = {
         },
         font: {
             primaryColor: 'hsl(0, 0%, 15%)',
-            secondaryColor: 'hsl(0, 0%, 20%)',
-            tertiaryColor: 'hsl(0, 0%, 25%)'
+            secondaryColor: 'hsl(0, 0%, 25%)',
+            tertiaryColor: 'hsl(0, 0%, 35%)'
         },
         accent: {
             primaryColor: 'hsl(30, 100%, 44%)',
@@ -40,7 +40,8 @@ export const defaultTheme: Theme = {
             sm: '0.875rem',
             md: '1rem',
             lg: '1.125rem',
-            xl: '1.25rem'
+            xl: '1.25rem',
+            xxl: '2rem'
         },
         letterSpacing: {
             para: '0px',
@@ -57,9 +58,9 @@ export const defaultTheme: Theme = {
         xs: '4px',
         sm: '8px',
         md: '16px',
-        lg: '24px',
-        xl: '32px',
-        xxl: '64px'
+        lg: '32px',
+        xl: '64px',
+        xxl: '128px'
     },
     radius: {
         sm: '2px',
