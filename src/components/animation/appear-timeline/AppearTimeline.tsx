@@ -55,7 +55,7 @@ const AppearTimeline = forwardRef<AppearTimelineRef, AppearTimelineProps>(
         }, ref) => {
 
         const divRef = useRef<HTMLDivElement>(null)
-        const animRef = useRef<gsap.core.Timeline | null>(null);
+        const animRef = useRef<gsap.core.Timeline | null>(null)
 
         const useIsomorphicLayoutEffect = (typeof window !== "undefined") ? useLayoutEffect : useEffect;
 

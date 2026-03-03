@@ -3,7 +3,7 @@ import typescript from "@rollup/plugin-typescript";
 import dts from 'rollup-plugin-dts';
 import postcss from 'rollup-plugin-postcss';
 
-import packageJson from "./package.json" with { type: "json" };
+import packageJson from "./package.json" with {type: "json"};
 import json from "@rollup/plugin-json";
 
 export default [
@@ -22,6 +22,7 @@ export default [
             'gsap/DrawSVGPlugin',
             'gsap/ScrollTrigger',
             'gsap/MorphSVGPlugin',
+            'gsap/SplitText',
             'react-router-dom',
             'react-router',
             'react-hook-form',
