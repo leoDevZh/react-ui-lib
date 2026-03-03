@@ -10,6 +10,7 @@ interface AppearTimelineProps extends React.HTMLAttributes<HTMLDivElement> {
     delay?: number
     type?: 'fade-x' | 'fade-y'
     distance?: number
+    pause?: boolean
 
     useScrollTrigger?: boolean
     horizontal?: boolean
@@ -41,6 +42,7 @@ const AppearTimeline = forwardRef<AppearTimelineRef, AppearTimelineProps>(
             delay = .25,
             type = "fade-x",
             distance = -50,
+            pause = true,
             useScrollTrigger = false,
             horizontal = false,
             scroller,
@@ -84,7 +86,7 @@ const AppearTimeline = forwardRef<AppearTimelineRef, AppearTimelineProps>(
 
         function initTimelineConfig(): TimelineVars {
             let vars = {
-                paused: true,
+                paused: pause,
                 duration: duration,
                 ease: ease,
             } as TimelineVars
