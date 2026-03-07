@@ -19,6 +19,7 @@ export default [
             'jest-environment-jsdom',
             '@fontsource/inter',
             'gsap',
+            '@gsap/react',
             'gsap/DrawSVGPlugin',
             'gsap/ScrollTrigger',
             'gsap/MorphSVGPlugin',
