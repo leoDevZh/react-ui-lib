@@ -4,8 +4,8 @@ export const defaultTheme: Theme = {
     colors: {
         background: {
             primaryColor: 'hsl(0, 0%, 95%)',
-            secondaryColor: 'hsl(0, 0%, 90%)',
-            tertiaryColor: 'hsl(0, 0%, 88%)'
+            secondaryColor: 'hsl(0, 0%, 92%)',
+            tertiaryColor: 'hsl(0, 0%, 90%)'
         },
         font: {
             primaryColor: 'hsl(0, 0%, 15%)',
