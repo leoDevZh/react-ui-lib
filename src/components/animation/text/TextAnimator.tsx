@@ -1,7 +1,8 @@
-import React, {forwardRef, RefObject, useEffect, useImperativeHandle, useLayoutEffect, useRef} from "react";
+import React, {forwardRef, RefObject, useImperativeHandle, useRef} from "react";
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import SplitText from "gsap/SplitText";
+import {useGSAP} from "@gsap/react";
 import TweenVars = gsap.TweenVars;
 
 interface TextAnimatorProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -13,6 +14,7 @@ interface TextAnimatorProps extends React.HTMLAttributes<HTMLDivElement> {
     ease?: string
     type?: 'words' | 'lines' | 'chars'
     mask?: boolean
+    revertOnUpdate?: boolean
 
     horizontal?: boolean
     scroller?: RefObject<any>
@@ -52,6 +54,7 @@ const TextAnimator = forwardRef<TextAnimatorRef, TextAnimatorProps>(
             ease = 'none',
             type = 'words',
             mask = false,
+            revertOnUpdate = false,
             horizontal = false,
             scroller,
             trigger,
@@ -78,14 +81,11 @@ const TextAnimator = forwardRef<TextAnimatorRef, TextAnimatorProps>(
         const animRef = useRef<gsap.core.Tween | null>(null)
         const splitRef = useRef<SplitText | null>(null)
 
-        const useIsomorphicLayoutEffect = (typeof window !== "undefined") ? useLayoutEffect : useEffect
-
-        useIsomorphicLayoutEffect(() => {
+        useGSAP(() => {
             if (!divRef.current) return
 
             const target = divRef.current.querySelector("p, span, h1, h2, h3, h4, h5, h6") || divRef.current
 
-            const originalHTML = target.innerHTML
             let targets: Element[] = []
             if (type === 'chars') {
                 targets = splitChars(target)
@@ -98,20 +98,9 @@ const TextAnimator = forwardRef<TextAnimatorRef, TextAnimatorProps>(
                         : split.lines
             }
 
-            const ctx = gsap.context(() => {
-                gsap.registerPlugin(SplitText)
-                animRef.current = gsap.from(targets, initConfig())
-
-            })
-
-            return () => {
-                ctx.revert()
-
-                if (originalHTML !== null && target) {
-                    target.innerHTML = originalHTML
-                }
-            }
-        }, [])
+            gsap.registerPlugin(SplitText)
+            animRef.current = gsap.from(targets, initConfig())
+        }, {revertOnUpdate})
 
         useImperativeHandle(ref, () => ({
             play: () => animRef.current?.play(),

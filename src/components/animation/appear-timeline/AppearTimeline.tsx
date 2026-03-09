@@ -1,6 +1,7 @@
-import React, {forwardRef, RefObject, useEffect, useImperativeHandle, useLayoutEffect, useRef} from "react";
+import React, {forwardRef, RefObject, useImperativeHandle, useRef} from "react";
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
+import {useGSAP} from "@gsap/react";
 import TimelineVars = gsap.TimelineVars;
 import TweenVars = gsap.TweenVars;
 
@@ -11,10 +12,11 @@ interface AppearTimelineProps extends React.HTMLAttributes<HTMLDivElement> {
     type?: 'fade-x' | 'fade-y'
     distance?: number
     pause?: boolean
+    revertOnUpdate?: boolean
 
     useScrollTrigger?: boolean
     horizontal?: boolean
-    scroller?: RefObject<any>
+    scroller?: HTMLElement | null
     trigger?: RefObject<any>
     pin?: boolean
     pinSpacing?: string
@@ -43,6 +45,7 @@ const AppearTimeline = forwardRef<AppearTimelineRef, AppearTimelineProps>(
             type = "fade-x",
             distance = -50,
             pause = true,
+            revertOnUpdate = true,
             useScrollTrigger = false,
             horizontal = false,
             scroller,
@@ -59,23 +62,15 @@ const AppearTimeline = forwardRef<AppearTimelineRef, AppearTimelineProps>(
         const divRef = useRef<HTMLDivElement>(null)
         const animRef = useRef<gsap.core.Timeline | null>(null)
 
-        const useIsomorphicLayoutEffect = (typeof window !== "undefined") ? useLayoutEffect : useEffect;
-
-        useIsomorphicLayoutEffect(() => {
+        useGSAP(() => {
             const children = Array.from(divRef?.current?.children ?? []) as HTMLElement[]
 
-            const ctx = gsap.context(() => {
-                animRef.current = gsap.timeline(initTimelineConfig())
+            animRef.current = gsap.timeline(initTimelineConfig())
 
-                for (const child of children) {
-                    animRef.current.from(child, initTweenConfig(), `<${delay}`)
-                }
-            })
-
-            return () => {
-                ctx.revert()
+            for (const child of children) {
+                animRef.current.from(child, initTweenConfig(), `<${delay}`)
             }
-        }, [])
+        }, {dependencies: [scroller], revertOnUpdate})
 
         useImperativeHandle(ref, () => ({
             play: () => animRef.current?.play(),
@@ -95,7 +90,7 @@ const AppearTimeline = forwardRef<AppearTimelineRef, AppearTimelineProps>(
                 gsap.registerPlugin(ScrollTrigger)
                 vars.scrollTrigger = {
                     horizontal,
-                    scroller: scroller?.current ?? undefined,
+                    scroller: scroller,
                     trigger: trigger?.current ?? divRef?.current,
                     pin,
                     pinSpacing,
