@@ -7,6 +7,7 @@
 
 .label {
     margin-bottom: var(--spacing-md);
+    font-size: calc(.9 * var(--calc-font-size));
 }
 
 .wrapper {
@@ -73,7 +74,7 @@
     background-color: var(--colors-status-danger);
 }
 
-.errorSpan {
+.error .errorSpan {
     margin-top: var(--spacing-sm);
     color: var(--colors-status-danger);
     font-size: calc(var(--calc-font-size) * .8);

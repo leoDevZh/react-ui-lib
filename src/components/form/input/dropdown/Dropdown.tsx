@@ -17,6 +17,9 @@ const Dropdown = <T extends FieldValues,> ({ field, registerFn, errorMsg, setVal
         if (!field.inputConfig?.dropDown?.placeholder) {
             setValueFn(field.name as Path<T>, field.inputConfig?.dropDown?.selection?.at(0)?.value)
         }
+        if (currentValue) {
+            setValueFn(field.name as Path<T>, currentValue)
+        }
     }, []);
     
     useEffect(() => {

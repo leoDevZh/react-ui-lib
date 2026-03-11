@@ -47,7 +47,9 @@
     border: 1px solid var(--colors-accent-primaryColor);
     border-radius: var(--radius-sm);
     outline: none;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: var(--zIndex-mid);
 }
 
@@ -82,4 +84,12 @@
 .xl {
     font-size: var(--typography-fontSize-xl);
     --checkbox-size: 24px;
+}
+
+.error .errorSpan {
+    margin-top: var(--spacing-sm);
+    color: var(--colors-status-danger);
+    font-size: calc(var(--calc-font-size) * .8);
+    font-family: var(--typography-fontFamily);
+    align-self: start;
 }

@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -16,6 +17,7 @@
 
 .currentIdxIndicator {
     opacity: 1;
+    border-radius: var(--radius-lg);
 }
 
 .xs {
@@ -38,12 +40,24 @@
 
 .lg {
     margin-right: var(--spacing-sm);
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
 }
 
 .xl {
     margin-right: var(--spacing-sm);
     width: 8px;
     height: 8px;
+}
+
+.currentIdxIndicator.xs, .currentIdxIndicator.sm {
+    width: 15px;
+}
+
+.currentIdxIndicator.md, .currentIdxIndicator.lg {
+    width: 21px;
+}
+
+.currentIdxIndicator.xl {
+    width: 24px;
 }

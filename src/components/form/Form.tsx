@@ -89,6 +89,7 @@ interface FormProps<T extends FieldValues> extends PropsWithChildren, React.Form
     errorMsg?: string,
     setErrorMsg?: Dispatch<SetStateAction<string | undefined>>
     onValuesChange?: (values: T) => void
+    defaultValues?: Partial<T>
 }
 
 interface InputProps<T extends FieldValues> extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -108,7 +109,8 @@ const Form = <T extends FieldValues, >({
                                            className,
                                            errorMsg,
                                            setErrorMsg,
-                                           onValuesChange
+                                           onValuesChange,
+                                           defaultValues
                                        }: FormProps<T>) => {
     const {
         handleSubmit,
@@ -116,7 +118,9 @@ const Form = <T extends FieldValues, >({
         formState: {isSubmitting, errors, isDirty},
         watch,
         setValue,
-        trigger
+        trigger,
+        reset,
+        getValues
     } = useForm<T>()
     const formRef = useRef<HTMLFormElement>(null)
 
@@ -146,6 +150,15 @@ const Form = <T extends FieldValues, >({
             trigger()
         }
     }, [fields]);
+
+    useEffect(() => {
+        if (defaultValues) {
+            reset({
+                ...getValues(),
+                ...defaultValues
+            })
+        }
+    }, [defaultValues]);
 
     function getInput(field: FieldConfig<T>) {
         const errorMsg = (errors[field.name]?.message as string) ?? null

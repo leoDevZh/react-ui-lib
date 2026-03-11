@@ -9,7 +9,7 @@ export const defaultTheme: Theme = {
         },
         font: {
             primaryColor: 'hsl(0, 0%, 15%)',
-            secondaryColor: 'hsl(0, 0%, 25%)',
+            secondaryColor: 'hsl(0, 0%, 28%)',
             tertiaryColor: 'hsl(0, 0%, 35%)'
         },
         accent: {

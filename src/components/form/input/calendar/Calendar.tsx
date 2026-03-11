@@ -4,10 +4,15 @@ import styles from "./calendar.module.css";
 import stylesInput from "./calendarInput.module.css";
 import {DateTime, Info, Interval} from "luxon"
 import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
-import style from "../dropdown/dropdown.module.css";
 
-
-const CalendarInput = <T extends FieldValues,>({className, field, registerFn, setValueFn, errorMsg}: InputProps<T>) => {
+const CalendarInput = <T extends FieldValues, >({
+                                                    className,
+                                                    field,
+                                                    registerFn,
+                                                    setValueFn,
+                                                    errorMsg,
+                                                    currentValue
+                                                }: InputProps<T>) => {
     const [showCalendar, setShowCalendar] = useState(false)
     const [selectedDate, setSelectedDate] = useState<undefined | DateTime>(undefined)
 
@@ -46,6 +51,12 @@ const CalendarInput = <T extends FieldValues,>({className, field, registerFn, se
         }
     }, [selectedDate]);
 
+    useEffect(() => {
+        if (currentValue) {
+            setSelectedDate(DateTime.fromISO(currentValue))
+        }
+    }, [currentValue]);
+
     return (
         <div
             ref={divRef}
@@ -67,7 +78,7 @@ const CalendarInput = <T extends FieldValues,>({className, field, registerFn, se
             <div className={stylesInput.calendar}>
                 <Calendar field={field} setSelectedDate={setSelectedDate}/>
             </div>
-            <span className={style.errorSpan}>{errorMsg}</span>
+            <span className={stylesInput.errorSpan}>{errorMsg}</span>
         </div>
     )
 }
