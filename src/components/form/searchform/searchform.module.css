@@ -1,0 +1,69 @@
+.form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border: 1px solid var(--colors-border-primaryColor);
+    border-radius: var(--radius-lg);
+    transition: all var(--motion-duration-fast) var(--motion-easing);
+}
+
+.form > input {
+    border: none;
+    background: transparent;
+    color: var(--colors-font-secondaryColor);
+    outline: none;
+    width: 100%;
+    font-size: var(--calc-font-size);
+    padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+.form > button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-right: var(--spacing-md);
+}
+
+.form svg {
+    width: var(--calc-font-size);
+    height:  var(--calc-font-size);
+    color: var(--colors-font-primaryColor);
+}
+.form svg:hover {
+    transition: all var(--motion-duration-normal) var(--motion-easing);
+    scale: 1.1;
+}
+
+.error {
+    color: var(--colors-status-danger);
+    font-family: var(--typography-fontFamily);
+    font-size: calc(var(--calc-font-size) * .8);
+    padding: var(--spacing-xs);
+    background-color: hsl(from var(--colors-status-danger) h s l / .05);
+    border-radius: var(--radius-sm);
+}
+
+.focused {
+    border-color: hsl(from var(--colors-accent-primaryColor) h s l / .5);
+}
+.focused svg {
+    color: var(--colors-accent-primaryColor);
+}
+
+.rotate {
+    animation: rotateAn 1s linear infinite;
+    opacity: .8;
+}
+
+@keyframes rotateAn {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+

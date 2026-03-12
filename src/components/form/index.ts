@@ -15,3 +15,5 @@ export {CheckboxInput} from "./input/checkbox/Checkbox"
 
 export {PlainInput} from "./input/plain/PlainInput"
 export type {PlainInputProps} from "./input/plain/PlainInput"
+
+export {SearchForm, type SearchFormProps, type SearchValue, type SearchFormRef} from './searchform/SearchForm'
