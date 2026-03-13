@@ -84,10 +84,12 @@
     border-color: transparent;
 }
 
-.errorSpan {
+.error .errorSpan {
     margin-top: var(--spacing-sm);
     color: var(--colors-status-danger);
     font-size: calc(var(--calc-font-size) * .8);
+    font-family: var(--typography-fontFamily);
+    align-self: start;
 }
 
 .xs {

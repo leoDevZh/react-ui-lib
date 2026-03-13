@@ -71,6 +71,22 @@ const PhoneNumberInput = <T extends FieldValues,> ({field, registerFn, errorMsg,
         }
     }, []);
 
+    useEffect(() => {
+        if (!currentValue) return
+
+        const match = countries.find(c => currentValue.startsWith(c.dial_code))
+
+        if (!match) return
+
+        const phone = currentValue.replace(match.dial_code, '')
+
+        setDialCode(match.dial_code)
+
+        setValue('country', match.full_name)
+        setValue('phoneNr', phone)
+
+    }, [currentValue])
+
     return (
         <div
             ref={divRef}
