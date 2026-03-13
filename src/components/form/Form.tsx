@@ -225,13 +225,15 @@ const Form = <T extends FieldValues, >({
 
     return (
         <form className={finalClass} onSubmit={handleSubmit(onSubmitFn)} ref={formRef}>
-            {
-                fields.map((field) => (
-                    <div key={field.label}>
-                        {getInput(field)}
-                    </div>
-                ))
-            }
+            <div className={styles.inputContainer}>
+                {
+                    fields.map((field) => (
+                        <div key={field.label}>
+                            {getInput(field)}
+                        </div>
+                    ))
+                }
+            </div>
             {errorMsg ? <div className={styles.error}>{errorMsg}</div> : ''}
             {children ? children : <Button disabled={isSubmitting} label={submitLabel ?? "Submit"} type="submit" size={componentSize}/>}
         </form>

@@ -4,6 +4,18 @@
     row-gap: var(--spacing-sm);
 }
 
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+    row-gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.inputContainer > * {
+    flex: 1 1 200px;
+}
+
 .error {
     color: var(--colors-status-danger);
     font-family: var(--typography-fontFamily);
