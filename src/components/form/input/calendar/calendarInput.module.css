@@ -3,10 +3,11 @@
     display: grid;
     font-family: var(--typography-fontFamily), 'sans-serif';
     color: var(--colors-font-primaryColor);
+    height: calc(var(--calc-font-size) * 1.2 + var(--spacing-sm) + var(--spacing-md) + var(--calc-font-size) * .9);
 }
 
 .label {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     font-size: calc(.9 * var(--calc-font-size));
 }
 
@@ -15,7 +16,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: var(--spacing-sm);
     border-bottom: 1px solid var(--colors-border-tertiaryColor);
     transition: border-bottom-color var(--motion-duration-normal) var(--motion-easing);
     cursor: pointer;

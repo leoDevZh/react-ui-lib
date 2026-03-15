@@ -4,11 +4,12 @@
     font-family: var(--typography-fontFamily), 'sans-serif';
     color: var(--colors-font-primaryColor);
     position: relative;
+    height: calc(var(--calc-font-size) * 1.2 + var(--spacing-sm) + var(--spacing-md) + var(--calc-font-size) * .9);
 }
 
 .label {
     font-size: calc(var(--calc-font-size) * .9);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .placeholder {
