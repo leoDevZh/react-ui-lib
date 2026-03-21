@@ -25,6 +25,13 @@
     border-radius: var(--radius-sm);
 }
 
-.form > button {
+.form > button, .form > svg {
     margin-top: var(--spacing-md);
+}
+
+.form > svg {
+    width: var(--typography-fontSize-lg);
+    height: var(--typography-fontSize-lg);
+    fill: var(--colors-font-tertiaryColor);
+    align-self: center;
 }
