@@ -1,19 +1,12 @@
 .form {
-    display: flex;
-    flex-direction: column;
-    row-gap: var(--spacing-sm);
-}
-
-.inputContainer {
-    display: flex;
-    flex-direction: row;
-    row-gap: var(--spacing-sm);
-    flex-wrap: wrap;
+    display: grid;
+    row-gap: var(--spacing-md);
     align-items: center;
+    justify-items: center;
 }
 
-.inputContainer > * {
-    flex: 1 1 200px;
+.form > div {
+    width: 100%;
 }
 
 .error {

@@ -241,15 +241,13 @@ const Form = <T extends FieldValues, >({
 
     return (
         <form className={finalClass} onSubmit={handleSubmit(onSubmitFn)} ref={formRef}>
-            <div className={styles.inputContainer}>
-                {
-                    fields.map((field) => (
-                        <div key={field.label}>
-                            {getInput(field)}
-                        </div>
-                    ))
-                }
-            </div>
+            {
+                fields.map((field) => (
+                    <div key={field.label}>
+                        {getInput(field)}
+                    </div>
+                ))
+            }
             {errorMsg ? <div className={styles.error}>{errorMsg}</div> : ''}
             {renderDTO()}
         </form>
