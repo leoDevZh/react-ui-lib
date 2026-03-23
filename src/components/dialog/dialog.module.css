@@ -1,0 +1,79 @@
+.container {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: var(--zIndex-heigh);
+    padding: var(--spacing-lg);
+    font-family: var(--typography-fontFamily);
+    font-size: var(--typography-fontSize-md);
+}
+
+.backdrop {
+    position: absolute;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    inset: 0;
+}
+
+.open {
+    display: block;
+}
+
+.dialog {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--colors-background-primaryColor);
+    border: 2px solid var(--colors-border-primaryColor);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    overflow-y: scroll;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.dialog > .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+
+.cto {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+}
+
+.xs .dialog, .sm .dialog {
+    padding: var(--spacing-sm);
+    width: 260px;
+    height: 140px;
+}
+
+.xs .title, .sm .title {
+    margin-bottom: var(--spacing-sm);
+}
+
+.md .dialog, .lg .dialog {
+    padding: var(--spacing-md);
+    width: 450px;
+    height: 350px;
+}
+
+.md .title, .lg .title {
+    margin-bottom: var(--spacing-lg);
+}
+
+.xl .dialog {
+    padding: var(--spacing-xl);
+}
+
+.xl .title {
+    margin-bottom: var(--spacing-xl);
+}
+
