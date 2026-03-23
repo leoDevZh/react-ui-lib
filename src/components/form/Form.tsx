@@ -18,6 +18,7 @@ import {CalendarInput} from "./input/calendar/Calendar";
 import {CheckboxInput} from "./input/checkbox/Checkbox";
 import {PlainInput} from "./input/plain/PlainInput";
 import {renderSubmittingIndicator, SubmittingIndicator} from "./utils/submittingIndicator";
+import {PhotoInput} from "./input/photo/PhotoInput";
 
 interface InputConfig {
     size?: ComponentSize
@@ -35,6 +36,8 @@ interface InputConfig {
     checkbox?: CheckboxConfig
     // Text
     text?: TextConfig
+    // Photo
+    photo?: PhotoConfig
     // Styling
     isPlain?: boolean
 }
@@ -73,10 +76,15 @@ interface TextConfig {
     placeholder?: string
 }
 
+interface PhotoConfig {
+    initialImg?: string
+    onDelete?: () => void
+}
+
 interface FieldConfig<T extends FieldValues> {
     name: keyof T
     label: string
-    type: "text" | "number" | "password" | "email" | "textarea" | "dropdown" | "phone" | "calendar" | "checkbox"
+    type: "text" | "number" | "password" | "email" | "textarea" | "dropdown" | "phone" | "calendar" | "checkbox" | "photo"
     required: boolean | string
     validationFn: (value: any) => boolean | string
     inputConfig?: InputConfig
@@ -225,6 +233,14 @@ const Form = <T extends FieldValues, >({
                     currentValue={watch(field.name as Path<T>)}
                     setValueFn={setValue}
                 />
+            case "photo":
+                return <PhotoInput
+                    field={field}
+                    errorMsg={errorMsg}
+                    registerFn={register}
+                    currentValue={watch(field.name as Path<T>)}
+                    setValueFn={setValue}
+                />
         }
     }
 
@@ -248,7 +264,7 @@ const Form = <T extends FieldValues, >({
                     </div>
                 ))
             }
-            {errorMsg ? <div className={styles.error}>{errorMsg}</div> : ''}
+            {errorMsg ? <span className={styles.error}>{errorMsg}</span> : ''}
             {renderDTO()}
         </form>
     )

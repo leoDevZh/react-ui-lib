@@ -10,6 +10,7 @@
 }
 
 .error {
+    width: 100%;
     color: var(--colors-status-danger);
     font-family: var(--typography-fontFamily);
     font-size: calc(var(--calc-font-size) * .8);

@@ -7,6 +7,7 @@ export { Dropdown } from './input/dropdown/Dropdown'
 export { PhoneNumberInput } from './input/phone/PhoneNumberInput'
 export {CalendarInput} from "./input/calendar/Calendar"
 export {CheckboxInput} from "./input/checkbox/Checkbox"
+export {PhotoInput} from "./input/photo/PhotoInput"
 
 export {PlainInput} from "./input/plain/PlainInput"
 export type {PlainInputProps} from "./input/plain/PlainInput"
