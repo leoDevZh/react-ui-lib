@@ -18,9 +18,9 @@ export const defaultTheme: Theme = {
             tertiaryColor: 'hsl(30, 100%, 60%)'
         },
         shadow: {
-            primaryColor: 'hsla(0, 0%, 15%, .8)',
-            secondaryColor: 'hsla(0, 0%, 20%, .8)',
-            tertiaryColor: 'hsla(0, 0%, 25%, .8)'
+            primaryColor: 'hsla(0, 0%, 0%, 0.06)',
+            secondaryColor: 'hsla(0, 0%, 0%, 0.09)',
+            tertiaryColor: 'hsla(0, 0%, 0%, 0.12)'
         },
         border: {
             primaryColor: 'hsl(0, 0%, 90%)',
@@ -31,6 +31,32 @@ export const defaultTheme: Theme = {
             success: 'hsl(125, 73%, 42%)',
             warning: 'hsl(43, 100%, 70%)',
             danger: 'hsl(0, 100%, 50%)'
+        }
+    },
+    shadow: {
+        card: {
+            base: `
+                0 1px 2px hsla(0, 0%, 0%, 0.06),
+                0 4px 8px hsla(0, 0% 0%, 0.08)
+            `,
+            hover: `
+                0 2px 4px hsla(0, 0%, 0%, 0.08),
+                0 8px 16px hsla(0, 0%, 0%, 0.12)
+            `
+        },
+        cta: {
+            base: `
+                0 1px 2px hsla(0, 0%, 0%, 0.06),
+                0 3px 6px hsla(0, 0%, 0%, 0.08)
+            `,
+            hover: `
+                0 2px 4px hsla(0, 0%, 0%, 0.08),
+                0 5px 10px hsla(0, 0%, 0%, 0.10)
+            `,
+            active: `
+                0 1px 2px hsla(0, 0%, 0%, 0.05),
+                0 2px 4px hsla(0, 0%, 0%, 0.06)
+            `
         }
     },
     typography: {

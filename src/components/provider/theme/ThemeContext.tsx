@@ -85,6 +85,17 @@ type Theme = {
         heigh: number
         full: number
     }
+    shadow: {
+        card: {
+            base: string
+            hover: string
+        },
+        cta: {
+            base: string
+            hover: string
+            active: string
+        }
+    }
     style: 'morphism' | 'classic'
 }
 
