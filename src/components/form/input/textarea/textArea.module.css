@@ -20,19 +20,19 @@
     width: 100%;
     box-sizing: border-box;
     resize: none;
-    border: solid 1px var(--colors-border-tertiaryColor);
+    border: solid 1px var(--colors-border-subtle);
     border-radius: var(--radius-md);
     outline: none;
     padding: var(--spacing-xs);
 }
 .content, .text:focus, .text:hover {
     background-color: transparent;
-    border-color: var(--colors-accent-primaryColor);
+    border-color: var(--colors-interaction-highlightSoft);
 }
 
 .limit {
     font-size: var(--typography-fontSize-xs);
-    color: var(--colors-accent-secondaryColor);
+    color: var(--colors-text-secondary);
 }
 
 .hide {

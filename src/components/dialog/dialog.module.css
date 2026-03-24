@@ -24,8 +24,8 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-color: var(--colors-background-primaryColor);
-    border: 2px solid var(--colors-border-primaryColor);
+    background-color: var(--colors-background-primary);
+    border: 2px solid var(--colors-border-strong);
     border-radius: var(--radius-md);
     padding: var(--spacing-lg);
     overflow-y: scroll;

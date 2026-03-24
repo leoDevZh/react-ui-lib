@@ -26,6 +26,6 @@
 .form > svg {
     width: var(--typography-fontSize-lg);
     height: var(--typography-fontSize-lg);
-    fill: var(--colors-font-tertiaryColor);
+    fill: var(--colors-text-tertiary);
     align-self: center;
 }

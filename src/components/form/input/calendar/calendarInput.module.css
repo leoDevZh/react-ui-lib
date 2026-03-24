@@ -2,7 +2,7 @@
     position: relative;
     display: grid;
     font-family: var(--typography-fontFamily), 'sans-serif';
-    color: var(--colors-font-primaryColor);
+    color: var(--colors-text-primary);
     height: calc(var(--calc-font-size) * 1.2 + var(--spacing-sm) + var(--spacing-md) + var(--calc-font-size) * .9);
 }
 
@@ -16,7 +16,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--colors-border-tertiaryColor);
+    border-bottom: 1px solid var(--colors-border-subtle);
     transition: border-bottom-color var(--motion-duration-normal) var(--motion-easing);
     cursor: pointer;
 }
@@ -32,7 +32,7 @@
     transform-origin: center;
     width: 100%;
     height: 1px;
-    background-color: var(--colors-accent-primaryColor);
+    background-color: var(--colors-interaction-highlightSoft);
     transition: all var(--motion-duration-normal) var(--motion-easing);
     -webkit-mask: -webkit-linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
     mask: linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
@@ -44,11 +44,11 @@
 .icon {
     cursor: pointer;
     width: 20px;
-    fill: var(--colors-font-primaryColor);
+    fill: var(--colors-text-tertiary);
 }
 
 .selectedDate {
-    color: var(--colors-font-secondaryColor);
+    color: var(--colors-text-secondary);
 }
 
 .calendar {

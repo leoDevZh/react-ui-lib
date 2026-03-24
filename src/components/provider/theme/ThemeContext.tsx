@@ -4,30 +4,47 @@ import {themeToCSSVariables} from "./themeToCSSVariables";
 
 type Theme = {
     colors: {
-        background: {
-            primaryColor: string
-            secondaryColor: string
-            tertiaryColor: string
-        }
-        font: {
-            primaryColor: string
-            secondaryColor: string
-            tertiaryColor: string
-        }
+        neutral: {
+            0: string
+            50: string
+            100: string
+            200: string
+            500: string
+            700: string
+            800: string
+            900: string
+        },
         accent: {
-            primaryColor: string
-            secondaryColor: string
-            tertiaryColor: string
+            100: string
+            300: string
+            400: string
+            500: string
+            600: string
+        },
+        background: {
+            primary: string
+            secondary: string
+            tertiary: string
         }
-        shadow: {
-            primaryColor: string
-            secondaryColor: string
-            tertiaryColor: string
+        text: {
+            primary: string
+            secondary: string
+            tertiary: string
+        }
+        action: {
+            primary: string
+            primaryHover: string
+            inverse: string
+        },
+        interaction: {
+            highlight: string
+            highlightSoft: string
+            highlightMuted: string
         }
         border: {
-            primaryColor: string
-            secondaryColor: string
-            tertiaryColor: string
+            subtle: string
+            strong: string
+            inverse: string
         }
         status: {
             success: string

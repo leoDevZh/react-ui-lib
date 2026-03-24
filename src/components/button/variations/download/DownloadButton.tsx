@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react";
-import {ComponentSize, useTheme} from "../../provider";
-import {useButtonStyles} from "../hooks/useButtonStyles";
-import {SvgMorph, SvgMorphRef} from "../../svg";
+import {ComponentSize, useTheme} from "../../../provider";
+import {useButtonStyles} from "../../hooks/useButtonStyles";
+import {SvgMorph, SvgMorphRef} from "../../../svg";
 import style from './downloadButton.module.css'
 
 interface DownloadButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -57,8 +57,6 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({label, size, enableConte
         document.body.appendChild(a)
         a.click()
         document.body.removeChild(a)
-
-
     }
 
     return (

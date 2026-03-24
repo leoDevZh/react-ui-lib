@@ -40,7 +40,7 @@
     top: 0;
     bottom: 0;
     width: 32px;
-    color: var(--colors-font-secondaryColor);
+    color: var(--colors-text-secondary);
     opacity: var(--toggle-opacity);
     transition: all var(--motion-duration-fast) var(--motion-easing);
 }

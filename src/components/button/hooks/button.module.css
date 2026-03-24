@@ -2,14 +2,25 @@
     margin: 0;
     padding: 0;
     outline: none;
-    border: solid 2px var(--colors-border-primaryColor);
+    border: solid 2px var(--colors-border-strong);
     border-radius: var(--radius-md);
-    background-color: var(--colors-background-primaryColor);
-    color: var(--colors-font-tertiaryColor);
+    background-color: var(--colors-background-primary);
+    color: var(--colors-text-secondary);
     font-family: var(--typography-fontFamily), 'sans-serif';
     letter-spacing: var(--typography-letterSpacing-cta);
     transition: all var(--motion-duration-normal) var(--motion-easing);
     cursor: pointer;
+    box-shadow: var(--shadow-cta-base);
+}
+
+.pressed {
+    box-shadow: var(--shadow-cta-hover);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .leoBtn:hover {
+        box-shadow: var(--shadow-cta-hover);
+    }
 }
 
 .xs {
@@ -34,20 +45,10 @@
     font-size: var(--typography-fontSize-xl);
 }
 
-.pressed {
-    border: solid 2px var(--colors-border-secondaryColor);
-}
-
 .preventSelect {
     user-select: none;
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* old Edge/IE */
     -webkit-tap-highlight-color: transparent; /* removes gray tap flash on iOS */
     touch-action: manipulation; /* prevents double-tap zoom */
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .leoBtn:hover {
-        border: solid 2px var(--colors-border-secondaryColor);
-    }
 }

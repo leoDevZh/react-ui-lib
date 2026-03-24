@@ -1,5 +1,5 @@
 .container {
-    color: var(--colors-font-secondaryColor);
+    color: var(--colors-text-secondary);
     font-family: var(--typography-fontFamily);
     right: var(--spacing-xs);
 }

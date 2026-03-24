@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    border: 1px solid var(--colors-border-primaryColor);
+    border: 1px solid var(--colors-border-strong);
     border-radius: var(--radius-lg);
     transition: all var(--motion-duration-fast) var(--motion-easing);
 }
@@ -12,7 +12,7 @@
 .form > input {
     border: none;
     background: transparent;
-    color: var(--colors-font-secondaryColor);
+    color: var(--colors-text-secondary);
     outline: none;
     width: 100%;
     font-size: var(--calc-font-size);
@@ -30,7 +30,7 @@
 .form svg {
     width: var(--calc-font-size);
     height:  var(--calc-font-size);
-    color: var(--colors-font-primaryColor);
+    color: var(--colors-text-primary);
 }
 .form svg:hover {
     transition: all var(--motion-duration-normal) var(--motion-easing);
@@ -47,10 +47,13 @@
 }
 
 .focused {
-    border-color: hsl(from var(--colors-accent-primaryColor) h s l / .5);
+    border-width: 2px;
+    border-color: var(--colors-interaction-highlightSoft);
+    box-shadow: var(--shadow-card-base);
+    box-shadow-color: var(--colors-interaction-highlightSoft);
 }
 .focused svg {
-    color: var(--colors-accent-primaryColor);
+    color: var(--colors-interaction-highlight);
 }
 
 .rotate {

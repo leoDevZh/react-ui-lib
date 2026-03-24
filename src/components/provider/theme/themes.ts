@@ -2,30 +2,49 @@ import {Theme} from "./ThemeContext";
 
 export const defaultTheme: Theme = {
     colors: {
-        background: {
-            primaryColor: 'hsl(0, 0%, 95%)',
-            secondaryColor: 'hsl(0, 0%, 92%)',
-            tertiaryColor: 'hsl(0, 0%, 90%)'
-        },
-        font: {
-            primaryColor: 'hsl(0, 0%, 15%)',
-            secondaryColor: 'hsl(0, 0%, 28%)',
-            tertiaryColor: 'hsl(0, 0%, 35%)'
+        neutral: {
+            //bg
+            0: 'hsl(0, 0%, 98%)',
+            50: 'hsl(0, 0%, 95%)',
+            100: 'hsl(0, 0%, 92%)',
+            //none bg
+            200: 'hsl(0, 0%, 90%)',
+            500: 'hsl(0, 0%, 85%)',
+            700: 'hsl(0, 0%, 35%)',
+            800: 'hsl(0, 0%, 28%)',
+            900: 'hsl(0, 0%, 15%)'
         },
         accent: {
-            primaryColor: 'hsl(30, 100%, 44%)',
-            secondaryColor: 'hsl(30, 100%, 52%)',
-            tertiaryColor: 'hsl(30, 100%, 60%)'
+            100: 'hsl(30, 100%, 90%)',
+            300: 'hsl(30, 100%, 70%)',
+            400: 'hsl(30, 100%, 60%)',
+            500: 'hsl(30, 100%, 52%)',
+            600: 'hsl(30, 100%, 44%)'
         },
-        shadow: {
-            primaryColor: 'hsla(0, 0%, 0%, 0.06)',
-            secondaryColor: 'hsla(0, 0%, 0%, 0.09)',
-            tertiaryColor: 'hsla(0, 0%, 0%, 0.12)'
+        background: {
+            primary: 'var(--colors-neutral-0)',
+            secondary: 'var(--colors-neutral-50)',
+            tertiary: 'var(--colors-neutral-100)'
+        },
+        text: {
+            primary: 'var(--colors-neutral-900)',
+            secondary: 'var(--colors-neutral-800)',
+            tertiary: 'var(--colors-neutral-700)'
+        },
+        action: {
+            primary: 'var(--colors-accent-500)',
+            primaryHover: 'var(--colors-accent-600)',
+            inverse: 'var(--colors-accent-100)'
+        },
+        interaction: {
+            highlight: 'var(--colors-accent-500)',
+            highlightSoft: 'var(--colors-accent-400)',
+            highlightMuted: 'var(--colors-accent-100)'
         },
         border: {
-            primaryColor: 'hsl(0, 0%, 90%)',
-            secondaryColor: 'hsl(0, 0%, 85%)',
-            tertiaryColor: 'hsl(255, 0%, 15%)'
+            subtle: 'var(--colors-neutral-200)',
+            strong: 'var(--colors-neutral-500)',
+            inverse: 'var(--colors-neutral-0)'
         },
         status: {
             success: 'hsl(125, 73%, 42%)',
@@ -37,7 +56,7 @@ export const defaultTheme: Theme = {
         card: {
             base: `
                 0 1px 2px hsla(0, 0%, 0%, 0.06),
-                0 4px 8px hsla(0, 0% 0%, 0.08)
+                0 4px 8px hsla(0, 0%, 0%, 0.08)
             `,
             hover: `
                 0 2px 4px hsla(0, 0%, 0%, 0.08),

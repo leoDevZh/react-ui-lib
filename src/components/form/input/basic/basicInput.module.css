@@ -11,7 +11,7 @@
     padding: 0;
     border-radius: var(--radius-md);
     box-sizing: border-box;
-    color: var(--colors-font-primaryColor);
+    color: var(--colors-text-primary);
 }
 
 .container::after {
@@ -23,7 +23,7 @@
     height: 1px;
     transform: scaleX(0);
     transform-origin: center;
-    background-color: var(--colors-accent-primaryColor);
+    background-color: var(--colors-interaction-highlightSoft);
     transition: all var(--motion-duration-normal) var(--motion-easing);
     -webkit-mask: -webkit-linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
     mask: linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
@@ -43,7 +43,7 @@
     width: 100%;
     height: calc(var(--spacing-sm) + var(--calc-font-size) * 1.2);
     border-radius: 0;
-    border-bottom: 1px solid var(--colors-border-tertiaryColor);
+    border-bottom: 1px solid var(--colors-border-subtle);
     transition: all var(--motion-duration-normal) var(--motion-easing);
 }
 
@@ -75,7 +75,7 @@
     top: 0;
     border: none;
     background: transparent;
-    color: var(--colors-font-primaryColor);
+    color: var(--colors-text-primary);
     font-size: var(--calc-font-size);
     height: calc(var(--calc-font-size) * 1.2);
     width: 100%;
