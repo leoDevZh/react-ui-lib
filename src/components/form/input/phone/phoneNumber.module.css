@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     font-family: var(--typography-fontFamily), 'sans-serif';
-    color: var(--colors-font-primaryColor);
+    color: var(--colors-text-primary);
+    height: calc(var(--calc-font-size) * 1.2 + var(--spacing-sm) + var(--spacing-md) + var(--calc-font-size) * .9);
 }
 
 .label {
@@ -15,9 +16,9 @@
     display: grid;
     gap: var(--spacing-xs);
     grid-template-columns: max-content max-content 1fr;
-    padding-bottom: var(--spacing-sm);
+    height: calc(var(--spacing-sm) + var(--calc-font-size) * 1.2);
     align-items: center;
-    border-bottom: 1px solid var(--colors-border-tertiaryColor);
+    border-bottom: 1px solid var(--colors-border-subtle);
     transition: all var(--motion-duration-normal) var(--motion-easing);
 }
 .inputContainer.selected, .inputContainer:focus-within, .inputContainer:hover {
@@ -33,7 +34,7 @@
     height: 1px;
     transform: scaleX(0);
     transform-origin: center;
-    background-color: var(--colors-accent-primaryColor);
+    background-color: var(--colors-interaction-highlightSoft);
     transition: all var(--motion-duration-normal) var(--motion-easing);
     -webkit-mask: -webkit-linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
     mask: linear-gradient(90deg, transparent, white 8%, white 92%, transparent);
@@ -44,6 +45,7 @@
 
 .countrySelect {
     width: 38px;
+    height: unset !important;
 }
 
 .countrySelect > label {
@@ -64,16 +66,18 @@
 .inputContainer > span {
     width: fit-content;
     font-size: calc(var(--calc-font-size) * .9);
-    color: var(--colors-font-secondaryColor);
+    color: var(--colors-text-secondary);
+    padding-left: var(--spacing-sm);
 }
 
 .inputContainer > input {
-    color: var(--colors-font-primaryColor);
+    color: var(--colors-text-primary);
     width: 100%;
     font-size: calc(var(--calc-font-size));
     background-color: transparent;
     outline: none;
     border: none;
+    padding-left: var(--spacing-xs);
 }
 
 .error>.inputContainer::after {
@@ -84,10 +88,12 @@
     border-color: transparent;
 }
 
-.errorSpan {
+.error .errorSpan {
     margin-top: var(--spacing-sm);
     color: var(--colors-status-danger);
     font-size: calc(var(--calc-font-size) * .8);
+    font-family: var(--typography-fontFamily);
+    align-self: start;
 }
 
 .xs {

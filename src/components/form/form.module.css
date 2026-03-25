@@ -1,10 +1,16 @@
 .form {
-    display: flex;
-    flex-direction: column;
-    row-gap: var(--spacing-sm);
+    display: grid;
+    row-gap: var(--spacing-md);
+    align-items: center;
+    justify-items: center;
+}
+
+.form > div {
+    width: 100%;
 }
 
 .error {
+    width: 100%;
     color: var(--colors-status-danger);
     font-family: var(--typography-fontFamily);
     font-size: calc(var(--calc-font-size) * .8);
@@ -13,6 +19,13 @@
     border-radius: var(--radius-sm);
 }
 
-.form > button {
+.form > button, .form > svg {
     margin-top: var(--spacing-md);
+}
+
+.form > svg {
+    width: var(--typography-fontSize-lg);
+    height: var(--typography-fontSize-lg);
+    fill: var(--colors-text-tertiary);
+    align-self: center;
 }

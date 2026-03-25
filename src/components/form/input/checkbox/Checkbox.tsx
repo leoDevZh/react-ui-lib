@@ -4,13 +4,13 @@ import styles from './checkbox.module.css'
 import {RefObject, useLayoutEffect, useRef} from "react";
 import {SvgDraw, SvgDrawRef} from "../../../svg";
 
-const CheckboxInput = <t extends FieldValues, >({
+const CheckboxInput = <T extends FieldValues, >({
                                                     className,
                                                     field,
                                                     errorMsg,
                                                     registerFn,
                                                     currentValue
-                                                }: InputProps<t>) => {
+                                                }: InputProps<T>) => {
     const divRef = useRef<HTMLDivElement>(null)
     const gridRef = useRef<HTMLDivElement>(null)
     const finalClasses = [className, styles.container, styles[field.inputConfig?.size ?? 'md'], errorMsg ? styles.error : ''].filter(Boolean).join(' ')
@@ -31,7 +31,6 @@ const CheckboxInput = <t extends FieldValues, >({
     }, []);
 
     function clickMe(checkRef: RefObject<SvgDrawRef | null>, value: any) {
-        console.log(currentValue)
         if (currentValue instanceof Array && currentValue.includes(value)) {
             checkRef?.current?.reverse()
         } else {
@@ -47,7 +46,13 @@ const CheckboxInput = <t extends FieldValues, >({
             <div className={styles.gridContainer} ref={gridRef}>
                 {field.inputConfig?.checkbox?.selection?.map(option => {
                     const checkRef = useRef<SvgDrawRef>(null)
-
+                    if (currentValue instanceof Array && currentValue.includes(option.value)) {
+                        setTimeout(() => {
+                            if (checkRef?.current) {
+                                checkRef.current.play()
+                            }
+                        }, 250)
+                    }
                     return (
                         <div className={styles.checkbox} key={option.label}>
                             <div className={styles.checkboxContainer}>
@@ -71,7 +76,7 @@ const CheckboxInput = <t extends FieldValues, >({
                                     onClick={() => clickMe(checkRef, option.value)}
                                     type="checkbox"
                                     value={option.value}
-                                    {...registerFn(field.name as Path<t>, {
+                                    {...registerFn(field.name as Path<T>, {
                                         required: field.required,
                                         validate: field.validationFn
                                     })}
@@ -81,6 +86,7 @@ const CheckboxInput = <t extends FieldValues, >({
                         </div>)
                 })}
             </div>
+            <span className={styles.errorSpan}>{errorMsg}</span>
         </div>
     )
 

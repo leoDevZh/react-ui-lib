@@ -51,20 +51,20 @@
 
 .aMorph {
     position: relative;
-    background: linear-gradient(hsl(from var(--colors-background-primaryColor) h s l / .2) var(--gradient-start), hsl(from var(--colors-accent-secondaryColor) h s l / .2)) padding-box;
+    background: linear-gradient(hsl(from var(--colors-background-primary) h s l / .2) var(--gradient-start), hsl(from var(--colors-action-primary) h s l / .2)) padding-box;
     backdrop-filter: blur(12px);
-    border: solid 2px hsl(from var(--colors-accent-secondaryColor) h s l / .4);
-    color: var(--colors-accent-primaryColor);
+    border: solid 2px hsl(from var(--colors-action-primary) h s l / .4);
+    color: var(--colors-action-primary);
 }
 
 .pressedMorph {
     --gradient-start: 0%;
-    border: solid 2px hsl(from var(--colors-accent-secondaryColor) h s l / .6);
+    border: solid 2px hsl(from var(--colors-action-primary) h s l / .6);
 }
 
 @media (hover: hover) and (pointer: fine) {
     .aMorph:hover {
         --gradient-start: 0%;
-        border: solid 2px hsl(from var(--colors-accent-secondaryColor) h s l / .6);
+        border: solid 2px hsl(from var(--colors-action-primary) h s l / .6);
     }
 }

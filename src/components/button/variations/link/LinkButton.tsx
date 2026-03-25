@@ -1,6 +1,6 @@
-import { NavLink } from "react-router";
-import {ComponentSize, useTheme} from "../../provider";
-import {useButtonStyles} from "../hooks/useButtonStyles";
+import {NavLink} from "react-router";
+import {ComponentSize, useTheme} from "../../../provider";
+import {useButtonStyles} from "../../hooks/useButtonStyles";
 import styles from "./linkButton.module.css"
 import React, {ReactNode, useEffect, useRef} from "react";
 

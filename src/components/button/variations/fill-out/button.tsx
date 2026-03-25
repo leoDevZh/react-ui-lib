@@ -1,5 +1,5 @@
-import {ComponentSize, useTheme} from "../../provider";
-import {useButtonStyles} from "../hooks/useButtonStyles";
+import {ComponentSize, useTheme} from "../../../provider";
+import {useButtonStyles} from "../../hooks/useButtonStyles";
 import React, {useLayoutEffect, useRef} from "react";
 import styles from './defaultButton.module.css'
 

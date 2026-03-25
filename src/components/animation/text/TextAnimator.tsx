@@ -1,7 +1,8 @@
-import React, {forwardRef, RefObject, useEffect, useImperativeHandle, useLayoutEffect, useRef} from "react";
+import React, {forwardRef, RefObject, useImperativeHandle, useRef} from "react";
 import gsap from "gsap";
 import {ScrollTrigger} from "gsap/ScrollTrigger";
 import SplitText from "gsap/SplitText";
+import {useGSAP} from "@gsap/react";
 import TweenVars = gsap.TweenVars;
 
 interface TextAnimatorProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -11,8 +12,9 @@ interface TextAnimatorProps extends React.HTMLAttributes<HTMLDivElement> {
     duration?: number
     stagger?: number
     ease?: string
-    type?: 'words' | 'lines'
+    type?: 'words' | 'lines' | 'chars'
     mask?: boolean
+    revertOnUpdate?: boolean
 
     horizontal?: boolean
     scroller?: RefObject<any>
@@ -44,7 +46,7 @@ const TextAnimator = forwardRef<TextAnimatorRef, TextAnimatorProps>(
         {
             children,
             className,
-            animation = 'slide-up',
+            animation = 'slide-right',
             customAnimation,
             triggerMode = 'scroll',
             duration = .5,
@@ -52,6 +54,7 @@ const TextAnimator = forwardRef<TextAnimatorRef, TextAnimatorProps>(
             ease = 'none',
             type = 'words',
             mask = false,
+            revertOnUpdate = false,
             horizontal = false,
             scroller,
             trigger,
@@ -78,31 +81,26 @@ const TextAnimator = forwardRef<TextAnimatorRef, TextAnimatorProps>(
         const animRef = useRef<gsap.core.Tween | null>(null)
         const splitRef = useRef<SplitText | null>(null)
 
-        const useIsomorphicLayoutEffect = (typeof window !== "undefined") ? useLayoutEffect : useEffect
-
-        useIsomorphicLayoutEffect(() => {
+        useGSAP(() => {
             if (!divRef.current) return
 
             const target = divRef.current.querySelector("p, span, h1, h2, h3, h4, h5, h6") || divRef.current
-            const split = new SplitText(target, {type: type, mask: mask} as any)
-            splitRef.current = split
 
-            const targets =
-                type === 'words'
-                    ? split.words
-                    : split.lines
-
-            const ctx = gsap.context(() => {
-                gsap.registerPlugin(SplitText)
-                console.log(targets)
-                animRef.current = gsap.from(targets, initConfig())
-
-            })
-
-            return () => {
-                ctx.revert()
+            let targets: Element[] = []
+            if (type === 'chars') {
+                targets = splitChars(target)
+            } else {
+                const split = new SplitText(target, {type: type, mask: mask} as any)
+                splitRef.current = split
+                targets =
+                    type === 'words'
+                        ? split.words
+                        : split.lines
             }
-        }, [])
+
+            gsap.registerPlugin(SplitText)
+            animRef.current = gsap.from(targets, initConfig())
+        }, {revertOnUpdate})
 
         useImperativeHandle(ref, () => ({
             play: () => animRef.current?.play(),
@@ -110,6 +108,25 @@ const TextAnimator = forwardRef<TextAnimatorRef, TextAnimatorProps>(
             restart: () => animRef.current?.restart(),
             reverse: () => animRef.current?.reverse(),
         }))
+
+        function splitChars(target: Element) {
+            const originalAriaLabel = target.getAttribute('aria-label')
+
+            const text = target.textContent || "";
+            if (!originalAriaLabel) target.setAttribute('aria-label', text)
+            target.textContent = "";
+
+            const t = text
+                .split("")
+                .map((char) => {
+                    const span = document.createElement("span")
+                    span.textContent = char === " " ? "\u00A0" : char
+                    span.style.display = "inline-block"
+                    target.appendChild(span)
+                    return span
+                })
+            return t
+        }
 
         function initConfig(): TweenVars {
             let tweenVars: gsap.TweenVars = {

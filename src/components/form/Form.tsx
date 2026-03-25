@@ -17,6 +17,8 @@ import {PhoneNumberInput} from "./input/phone/PhoneNumberInput";
 import {CalendarInput} from "./input/calendar/Calendar";
 import {CheckboxInput} from "./input/checkbox/Checkbox";
 import {PlainInput} from "./input/plain/PlainInput";
+import {renderSubmittingIndicator, SubmittingIndicator} from "./utils/submittingIndicator";
+import {PhotoInput} from "./input/photo/PhotoInput";
 
 interface InputConfig {
     size?: ComponentSize
@@ -34,6 +36,8 @@ interface InputConfig {
     checkbox?: CheckboxConfig
     // Text
     text?: TextConfig
+    // Photo
+    photo?: PhotoConfig
     // Styling
     isPlain?: boolean
 }
@@ -72,10 +76,15 @@ interface TextConfig {
     placeholder?: string
 }
 
+interface PhotoConfig {
+    initialImg?: string
+    onDelete?: () => void
+}
+
 interface FieldConfig<T extends FieldValues> {
     name: keyof T
     label: string
-    type: "text" | "number" | "password" | "email" | "textarea" | "dropdown" | "phone" | "calendar" | "checkbox"
+    type: "text" | "number" | "password" | "email" | "textarea" | "dropdown" | "phone" | "calendar" | "checkbox" | "photo"
     required: boolean | string
     validationFn: (value: any) => boolean | string
     inputConfig?: InputConfig
@@ -89,6 +98,9 @@ interface FormProps<T extends FieldValues> extends PropsWithChildren, React.Form
     errorMsg?: string,
     setErrorMsg?: Dispatch<SetStateAction<string | undefined>>
     onValuesChange?: (values: T) => void
+    defaultValues?: Partial<T>,
+    submitIndicator?: SubmittingIndicator,
+    submitting?: boolean
 }
 
 interface InputProps<T extends FieldValues> extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -108,7 +120,10 @@ const Form = <T extends FieldValues, >({
                                            className,
                                            errorMsg,
                                            setErrorMsg,
-                                           onValuesChange
+                                           onValuesChange,
+                                           defaultValues,
+                                           submitIndicator,
+                                           submitting
                                        }: FormProps<T>) => {
     const {
         handleSubmit,
@@ -116,7 +131,9 @@ const Form = <T extends FieldValues, >({
         formState: {isSubmitting, errors, isDirty},
         watch,
         setValue,
-        trigger
+        trigger,
+        reset,
+        getValues
     } = useForm<T>()
     const formRef = useRef<HTMLFormElement>(null)
 
@@ -146,6 +163,15 @@ const Form = <T extends FieldValues, >({
             trigger()
         }
     }, [fields]);
+
+    useEffect(() => {
+        if (defaultValues) {
+            reset({
+                ...getValues(),
+                ...defaultValues
+            })
+        }
+    }, [defaultValues]);
 
     function getInput(field: FieldConfig<T>) {
         const errorMsg = (errors[field.name]?.message as string) ?? null
@@ -207,6 +233,25 @@ const Form = <T extends FieldValues, >({
                     currentValue={watch(field.name as Path<T>)}
                     setValueFn={setValue}
                 />
+            case "photo":
+                return <PhotoInput
+                    field={field}
+                    errorMsg={errorMsg}
+                    registerFn={register}
+                    currentValue={watch(field.name as Path<T>)}
+                    setValueFn={setValue}
+                />
+        }
+    }
+
+    function renderDTO() {
+        if (children) {
+            return children
+        }
+        if (isSubmitting || submitting) {
+            return renderSubmittingIndicator(submitIndicator)
+        } else {
+            return <Button disabled={isSubmitting} label={submitLabel ?? "Submit"} type="submit" size={componentSize}/>
         }
     }
 
@@ -219,8 +264,8 @@ const Form = <T extends FieldValues, >({
                     </div>
                 ))
             }
-            {errorMsg ? <div className={styles.error}>{errorMsg}</div> : ''}
-            {children ? children : <Button disabled={isSubmitting} label={submitLabel ?? "Submit"} type="submit" size={componentSize}/>}
+            {errorMsg ? <span className={styles.error}>{errorMsg}</span> : ''}
+            {renderDTO()}
         </form>
     )
 }

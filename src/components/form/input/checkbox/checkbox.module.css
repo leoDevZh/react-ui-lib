@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: var(--colors-font-primaryColor);
+    color: var(--colors-text-primary);
     font-family: var(--typography-fontFamily);
 }
 
@@ -41,20 +41,22 @@
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
-    accent-color: var(--colors-accent-primaryColor);
+    accent-color: var(--colors-interaction-highlight);
     width: var(--checkbox-size);
     height: var(--checkbox-size);
-    border: 1px solid var(--colors-accent-primaryColor);
+    border: 1px solid var(--colors-interaction-highlight);
     border-radius: var(--radius-sm);
     outline: none;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: var(--zIndex-mid);
 }
 
 .checkDraw {
     width: calc(var(--checkbox-size) * 1.4);
     height: calc(var(--checkbox-size) * 1.4);
-    color: var(--colors-accent-primaryColor);
+    color: var(--colors-interaction-highlight);
     position: absolute;
     transform: translate(calc((var(--checkbox-size) - var(--checkbox-size) * 1.4) *.2), calc((var(--checkbox-size) - var(--checkbox-size) * 1.4) * .8));
     z-index: var(--zIndex-low);
@@ -82,4 +84,12 @@
 .xl {
     font-size: var(--typography-fontSize-xl);
     --checkbox-size: 24px;
+}
+
+.error .errorSpan {
+    margin-top: var(--spacing-sm);
+    color: var(--colors-status-danger);
+    font-size: calc(var(--calc-font-size) * .8);
+    font-family: var(--typography-fontFamily);
+    align-self: start;
 }

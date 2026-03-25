@@ -2,7 +2,6 @@ import {ComponentSize} from "../../provider";
 import {useCallback, useState} from "react";
 import styles from "./button.module.css";
 
-// TODO: Remove className??
 interface UseButtonStylesOptions {
     size?: ComponentSize;
     enableContentSelect?: boolean;
@@ -21,7 +20,7 @@ export const useButtonStyles = ({
 
     const buttonClassName = [
         styles.leoBtn,
-        pressed && styles.pressed,
+        pressed ?? styles.pressed,
         !enableContentSelect && styles.preventSelect,
         styles[size ?? 'md'],
         className

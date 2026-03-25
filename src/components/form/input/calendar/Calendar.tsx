@@ -4,10 +4,15 @@ import styles from "./calendar.module.css";
 import stylesInput from "./calendarInput.module.css";
 import {DateTime, Info, Interval} from "luxon"
 import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
-import style from "../dropdown/dropdown.module.css";
 
-
-const CalendarInput = <T extends FieldValues,>({className, field, registerFn, setValueFn, errorMsg}: InputProps<T>) => {
+const CalendarInput = <T extends FieldValues, >({
+                                                    className,
+                                                    field,
+                                                    registerFn,
+                                                    setValueFn,
+                                                    errorMsg,
+                                                    currentValue
+                                                }: InputProps<T>) => {
     const [showCalendar, setShowCalendar] = useState(false)
     const [selectedDate, setSelectedDate] = useState<undefined | DateTime>(undefined)
 
@@ -46,6 +51,12 @@ const CalendarInput = <T extends FieldValues,>({className, field, registerFn, se
         }
     }, [selectedDate]);
 
+    useEffect(() => {
+        if (currentValue) {
+            setSelectedDate(DateTime.fromISO(currentValue))
+        }
+    }, [currentValue]);
+
     return (
         <div
             ref={divRef}
@@ -67,7 +78,7 @@ const CalendarInput = <T extends FieldValues,>({className, field, registerFn, se
             <div className={stylesInput.calendar}>
                 <Calendar field={field} setSelectedDate={setSelectedDate}/>
             </div>
-            <span className={style.errorSpan}>{errorMsg}</span>
+            <span className={stylesInput.errorSpan}>{errorMsg}</span>
         </div>
     )
 }
@@ -78,7 +89,6 @@ const Calendar = <T extends FieldValues,>({field, setSelectedDate}: {field: Fiel
     const [openYears, setOpenYears] = useState(false)
 
     const finalClasses = [styles.container, styles[field?.inputConfig?.size ?? 'md']].filter(Boolean).join(' ')
-    const calendarClasses = [styles.calendar].filter(Boolean).join(' ')
     const yearsClasses = [styles.years, openYears ? styles.show : ''].filter(Boolean).join(' ')
 
     const monthAsString = currentMonth.setLocale('de').toLocaleString({month: 'short', year: 'numeric'})
@@ -124,27 +134,27 @@ const Calendar = <T extends FieldValues,>({field, setSelectedDate}: {field: Fiel
                 </div>
             </div>
             <div className={styles.content}>
-                <div className={calendarClasses}>
-                    <div className={styles.weekdays}>
-                        {weekdays.map(wd => <span key={wd}>{wd}</span>)}
-                    </div>
-                    <div className={styles.days}>
-                        {daysOfMonth.map(day => {
-                            return (
-                                <span
-                                    key={day?.toFormat("MM:dd")}
-                                    onClick={() => setSelectedDate(day)}
-                                    style={{
-                                        color: day?.month !== currentMonth.month
-                                            ? 'var(--colors-font-secondaryColor)'
-                                            : 'var(--colors-font-primaryColor)',
-                                    }}
-                                >
+                <div className={styles.calendar}>
+                    {weekdays.map(wd => <span key={wd} className={styles.weekday}>{wd}</span>)}
+                    {daysOfMonth.map(day => {
+                        return (
+                            <span
+                                key={day?.toFormat("MM:dd")}
+                                onClick={() => setSelectedDate(day)}
+                                className={styles.day}
+                                style={{
+                                    color: day?.month !== currentMonth.month
+                                        ? 'var(--colors-text-secondary)'
+                                        : 'var(--colors-text-primary)',
+                                    opacity: day?.month !== currentMonth.month
+                                        ? '.8'
+                                        : 1
+                                }}
+                            >
                                 {day?.toLocaleString({day:"2-digit"})}
                                 </span>
-                            )
-                        })}
-                    </div>
+                        )
+                    })}
                 </div>
                 <div className={yearsClasses}>
                     {yearsToSelect.map(year => <span key={year} onClick={() => {
@@ -158,7 +168,7 @@ const Calendar = <T extends FieldValues,>({field, setSelectedDate}: {field: Fiel
 
     function years() {
         const yearsToSelect = []
-        for (let i = -20; i < 20; i++) {
+        for (let i = -50; i < 50; i++) {
             yearsToSelect.push(DateTime.now().year + i)
         }
         return yearsToSelect
