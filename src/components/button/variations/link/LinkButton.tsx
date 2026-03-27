@@ -8,14 +8,13 @@ import React, {ReactNode, useEffect, useRef} from "react";
 interface LinkButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
     label?: string
     size?: ComponentSize
-    enableContentSelect?: boolean
     to?: string
     children?: ReactNode
 }
 
-const LinkButton: React.FC<LinkButtonProps> = ({label, size, enableContentSelect, className, to, ...props}) => {
+const LinkButton: React.FC<LinkButtonProps> = ({label, size, className, to, ...props}) => {
 
-    const { pressed, onTouchStart, onTouchEnd, className: buttonClass } = useButtonStyles({size, enableContentSelect, className})
+    const {pressed, onTouchStart, onTouchEnd, className: buttonClass} = useButtonStyles({size, className})
     const { theme } = useTheme()
 
     const finalClass = [buttonClass, ...getClassListByType(), styles[size ?? 'md'], className].filter(Boolean).join(' ')

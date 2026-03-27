@@ -1,0 +1,34 @@
+.container {
+    box-shadow: var(--shadow-cta-base);
+    background: var(--colors-background-primary);
+    color: var(--colors-action-primary);
+    position: relative;
+    transition: all var(--motion-duration-fast) var(--motion-easing);
+}
+.container::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: var(--radius-md);
+    border: 2px solid transparent;
+    background: linear-gradient(hsl(from var(--colors-action-primary) h s l / .75), var(--colors-action-primary)) border-box;
+    mask:
+            linear-gradient(black, black) border-box,
+            linear-gradient(black, black) padding-box;
+    mask-composite: subtract;
+    z-index: var(--zIndex-full);
+}
+
+.pressed:hover {
+    box-shadow: var(--shadow-cta-hover);
+    color: var(--colors-background-primary);
+    background: linear-gradient(hsl(from var(--colors-action-primary) h s l / .75), var(--colors-action-primary)) border-box;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .container:hover {
+        box-shadow: var(--shadow-cta-hover);
+        color: var(--colors-background-primary);
+        background: linear-gradient(hsl(from var(--colors-action-primary) h s l / .8), var(--colors-action-primary)) border-box;
+    }
+}

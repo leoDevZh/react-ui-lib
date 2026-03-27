@@ -5,7 +5,7 @@ export const defaultTheme: Theme = {
         neutral: {
             //bg
             0: 'hsl(0, 0%, 98%)',
-            50: 'hsl(0, 0%, 95%)',
+            50: 'hsl(0, 0%, 96%)',
             100: 'hsl(0, 0%, 92%)',
             //none bg
             200: 'hsl(0, 0%, 90%)',

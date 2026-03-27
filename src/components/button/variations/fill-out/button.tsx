@@ -1,17 +1,12 @@
-import {ComponentSize, useTheme} from "../../../provider";
+import {useTheme} from "../../../provider";
 import {useButtonStyles} from "../../hooks/useButtonStyles";
 import React, {useLayoutEffect, useRef} from "react";
 import styles from './defaultButton.module.css'
+import {ButtonProps} from "../model";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    label?: string
-    size?: ComponentSize,
-    enableContentSelect?: boolean
-}
+const Button: React.FC<ButtonProps> = ({label, size, onClick, className, ...props}) => {
 
-const Button: React.FC<ButtonProps> = ({label, size, enableContentSelect, onClick, className, ...props}) => {
-
-    const { pressed, onTouchStart, onTouchEnd, className: buttonClass } = useButtonStyles({size, enableContentSelect, className})
+    const {pressed, onTouchStart, onTouchEnd, className: buttonClass} = useButtonStyles({size, className})
     const { theme } = useTheme()
     const onBtnClick: (event: any) => void = (event) => {
         if(onClick) {
