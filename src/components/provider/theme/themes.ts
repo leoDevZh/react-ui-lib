@@ -108,8 +108,8 @@ export const defaultTheme: Theme = {
         xxl: '128px'
     },
     radius: {
-        sm: '2px',
-        md: '6px',
+        sm: '4px',
+        md: '8px',
         lg: '12px',
         round: '50%'
     },

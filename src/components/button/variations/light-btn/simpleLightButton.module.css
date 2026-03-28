@@ -7,20 +7,21 @@
     border-radius: var(--radius-sm);
     isolation: isolate;
 }
+
+.negative {
+    color: var(--colors-background-primary);
+}
+
 .container span {
     position: relative;
     z-index: var(--zIndex-full);
-}
-
-.negative span {
-    color: var(--colors-background-primary);
 }
 
 /* Border */
 .container::before {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: -0;
     padding: 2px;
     border-radius: var(--radius-sm);
     border: 2px solid transparent;
@@ -30,58 +31,23 @@
             linear-gradient(black, black) padding-box;
     mask-composite: subtract;
     z-index: var(--zIndex-full);
-    transition: all var(--motion-duration-normal) var(--motion-easing);
-    opacity: 1;
 }
 
-/* Background on hover */
-.container::after {
+/* Background */
+.negative::after {
     content: '';
     position: absolute;
     inset: 0;
+    padding: 2px;
     border-radius: var(--radius-sm);
-    background: linear-gradient(hsl(from var(--accent-color, var(--colors-action-primary)) h s l / .8), var(--accent-color, var(--colors-action-primary))) border-box;
-    opacity: 0;
+    background: linear-gradient(hsl(from var(--accent-color, var(--colors-action-primary)) h s l / .8), var(--accent-color, var(--colors-action-primary))) content-box;
+    opacity: 1;
     transition: all var(--motion-duration-normal) var(--motion-easing);
     z-index: var(--zIndex-heigh);
 }
 
-.negative::before{
-    opacity: 0;
-}
-.negative::after {
-    opacity: 1;
-}
-
 .pressed {
     box-shadow: var(--shadow-cta-hover);
-    color: var(--colors-background-primary);
-}
-
-.pressed.negative {
-    color: var(--accent-color, var(--colors-action-primary));
-}
-
-.pressed.negative:hover::before {
-    opacity: 1;
-}
-.pressed.negative:hover::after {
-    opacity: 0;
-}
-
-.pressed::before {
-    opacity: 0;
-}
-.pressed::after {
-    opacity: 1;
-}
-
-.pressed.iconContainer svg {
-    fill: var(--colors-background-primary);
-}
-
-.negative.pressed.iconContainer svg {
-    fill: var(--accent-color, var(--colors-action-primary));
 }
 
 .iconContainer .wrapper {
@@ -96,10 +62,6 @@
     fill: var(--accent-color, var(--colors-action-primary));
     width: calc(var(--calc-font-size) * 1.3);
     height: calc(var(--calc-font-size) * 1.3);
-}
-
-.negative.iconContainer svg {
-    fill: var(--colors-background-primary);
 }
 
 .iconContainer span:last-child {
@@ -135,37 +97,13 @@
     transform: translateX(0%);
 }
 
+.negative.iconContainer svg {
+    fill: var(--colors-background-primary);
+}
+
 @media (hover: hover) and (pointer: fine) {
     .container:hover {
         box-shadow: var(--shadow-cta-hover);
-        color: var(--colors-background-primary);
-    }
-
-    .container:hover::before {
-        opacity: 0;
-    }
-
-    .container:hover::after {
-        opacity: 1;
-    }
-
-    .negative:hover::before {
-        opacity: 1;
-    }
-    .negative:hover::after {
-        opacity: 0;
-    }
-
-    .container.negative:hover span {
-        color: var(--accent-color, var(--colors-action-primary));
-    }
-
-    .iconContainer:hover svg {
-        fill: var(--colors-background-primary);
-    }
-
-    .negative.iconContainer:hover svg {
-        fill: var(--accent-color, var(--colors-action-primary));
     }
 
     .drawIcon:hover span:first-child {
