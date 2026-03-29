@@ -1,12 +1,11 @@
-import {Dispatch, HTMLAttributes, SetStateAction} from "react";
+import {HTMLAttributes} from "react";
 import styles from './dialog.module.css'
 import {ComponentSize} from "../provider";
 import {DialogCTO, renderDialogCTO} from "./utils/DialogCTOs";
-import {Button} from "../button";
+import {LightButton} from "../button";
 
 interface DialogProps extends HTMLAttributes<HTMLDivElement> {
-    open: boolean
-    setOpen: Dispatch<SetStateAction<boolean>>
+    closeDialog: () => void
     title?: string
     text?: string
     dto?: DialogCTO
@@ -18,8 +17,7 @@ interface DialogProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const Dialog = ({
-                    open,
-                    setOpen,
+                    closeDialog,
                     className,
                     children,
                     size,
@@ -32,13 +30,13 @@ const Dialog = ({
                     onReject
                 }: DialogProps) => {
 
-    const finalClasses = [styles.container, className, styles[size || 'md'], open ? styles.open : ''].filter(Boolean).join(' ')
+    const finalClasses = [styles.container, className, styles[size || 'md']].filter(Boolean).join(' ')
 
     function renderBody() {
         if (title || text) {
             return (
                 <div className={styles.body}>
-                    {title ? <h3 className={styles.title}>{text}</h3> : <></>}
+                    {title ? <h3 className={styles.title}>{title}</h3> : <></>}
                     {text ? <p className={styles.text}>{text}</p> : <></>}
                 </div>
             )
@@ -53,20 +51,24 @@ const Dialog = ({
         } else {
             return (
                 <>
-                    <Button label={acceptText} onClick={() => {
+                    <LightButton label={acceptText} onClick={() => {
                         if (onAccept) {
                             onAccept()
                         }
-                        setOpen(false)
+                        closeDialog()
                     }}/>
 
-                    {onReject ? (
-                            <Button label={rejectText} onClick={() => {
+                    {rejectText ? (
+                            <LightButton
+                                label={rejectText}
+                                onClick={() => {
                                 if (onReject) {
                                     onReject()
                                 }
-                                setOpen(false)
-                            }}/>
+                                    closeDialog()
+                                }}
+                                accentColor='var(--colors-action-inverse)'
+                            />
                         )
                         : <></>
                     }

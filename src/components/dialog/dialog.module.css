@@ -1,8 +1,8 @@
 .container {
     position: fixed;
     inset: 0;
-    display: none;
-    z-index: var(--zIndex-heigh);
+    display: block;
+    z-index: var(--zIndex-full);
     padding: var(--spacing-lg);
     font-family: var(--typography-fontFamily);
     font-size: var(--typography-fontSize-md);
@@ -13,10 +13,6 @@
     backdrop-filter: blur(1px);
     -webkit-backdrop-filter: blur(1px);
     inset: 0;
-}
-
-.open {
-    display: block;
 }
 
 .dialog {
