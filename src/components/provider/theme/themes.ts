@@ -49,7 +49,8 @@ export const defaultTheme: Theme = {
         status: {
             success: 'hsl(125, 73%, 42%)',
             warning: 'hsl(43, 100%, 70%)',
-            danger: 'hsl(0, 100%, 50%)'
+            danger: 'hsl(0, 100%, 50%)',
+            neutral: 'hsl(0, 0%, 10%)'
         }
     },
     shadow: {

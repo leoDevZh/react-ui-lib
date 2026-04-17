@@ -19,13 +19,30 @@
     border-radius: var(--radius-sm);
 }
 
-.form > button, .form > svg {
+.ctaContainer {
     margin-top: var(--spacing-md);
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    align-items: center;
 }
 
-.form > svg {
+.ctaContainer > svg {
     width: var(--typography-fontSize-lg);
     height: var(--typography-fontSize-lg);
     fill: var(--colors-text-tertiary);
-    align-self: center;
+}
+
+.ctaContainer > button {
+    width: fit-content;
+}
+
+.ctaContainer > .success {
+    transition: all var(--motion-duration-normal) var(--motion-easing);
+    opacity: 0;
+}
+
+.ctaContainer > .show {
+    opacity: 1;
 }

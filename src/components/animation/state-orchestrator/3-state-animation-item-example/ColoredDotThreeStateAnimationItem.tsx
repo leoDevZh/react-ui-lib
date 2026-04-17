@@ -1,5 +1,5 @@
 import {forwardRef, useImperativeHandle, useRef} from "react";
-import {StoryTellingAnimationItemRef} from "../StoryTellingScrollOrchestrator";
+import {StoryTellingAnimationItemRef} from "../StoryTellingOrchestrator";
 import {useGSAP} from "@gsap/react";
 import gsap from "gsap";
 

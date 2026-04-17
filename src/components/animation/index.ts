@@ -3,8 +3,11 @@ export {type AppearTimelineProps, type AppearTimelineRef} from './appear-timelin
 export {TextAnimator, type TextAnimatorRef, type TextAnimatorProps} from './text/TextAnimator'
 export {AnimationItem, type AnimationItemProps, type AnimationItemRef} from './appear/AnimationItem'
 export {
-    StoryTellingScrollOrchestrator, type StoryTellingAnimationItemRef
-} from './state-orchestrator/StoryTellingScrollOrchestrator'
+    StoryTellingOrchestrator,
+    type StoryTellingAnimationItemRef,
+    type StoryTellingOrchestratorProps,
+    type StoryTellingOrchestratorRef
+} from './state-orchestrator/StoryTellingOrchestrator'
 
 // example
 export {

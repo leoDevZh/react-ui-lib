@@ -25,6 +25,8 @@ const TabMenu = ({items, arrowLeft, arrowRight, className, size = 'md', displayA
 
     const scrollDivRef = useRef<HTMLDivElement>(null)
     const tabItemsRef = useRef<HTMLButtonElement[]>([])
+    const activeIndexRef = useRef(activeIndex)
+    const isInitialRender = useRef(true)
 
     const {pressed, onTouchStart, onTouchEnd, className: buttonClass} = useButtonStyles({size, className})
     const finalClass = [styles.container, className].filter(Boolean).join(' ')
@@ -43,21 +45,43 @@ const TabMenu = ({items, arrowLeft, arrowRight, className, size = 'md', displayA
             setCanScrollRight((scrollLeft < (scrollWidth - clientWidth) - 1) && displayArrow)
         }
 
-        handleScroll()
-        el.addEventListener('scroll', handleScroll)
-        window.addEventListener('resize', handleScroll)
+        const handleResize = () => {
+            handleScroll()
+            const container = scrollDivRef.current
+            const activeTab = tabItemsRef.current[activeIndexRef.current]
+            if (!container || !activeTab) return
 
+            if (isInitialRender.current) {
+                container.style.setProperty('--motion-duration-normal', '0ms')
+                isInitialRender.current = false
+                // restore after paint
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        container.style.removeProperty('--motion-duration-normal')
+                    })
+                })
+            }
+
+            const offset = activeTab.offsetLeft //tabRect.left - containerRect.left + container.scrollLeft
+
+            container.style.setProperty('--indicator-left-offset', `${offset}px`)
+        }
+
+        handleResize()
+        el.addEventListener('scroll', handleScroll)
+        window.addEventListener('resize', handleResize)
 
         // calc tab indicator width
         el.style.setProperty('--calc-tab-width', `${tabItemsRef.current[0]!.getBoundingClientRect().width}px`)
 
         return () => {
             el.removeEventListener('scroll', handleScroll)
-            window.removeEventListener('resize', handleScroll)
+            window.removeEventListener('resize', handleResize)
         }
     }, [])
 
     useLayoutEffect(() => {
+        activeIndexRef.current = activeIndex
         const container = scrollDivRef.current
         const activeTab = tabItemsRef.current[activeIndex]
         if (!container || !activeTab) return

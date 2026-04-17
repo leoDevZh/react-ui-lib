@@ -5,6 +5,7 @@
     position: relative;
     font-family: var(--typography-fontFamily);
     box-sizing: border-box;
+    font-size: inherit;
 }
 
 .label {

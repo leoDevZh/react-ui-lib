@@ -9,4 +9,5 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     invert?: boolean
     simpleColor?: boolean
     accentColor?: string
+
 }

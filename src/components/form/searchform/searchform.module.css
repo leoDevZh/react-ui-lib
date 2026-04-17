@@ -5,6 +5,7 @@
     justify-content: space-between;
     width: 100%;
     border: 1px solid var(--colors-border-strong);
+    outline: 1px solid transparent;
     border-radius: var(--radius-lg);
     transition: all var(--motion-duration-fast) var(--motion-easing);
 }
@@ -47,8 +48,8 @@
 }
 
 .focused {
-    border-width: 2px;
-    border-color: var(--colors-interaction-highlightSoft);
+    outline: 2px solid var(--colors-interaction-highlightSoft);
+    border-color: transparent;
     box-shadow: var(--shadow-card-base);
     box-shadow-color: var(--colors-interaction-highlightSoft);
 }

@@ -60,9 +60,7 @@ const LightButton = ({
         >
             <div ref={wrpRef} className={simpleColor ? simpleStyle.wrapper : style.wrapper}>
                 <span ref={spanRef}>{label}</span>
-                <span>
-            {Icon && Icon}
-            </span>
+                <span>{Icon && Icon}</span>
             </div>
         </button>
     )

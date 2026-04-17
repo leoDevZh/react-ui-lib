@@ -50,6 +50,7 @@ type Theme = {
             success: string
             warning: string
             danger: string
+            neutral: string
         }
     }
     typography: {
