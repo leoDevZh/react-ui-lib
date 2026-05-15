@@ -85,7 +85,7 @@ const SvgDraw = forwardRef<SvgDrawRef, SvgDrawProps>(
             })
 
             return () => ctx.revert()
-        }, [])
+        }, [triggerMode, duration, ease])
 
         useImperativeHandle(ref, () => ({
             play: () => animRef.current?.play(),

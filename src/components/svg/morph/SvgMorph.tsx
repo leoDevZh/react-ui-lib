@@ -92,7 +92,7 @@ const SvgMorph = forwardRef<SvgMorphRef, SvgMorphProps>(
             })
 
             return () => ctx.revert()
-        }, [])
+        }, [triggerMode, duration, ease, endPath, type, shapeIdx, map])
 
         useImperativeHandle(ref, () => ({
             play: () => animRef.current?.play(),

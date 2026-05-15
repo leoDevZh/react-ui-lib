@@ -78,7 +78,7 @@ const TabMenu = ({items, arrowLeft, arrowRight, className, size = 'md', displayA
             el.removeEventListener('scroll', handleScroll)
             window.removeEventListener('resize', handleResize)
         }
-    }, [])
+    }, [displayArrow])
 
     useLayoutEffect(() => {
         activeIndexRef.current = activeIndex
