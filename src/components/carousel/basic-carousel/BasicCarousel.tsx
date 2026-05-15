@@ -52,7 +52,13 @@ const BasicCarousel = (
 
     useLayoutEffect(() => {
         outerRef.current?.style.setProperty('--toggle-opacity', hideCTA ? '0' : '1')
+    }, [hideCTA])
+
+    useLayoutEffect(() => {
         wrapperRef.current?.style.setProperty('--item-gap', itemGap)
+    }, [itemGap])
+
+    useLayoutEffect(() => {
         itemsRef.current = Array.from(wrapperRef?.current?.children ?? []) as HTMLElement[]
         setMaxIdx(itemsRef.current.length)
         if (itemsRef.current.length === 0) return
