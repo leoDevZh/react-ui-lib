@@ -1,5 +1,3 @@
-import React from 'react'
-
 // Start shape for the Default story — star
 export const CIRCLE_PATH =
     'M 100 15 C 146.4 15 185 53.6 185 100 C 185 146.4 146.4 185 100 185 C 53.6 185 15 146.4 15 100 C 15 53.6 53.6 15 100 15 Z'

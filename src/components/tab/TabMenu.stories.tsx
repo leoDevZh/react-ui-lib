@@ -1,7 +1,6 @@
-import React from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
-import { TabMenu } from './TabMenu'
-import { tabItems, manyTabItems } from './__stories__/TabMenuContent'
+import type {Meta, StoryObj} from '@storybook/react'
+import {TabMenu} from './TabMenu'
+import {manyTabItems, tabItems} from './__stories__/TabMenuContent'
 
 const meta: Meta<typeof TabMenu> = {
     title: 'Components/TabMenu',
