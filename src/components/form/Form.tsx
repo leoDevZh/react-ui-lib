@@ -29,6 +29,7 @@ import {PlainInput} from "./input/plain/PlainInput";
 import {renderSubmittingIndicator, SubmittingIndicator} from "./utils/submittingIndicator";
 import {PhotoInput} from "./input/photo/PhotoInput";
 import {BasicSuccessIndication} from "./utils/interaction/success/BasicSuccessIndication";
+import {ProgressInput} from "./input/slider/ProgressInput";
 
 interface InputConfig {
     size?: ComponentSize
@@ -48,6 +49,8 @@ interface InputConfig {
     text?: TextConfig
     // Photo
     photo?: PhotoConfig
+    // Progress
+    progress?: ProgressConfig
     // Styling
     isPlain?: boolean
 }
@@ -91,10 +94,15 @@ interface PhotoConfig {
     onDelete?: () => void
 }
 
+interface ProgressConfig {
+    steps: { label: string, value: any }[]
+    showAllSteps: boolean
+}
+
 interface FieldConfig<T extends FieldValues> {
     name: keyof T
     label: string
-    type: "text" | "number" | "password" | "email" | "textarea" | "dropdown" | "phone" | "calendar" | "checkbox" | "photo"
+    type: "text" | "number" | "password" | "email" | "textarea" | "dropdown" | "phone" | "calendar" | "checkbox" | "photo" | "progress"
     required: boolean | string
     validationFn: (value: any) => boolean | string
     inputConfig?: InputConfig
@@ -260,6 +268,14 @@ const Form = <T extends FieldValues, >({
                 />
             case "photo":
                 return <PhotoInput
+                    field={field}
+                    errorMsg={errorMsg}
+                    registerFn={register}
+                    currentValue={watch(field.name as Path<T>)}
+                    setValueFn={setValue}
+                />
+            case "progress":
+                return <ProgressInput
                     field={field}
                     errorMsg={errorMsg}
                     registerFn={register}
