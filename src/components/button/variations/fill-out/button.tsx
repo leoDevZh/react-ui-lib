@@ -53,4 +53,4 @@ const Button: React.FC<ButtonProps> = ({label, size, onClick, className, ...prop
         </button>)
 }
 
-export { Button, ButtonProps }
+export {Button}
