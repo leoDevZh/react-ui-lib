@@ -48,7 +48,6 @@ const FlippingCard = (
     const useIsomorphicLayoutEffect = (typeof window !== "undefined") ? useLayoutEffect : useEffect;
 
     useIsomorphicLayoutEffect(() => {
-        // init children
         const children = Array.from(divRef?.current?.children ?? []) as HTMLElement[]
 
         if (children.length != 2) {
@@ -73,7 +72,6 @@ const FlippingCard = (
         children.at(0)?.classList.add(styles.cardOne as string)
         children.at(1)?.classList.add(styles.cardTwo as string)
 
-        // add hover listener
         divRef?.current?.addEventListener('mouseenter', handleMouseEnter)
         divRef?.current?.addEventListener('mouseleave', handleMouseLeave)
 
@@ -85,7 +83,6 @@ const FlippingCard = (
                 .from(children.at(1)!, {
                     rotationY: 90
                 }, '>')
-
         })
 
         return () => {
@@ -93,7 +90,7 @@ const FlippingCard = (
             divRef?.current?.removeEventListener('mouseenter', handleMouseEnter)
             divRef?.current?.removeEventListener('mouseleave', handleMouseLeave)
         }
-    }, [isMobile])
+    }, [isMobile, duration, ease, horizontal, pin, pinSpacing, start, end, toggleActions, scrub, markers])
 
     const handleMouseEnter = () => {
         runTimeline()
