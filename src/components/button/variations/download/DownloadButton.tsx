@@ -16,7 +16,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = ({label, size, enableConte
 
     const container = useRef<HTMLButtonElement>(null)
     const svgRef = useRef<SvgMorphRef>(null)
-    const { pressed, onTouchStart, onTouchEnd, className: buttonClass } = useButtonStyles({size, enableContentSelect, className})
+    const {pressed, onTouchStart, onTouchEnd, className: buttonClass} = useButtonStyles({size, className})
 
     const { theme } = useTheme()
 

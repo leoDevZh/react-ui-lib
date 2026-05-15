@@ -8,6 +8,7 @@ export { PhoneNumberInput } from './input/phone/PhoneNumberInput'
 export {CalendarInput} from "./input/calendar/Calendar"
 export {CheckboxInput} from "./input/checkbox/Checkbox"
 export {PhotoInput} from "./input/photo/PhotoInput"
+export {ProgressInput} from "./input/slider/ProgressInput"
 
 export {PlainInput} from "./input/plain/PlainInput"
 export type {PlainInputProps} from "./input/plain/PlainInput"
@@ -16,3 +17,5 @@ export {SearchForm, type SearchFormProps, type SearchValue, type SearchFormRef} 
 
 export {Spinner, type SpinnerProps} from "./utils/spinner/Spinner"
 export {renderSubmittingIndicator, type SubmittingIndicator} from "./utils/submittingIndicator"
+export {type InteractionProps} from "./utils/interaction/model"
+export {BasicSuccessIndication} from "./utils/interaction/success/BasicSuccessIndication"

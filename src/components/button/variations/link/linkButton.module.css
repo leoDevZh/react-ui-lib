@@ -6,6 +6,9 @@
     justify-content: center;
     gap: var(--spacing-sm);
     text-decoration: unset;
+    border: solid 2px var(--colors-border-strong);
+    border-radius: var(--radius-md);
+    background-color: var(--colors-background-primary);
 }
 .xs, .sm {
     gap: var(--spacing-xs);

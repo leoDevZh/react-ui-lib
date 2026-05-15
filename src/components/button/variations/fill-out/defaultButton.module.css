@@ -14,6 +14,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    border: solid 2px var(--colors-border-strong);
+    border-radius: var(--radius-md);
     background: radial-gradient(circle at var(--dot-position), var(--colors-action-primary) var(--circle-radius), transparent 0%) padding-box;
     transition:
         --circle-radius var(--motion-duration-slow) var(--motion-easing),

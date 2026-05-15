@@ -5,7 +5,7 @@ export const defaultTheme: Theme = {
         neutral: {
             //bg
             0: 'hsl(0, 0%, 98%)',
-            50: 'hsl(0, 0%, 95%)',
+            50: 'hsl(0, 0%, 96%)',
             100: 'hsl(0, 0%, 92%)',
             //none bg
             200: 'hsl(0, 0%, 90%)',
@@ -49,7 +49,8 @@ export const defaultTheme: Theme = {
         status: {
             success: 'hsl(125, 73%, 42%)',
             warning: 'hsl(43, 100%, 70%)',
-            danger: 'hsl(0, 100%, 50%)'
+            danger: 'hsl(0, 100%, 50%)',
+            neutral: 'hsl(0, 0%, 10%)'
         }
     },
     shadow: {
@@ -108,8 +109,8 @@ export const defaultTheme: Theme = {
         xxl: '128px'
     },
     radius: {
-        sm: '2px',
-        md: '6px',
+        sm: '4px',
+        md: '8px',
         lg: '12px',
         round: '50%'
     },

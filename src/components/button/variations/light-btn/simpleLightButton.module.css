@@ -1,0 +1,116 @@
+.container {
+    box-shadow: var(--shadow-cta-base);
+    background: var(--colors-background-primary);
+    color: var(--accent-color, var(--colors-action-primary));
+    position: relative;
+    transition: all var(--motion-duration-normal) var(--motion-easing);
+    border-radius: var(--radius-sm);
+    isolation: isolate;
+}
+
+.negative {
+    color: var(--colors-background-primary);
+}
+
+.container span {
+    position: relative;
+    z-index: var(--zIndex-full);
+}
+
+/* Border */
+.container::before {
+    content: '';
+    position: absolute;
+    inset: -0;
+    padding: 2px;
+    border-radius: var(--radius-sm);
+    border: 2px solid transparent;
+    background: linear-gradient(hsl(from var(--accent-color, var(--colors-action-primary)) h s l / .8), var(--accent-color, var(--colors-action-primary))) border-box;
+    mask:
+            linear-gradient(black, black) border-box,
+            linear-gradient(black, black) padding-box;
+    mask-composite: subtract;
+    z-index: var(--zIndex-full);
+}
+
+/* Background */
+.negative::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(hsl(from var(--accent-color, var(--colors-action-primary)) h s l / .8), var(--accent-color, var(--colors-action-primary))) content-box;
+    opacity: 1;
+    transition: all var(--motion-duration-normal) var(--motion-easing);
+    z-index: var(--zIndex-heigh);
+}
+
+.pressed {
+    box-shadow: var(--shadow-cta-hover);
+}
+
+.iconContainer .wrapper {
+    position: relative;
+    display: grid;
+    align-items: center;
+    column-gap: var(--spacing-md);
+    grid-template-columns: 1fr calc(var(--calc-font-size) * 1.3);
+}
+
+.iconContainer svg {
+    fill: var(--accent-color, var(--colors-action-primary));
+    width: calc(var(--calc-font-size) * 1.3);
+    height: calc(var(--calc-font-size) * 1.3);
+}
+
+.iconContainer span:last-child {
+    height: calc(var(--calc-font-size) * 1.3);
+}
+
+.drawIcon span:first-child {
+    position: absolute !important;
+    top: 50%;
+    left: calc((var(--calc-wrapper-width) - var(--calc-span-width)) / 2); /* set span to mid of wrapper */
+    transform: translateY(-50%);
+    text-wrap: nowrap;
+    transition: all var(--motion-duration-normal) var(--motion-easing);
+}
+
+.drawIcon span:last-child {
+    overflow: hidden;
+    grid-column: 2;
+    height: calc(var(--calc-font-size) * 1.3);
+}
+
+.drawIcon span:last-child svg {
+    transition: all var(--motion-duration-normal) var(--motion-easing);
+    transform: translateX(-100%);
+    justify-self: end;
+}
+
+.pressed.drawIcon:hover span:first-child {
+    left: 0;
+}
+
+.pressed.drawIcon:hover span:last-child svg {
+    transform: translateX(0%);
+}
+
+.negative.iconContainer svg {
+    fill: var(--colors-background-primary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .container:hover {
+        box-shadow: var(--shadow-cta-hover);
+    }
+
+    .drawIcon:hover span:first-child {
+        left: 0;
+    }
+
+    .drawIcon:hover span:last-child svg {
+        transform: translateX(0%);
+    }
+}

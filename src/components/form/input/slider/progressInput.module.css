@@ -1,0 +1,85 @@
+.container {
+    display: grid;
+    row-gap: var(--spacing-md);
+}
+
+.label {
+    font-size: calc(var(--calc-font-size) * .9);
+    font-family: var(--typography-fontFamily);
+}
+
+.wrapper {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+}
+
+.labelContainer {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+.labelContainer > label {
+    position: relative;
+    top: 0;
+    justify-self: center;
+    font-size: var(--calc-font-size);
+    font-family: var(--typography-fontFamily);
+    color: var(--colors-text-tertiary);
+    margin-bottom: var(--spacing-sm);
+    transition: all var(--motion-duration-normal) var(--motion-easing);
+}
+
+.activeLabel {
+    color: var(--colors-action-primary) !important;
+}
+
+.full .labelContainer > label:first-child {
+    justify-self: start;
+}
+
+.full .labelContainer > label:last-child {
+    justify-self: end;
+}
+
+.slider {
+    min-height: 4px;
+    height: fit-content;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+.full .slider {
+    width: 90%;
+    justify-self: center;
+}
+
+.error .errorSpan {
+    color: var(--colors-status-danger);
+    font-size: calc(var(--calc-font-size) * .8);
+    font-family: var(--typography-fontFamily);
+    align-self: start;
+}
+
+.xs {
+    font-size: var(--typography-fontSize-xs);
+}
+
+.sm {
+    font-size: var(--typography-fontSize-sm);
+}
+
+.md {
+    font-size: var(--typography-fontSize-md);
+}
+
+.lg {
+    font-size: var(--typography-fontSize-lg);
+}
+
+.xl {
+    font-size: var(--typography-fontSize-xl);
+}

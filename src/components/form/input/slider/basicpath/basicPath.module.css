@@ -1,0 +1,142 @@
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    isolation: isolate;
+}
+
+.path {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    background-color: var(--colors-neutral-200);
+    opacity: .4;
+    z-index: 0;
+}
+
+.first .path {
+    left: 50%;
+    width: 50%;
+}
+
+.full.first .path {
+    left: 0;
+    width: 100%;
+}
+
+.last .path {
+    width: 50%;
+}
+
+.full.last .path {
+    width: 100%;
+}
+
+.xs .path {
+    height: 2px;
+}
+
+.sm .path {
+    height: 4px;
+}
+
+.md .path {
+    height: 6px;
+}
+
+.lg .path {
+    height: 10px;
+}
+
+.xl .path {
+    height: 14px;
+}
+
+.progress {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    background-color: var(--colors-action-primary);
+    border-right-radius: var(--radius-lg);
+    z-index: 1;
+}
+
+.first .progress {
+    left: 50%;
+}
+
+.full.first .progress {
+    left: 0;
+}
+
+.xs .progress {
+    height: 2px;
+}
+
+.sm .progress {
+    height: 4px;
+}
+
+.md .progress {
+    height: 6px;
+}
+
+.lg .progress {
+    height: 10px;
+}
+
+.xl .progress {
+    height: 14px;
+}
+
+.dot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--colors-neutral-200);
+    border-radius: var(--radius-round);
+    z-index: 2;
+}
+
+.first > .dot {
+    background-color: var(--colors-action-primary);
+    scale: 1.1;
+}
+
+.full.first > .dot {
+    left: 0;
+}
+
+.full.last > .dot {
+    left: 100%;
+}
+
+.xs .dot {
+    width: 6px;
+    height: 6px;
+}
+
+.sm .dot {
+    width: 8px;
+    height: 8px;
+}
+
+.md .dot {
+    width: 12px;
+    height: 12px;
+}
+
+.lg .dot {
+    width: 16px;
+    height: 16px;
+}
+
+.xl .dot {
+    width: 20px;
+    height: 20px;
+}

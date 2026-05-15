@@ -7,7 +7,16 @@ import {
     UseFormSetValue
 } from "react-hook-form";
 import {BasicInput} from "./input/basic/BasicInput";
-import React, {Dispatch, PropsWithChildren, SetStateAction, useEffect, useLayoutEffect, useMemo, useRef} from "react";
+import React, {
+    Dispatch,
+    PropsWithChildren,
+    SetStateAction,
+    useEffect,
+    useLayoutEffect,
+    useMemo,
+    useRef,
+    useState
+} from "react";
 import {Button} from "../button";
 import {ComponentSize} from "../provider";
 import styles from "./form.module.css"
@@ -19,6 +28,8 @@ import {CheckboxInput} from "./input/checkbox/Checkbox";
 import {PlainInput} from "./input/plain/PlainInput";
 import {renderSubmittingIndicator, SubmittingIndicator} from "./utils/submittingIndicator";
 import {PhotoInput} from "./input/photo/PhotoInput";
+import {BasicSuccessIndication} from "./utils/interaction/success/BasicSuccessIndication";
+import {ProgressInput} from "./input/slider/ProgressInput";
 
 interface InputConfig {
     size?: ComponentSize
@@ -38,6 +49,8 @@ interface InputConfig {
     text?: TextConfig
     // Photo
     photo?: PhotoConfig
+    // Progress
+    progress?: ProgressConfig
     // Styling
     isPlain?: boolean
 }
@@ -81,10 +94,15 @@ interface PhotoConfig {
     onDelete?: () => void
 }
 
+interface ProgressConfig {
+    steps: { label: string, value: any }[]
+    showAllSteps: boolean
+}
+
 interface FieldConfig<T extends FieldValues> {
     name: keyof T
     label: string
-    type: "text" | "number" | "password" | "email" | "textarea" | "dropdown" | "phone" | "calendar" | "checkbox" | "photo"
+    type: "text" | "number" | "password" | "email" | "textarea" | "dropdown" | "phone" | "calendar" | "checkbox" | "photo" | "progress"
     required: boolean | string
     validationFn: (value: any) => boolean | string
     inputConfig?: InputConfig
@@ -101,6 +119,7 @@ interface FormProps<T extends FieldValues> extends PropsWithChildren, React.Form
     defaultValues?: Partial<T>,
     submitIndicator?: SubmittingIndicator,
     submitting?: boolean
+    successLabel?: string
 }
 
 interface InputProps<T extends FieldValues> extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -123,12 +142,13 @@ const Form = <T extends FieldValues, >({
                                            onValuesChange,
                                            defaultValues,
                                            submitIndicator,
-                                           submitting
+                                           submitting,
+                                           successLabel
                                        }: FormProps<T>) => {
     const {
         handleSubmit,
         register,
-        formState: {isSubmitting, errors, isDirty},
+        formState: {isSubmitting, errors, isDirty, isSubmitSuccessful, submitCount},
         watch,
         setValue,
         trigger,
@@ -136,6 +156,8 @@ const Form = <T extends FieldValues, >({
         getValues
     } = useForm<T>()
     const formRef = useRef<HTMLFormElement>(null)
+
+    const [showSuccessIndicator, setShowSuccessIndicator] = useState(false)
 
     useLayoutEffect(() => {
         if (formRef.current) {
@@ -172,6 +194,17 @@ const Form = <T extends FieldValues, >({
             })
         }
     }, [defaultValues]);
+
+    useEffect(() => {
+        if (!!(isSubmitSuccessful && successLabel)) {
+            setShowSuccessIndicator(true)
+            setTimeout(() => setShowSuccessIndicator(false), 5000)
+        }
+    }, [isSubmitSuccessful])
+
+    useEffect(() => {
+        reset(undefined, {keepValues: true, keepErrors: true, keepTouched: true})
+    }, [submitCount])
 
     function getInput(field: FieldConfig<T>) {
         const errorMsg = (errors[field.name]?.message as string) ?? null
@@ -241,15 +274,22 @@ const Form = <T extends FieldValues, >({
                     currentValue={watch(field.name as Path<T>)}
                     setValueFn={setValue}
                 />
+            case "progress":
+                return <ProgressInput
+                    field={field}
+                    errorMsg={errorMsg}
+                    registerFn={register}
+                    currentValue={watch(field.name as Path<T>)}
+                    setValueFn={setValue}
+                />
         }
     }
 
-    function renderDTO() {
-        if (children) {
-            return children
-        }
+    function renderCTA() {
         if (isSubmitting || submitting) {
             return renderSubmittingIndicator(submitIndicator)
+        } else if (children) {
+            return children
         } else {
             return <Button disabled={isSubmitting} label={submitLabel ?? "Submit"} type="submit" size={componentSize}/>
         }
@@ -265,7 +305,12 @@ const Form = <T extends FieldValues, >({
                 ))
             }
             {errorMsg ? <span className={styles.error}>{errorMsg}</span> : ''}
-            {renderDTO()}
+            <div className={styles.ctaContainer}>
+                {renderCTA()}
+                <BasicSuccessIndication
+                    className={`${styles.success} ${showSuccessIndicator ? styles.show : ''}`}
+                    label={successLabel!}/>
+            </div>
         </form>
     )
 }

@@ -1,0 +1,20 @@
+.container {
+    width: fit-content;
+    display: flex;
+    gap: var(--spacing-xs);
+    align-items: center;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    color: var(--colors-background-primary);
+    background: linear-gradient(hsl(from var(--colors-status-neutral) h s l / .75), var(--colors-status-neutral)) border-box;
+    border-radius: var(--radius-sm);
+    font-size: var(--typography-fontSize-xs);
+}
+
+.container > svg {
+    fill: var(--colors-background-primary);
+    width: var(--calc-font-size);
+    box-sizing: content-box;
+    padding: 1px;
+    border-radius: var(--radius-round);
+    background: var(--colors-status-success);
+}

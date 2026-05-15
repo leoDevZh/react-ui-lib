@@ -2,46 +2,34 @@
     margin: 0;
     padding: 0;
     outline: none;
-    border: solid 2px var(--colors-border-strong);
-    border-radius: var(--radius-md);
-    background-color: var(--colors-background-primary);
     color: var(--colors-text-secondary);
     font-family: var(--typography-fontFamily), 'sans-serif';
     letter-spacing: var(--typography-letterSpacing-cta);
     transition: all var(--motion-duration-normal) var(--motion-easing);
+    background-color: transparent;
+    border: none;
     cursor: pointer;
-    box-shadow: var(--shadow-cta-base);
-}
-
-.pressed {
-    box-shadow: var(--shadow-cta-hover);
-}
-
-@media (hover: hover) and (pointer: fine) {
-    .leoBtn:hover {
-        box-shadow: var(--shadow-cta-hover);
-    }
 }
 
 .xs {
-    padding: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
     font-size: var(--typography-fontSize-xs);
     line-height: calc(var(--typography-fontSize-xs) * var(--typography-lineHeight-cta));
 }
 .sm {
-    padding: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
     font-size: var(--typography-fontSize-sm);
 }
 .md {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-sm);
     font-size: var(--typography-fontSize-md);
 }
 .lg {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
     font-size: var(--typography-fontSize-lg);
 }
 .xl {
-    padding: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-lg);
     font-size: var(--typography-fontSize-xl);
 }
 
