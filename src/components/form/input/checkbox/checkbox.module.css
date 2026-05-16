@@ -11,7 +11,11 @@
 }
 
 .label {
-    font-size: calc(var(--calc-font-size) * .9);
+    font-size: calc(var(--calc-font-size) * 0.85);
+    color: var(--colors-text-tertiary);
+    letter-spacing: var(--typography-letterSpacing-cta);
+    text-transform: uppercase;
+    font-weight: 500;
     align-self: start;
     margin-bottom: var(--spacing-md);
 }
