@@ -30,6 +30,7 @@ import {renderSubmittingIndicator, SubmittingIndicator} from "./utils/submitting
 import {PhotoInput} from "./input/photo/PhotoInput";
 import {BasicSuccessIndication} from "./utils/interaction/success/BasicSuccessIndication";
 import {ProgressInput} from "./input/slider/ProgressInput";
+import {StepInput} from "./input/stepper/StepInput";
 
 interface InputConfig {
     size?: ComponentSize
@@ -51,6 +52,8 @@ interface InputConfig {
     photo?: PhotoConfig
     // Progress
     progress?: ProgressConfig
+    // Step
+    step?: StepConfig
     // Styling
     isPlain?: boolean
 }
@@ -99,10 +102,14 @@ interface ProgressConfig {
     showAllSteps: boolean
 }
 
+interface StepConfig {
+    steps: { label: React.ReactNode; value: any }[]
+}
+
 interface FieldConfig<T extends FieldValues> {
     name: keyof T
     label: string
-    type: "text" | "number" | "password" | "email" | "textarea" | "dropdown" | "phone" | "calendar" | "checkbox" | "photo" | "progress"
+    type: "text" | "number" | "password" | "email" | "textarea" | "dropdown" | "phone" | "calendar" | "checkbox" | "photo" | "progress" | "step"
     required: boolean | string
     validationFn: (value: any) => boolean | string
     inputConfig?: InputConfig
@@ -282,6 +289,14 @@ const Form = <T extends FieldValues, >({
                     currentValue={watch(field.name as Path<T>)}
                     setValueFn={setValue}
                 />
+            case "step":
+                return <StepInput
+                    field={field}
+                    errorMsg={errorMsg}
+                    registerFn={register}
+                    currentValue={watch(field.name as Path<T>)}
+                    setValueFn={setValue}
+                />
         }
     }
 
@@ -315,4 +330,4 @@ const Form = <T extends FieldValues, >({
     )
 }
 
-export { Form, type FieldConfig, type FormProps, type SelectionNode, type InputProps }
+export { Form, type FieldConfig, type FormProps, type SelectionNode, type InputProps, type StepConfig }
