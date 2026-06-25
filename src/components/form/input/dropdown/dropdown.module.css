@@ -4,11 +4,19 @@
     font-family: var(--typography-fontFamily), 'sans-serif';
     color: var(--colors-text-primary);
     position: relative;
-    height: calc(var(--calc-font-size) * 1.2 + var(--spacing-sm) + var(--spacing-md) + var(--calc-font-size) * .9);
+    height: calc(var(--calc-font-size) * 1.2 + var(--spacing-sm) + var(--spacing-md) + var(--calc-font-size) * 0.85);
+}
+
+.noLabel {
+    height: auto;
 }
 
 .label {
-    font-size: calc(var(--calc-font-size) * .9);
+    font-size: calc(var(--calc-font-size) * 0.85);
+    color: var(--colors-text-tertiary);
+    letter-spacing: var(--typography-letterSpacing-cta);
+    text-transform: uppercase;
+    font-weight: 500;
     margin-bottom: var(--spacing-sm);
 }
 

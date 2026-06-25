@@ -9,7 +9,7 @@ const Dropdown = <T extends FieldValues,> ({ field, registerFn, errorMsg, setVal
 
     const divRef = useRef<HTMLDivElement>(null)
 
-    const containerClasses = [className, style.container, errorMsg ? style.error : '', styles[field?.inputConfig?.size ?? 'md']].filter(Boolean).join(' ')
+    const containerClasses = [className, style.container, !field.label ? style.noLabel : '', errorMsg ? style.error : '', styles[field?.inputConfig?.size ?? 'md']].filter(Boolean).join(' ')
     let dropdownClasses = [style.dropdown, openDropdown ? style.open : ''].filter(Boolean).join(' ')
     let placeholderClasses = [style.placeholder, openDropdown ? style.open : '', (openDropdown || currentValue) ? style.selected : ''].filter(Boolean).join(' ')
 
@@ -22,12 +22,6 @@ const Dropdown = <T extends FieldValues,> ({ field, registerFn, errorMsg, setVal
         }
     }, []);
     
-    useEffect(() => {
-        dropdownClasses = [style.dropdown, openDropdown ? style.open : ''].filter(Boolean).join(' ')
-        placeholderClasses = [style.placeholder, openDropdown ? style.open : '', (openDropdown || currentValue) ? style.selected : ''].filter(Boolean).join(' ')
-
-    }, [openDropdown])
-
     useLayoutEffect(() => {
         if (divRef?.current) {
             const computedStyle = window.getComputedStyle(divRef.current)
@@ -51,7 +45,8 @@ const Dropdown = <T extends FieldValues,> ({ field, registerFn, errorMsg, setVal
             <div
                 key={key}
                 className={style.option}
-                onClick={() => {
+                onMouseDown={(e) => {
+                    e.preventDefault()
                     setValueFn(field.name as Path<T>, opt.value, {shouldValidate: true})
                     setOpenDropDown(false)
                 }}
@@ -77,7 +72,7 @@ const Dropdown = <T extends FieldValues,> ({ field, registerFn, errorMsg, setVal
             ref={divRef}
             className={containerClasses}
         >
-            <label className={style.label}>{field.label}</label>
+            {field.label ? <label className={style.label}>{field.label}</label> : null}
 
             <div
                 className={placeholderClasses}

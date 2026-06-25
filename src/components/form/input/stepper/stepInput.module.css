@@ -1,0 +1,151 @@
+.container {
+    display: grid;
+    row-gap: var(--spacing-md);
+    font-family: var(--typography-fontFamily);
+}
+
+.fieldLabel {
+    font-size: calc(var(--calc-font-size) * 0.85);
+    color: var(--colors-text-tertiary);
+    letter-spacing: var(--typography-letterSpacing-cta);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* Track area */
+
+.trackArea {
+    display: grid;
+    row-gap: var(--spacing-md);
+    outline: none;
+}
+
+.trackWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: calc(var(--calc-font-size) * 0.5) 0;
+}
+
+.trackLine {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--colors-border-subtle);
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.trackFill {
+    height: 100%;
+    background: var(--colors-action-primary);
+    transition: width 320ms cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: inherit;
+}
+
+.nodesRow {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    z-index: var(--zIndex-low);
+}
+
+/* Step nodes */
+
+.node {
+    width: 0.875em;
+    height: 0.875em;
+    border-radius: var(--radius-round);
+    border: 2px solid var(--colors-border-strong);
+    background: var(--colors-background-primary);
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    transition: background var(--motion-duration-normal) var(--motion-easing),
+                border-color var(--motion-duration-normal) var(--motion-easing),
+                transform var(--motion-duration-normal) var(--motion-easing),
+                box-shadow var(--motion-duration-normal) var(--motion-easing);
+    outline: none;
+}
+
+.node:hover {
+    border-color: var(--colors-action-primary);
+    transform: scale(1.2);
+}
+
+.node:focus-visible {
+    box-shadow: 0 0 0 3px var(--colors-action-inverse);
+}
+
+.nodePast {
+    background: var(--colors-action-primary);
+    border-color: var(--colors-action-primary);
+}
+
+.nodeActive {
+    background: var(--colors-action-primary);
+    border-color: var(--colors-action-primary);
+    transform: scale(1.4);
+    box-shadow: 0 0 0 3px var(--colors-action-inverse);
+}
+
+/* Shared center label */
+
+.centerLabel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centerLabelContent {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-size: var(--calc-font-size);
+    color: var(--colors-text-primary);
+    animation: labelSlideIn var(--motion-duration-normal) ease forwards;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+@keyframes labelSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.classic .centerLabelContent {
+    background: var(--colors-background-primary);
+    box-shadow: var(--shadow-card-base);
+    border: 1px solid var(--colors-border-subtle);
+}
+
+.morphism .centerLabelContent {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Error state */
+
+.error .errorSpan {
+    color: var(--colors-status-danger);
+    font-size: calc(var(--calc-font-size) * 0.8);
+    font-family: var(--typography-fontFamily);
+}
+
+/* Size variants */
+
+.xs { font-size: var(--typography-fontSize-xs); }
+.sm { font-size: var(--typography-fontSize-sm); }
+.md { font-size: var(--typography-fontSize-md); }
+.lg { font-size: var(--typography-fontSize-lg); }
+.xl { font-size: var(--typography-fontSize-xl); }

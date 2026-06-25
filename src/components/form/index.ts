@@ -1,5 +1,5 @@
 export { Form } from './Form'
-export type {FieldConfig, FormProps, SelectionNode, InputProps} from './Form'
+export type {FieldConfig, FormProps, SelectionNode, InputProps, StepConfig} from './Form'
 
 export { BasicInput } from './input/basic/BasicInput'
 export { TextArea } from './input/textarea/TextArea'
@@ -9,6 +9,7 @@ export {CalendarInput} from "./input/calendar/Calendar"
 export {CheckboxInput} from "./input/checkbox/Checkbox"
 export {PhotoInput} from "./input/photo/PhotoInput"
 export {ProgressInput} from "./input/slider/ProgressInput"
+export {StepInput} from "./input/stepper/StepInput"
 
 export {PlainInput} from "./input/plain/PlainInput"
 export type {PlainInputProps} from "./input/plain/PlainInput"

@@ -39,6 +39,7 @@
 }
 
 .error {
+    margin-top: var(--spacing-sm);
     color: var(--colors-status-danger);
     font-family: var(--typography-fontFamily);
     font-size: calc(var(--calc-font-size) * .8);

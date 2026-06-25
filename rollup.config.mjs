@@ -27,7 +27,10 @@ export default [
             'react-router-dom',
             'react-router',
             'react-hook-form',
-            'luxon'
+            'luxon',
+            'vite',
+            'storybook',
+            /@storybook\/.*/,
         ],
         output: [
             {
