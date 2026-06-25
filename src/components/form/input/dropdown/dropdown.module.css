@@ -7,6 +7,10 @@
     height: calc(var(--calc-font-size) * 1.2 + var(--spacing-sm) + var(--spacing-md) + var(--calc-font-size) * 0.85);
 }
 
+.noLabel {
+    height: auto;
+}
+
 .label {
     font-size: calc(var(--calc-font-size) * 0.85);
     color: var(--colors-text-tertiary);

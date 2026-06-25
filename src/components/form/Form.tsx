@@ -178,12 +178,17 @@ const Form = <T extends FieldValues, >({
     const values = watch()
     const stableValues = useMemo(() => values, [JSON.stringify(values)])
 
+    const onValuesChangeRef = useRef(onValuesChange)
+    useEffect(() => {
+        onValuesChangeRef.current = onValuesChange
+    })
+
     useEffect(() => {
         if (setErrorMsg) {
             setErrorMsg(undefined)
         }
-        if (onValuesChange) {
-            onValuesChange(stableValues)
+        if (onValuesChangeRef.current) {
+            onValuesChangeRef.current(stableValues)
         }
     }, [stableValues])
 
@@ -322,9 +327,11 @@ const Form = <T extends FieldValues, >({
             {errorMsg ? <span className={styles.error}>{errorMsg}</span> : ''}
             <div className={styles.ctaContainer}>
                 {renderCTA()}
-                <BasicSuccessIndication
-                    className={`${styles.success} ${showSuccessIndicator ? styles.show : ''}`}
-                    label={successLabel!}/>
+                <div className={`${styles.successWrapper} ${showSuccessIndicator ? styles.show : ''}`}>
+                    <div>
+                        <BasicSuccessIndication label={successLabel!}/>
+                    </div>
+                </div>
             </div>
         </form>
     )
