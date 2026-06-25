@@ -27,7 +27,7 @@ These are already correct. Use them as the reference pattern when fixing the iss
 ## Phase 1 — Correctness bugs
 *Fix these first — highest confidence, no behaviour risk.*
 
-- [ ] **CheckboxInput: `useRef` created inside `.map()` render loop**  
+- [x] **CheckboxInput: `useRef` created inside `.map()` render loop**  
   `src/components/form/input/checkbox/Checkbox.tsx:48`  
   Violates Rules of Hooks; ref recreated every render, breaks animation targeting. Pre-create a ref array at component level (same pattern `TabMenu` uses with `tabItemsRef`).  
   *Effort: quick win — Priority: high*

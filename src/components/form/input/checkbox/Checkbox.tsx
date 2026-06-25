@@ -1,7 +1,7 @@
 import {InputProps} from "../../Form";
 import {FieldValues, Path} from "react-hook-form";
 import styles from './checkbox.module.css'
-import {RefObject, useLayoutEffect, useRef} from "react";
+import {useLayoutEffect, useRef} from "react";
 import {SvgDraw, SvgDrawRef} from "../../../svg";
 
 const CheckboxInput = <T extends FieldValues, >({
@@ -13,6 +13,7 @@ const CheckboxInput = <T extends FieldValues, >({
                                                 }: InputProps<T>) => {
     const divRef = useRef<HTMLDivElement>(null)
     const gridRef = useRef<HTMLDivElement>(null)
+    const checkRefs = useRef<(SvgDrawRef | null)[]>([])
     const finalClasses = [className, styles.container, styles[field.inputConfig?.size ?? 'md'], errorMsg ? styles.error : ''].filter(Boolean).join(' ')
 
     useLayoutEffect(() => {
@@ -30,11 +31,11 @@ const CheckboxInput = <T extends FieldValues, >({
         }
     }, []);
 
-    function clickMe(checkRef: RefObject<SvgDrawRef | null>, value: any) {
+    function clickMe(ref: SvgDrawRef | null, value: any) {
         if (currentValue instanceof Array && currentValue.includes(value)) {
-            checkRef?.current?.reverse()
+            ref?.reverse()
         } else {
-            checkRef?.current?.play()
+            ref?.play()
         }
     }
 
@@ -44,20 +45,21 @@ const CheckboxInput = <T extends FieldValues, >({
                 {field.label}
             </label>
             <div className={styles.gridContainer} ref={gridRef}>
-                {field.inputConfig?.checkbox?.selection?.map(option => {
-                    const checkRef = useRef<SvgDrawRef>(null)
+                {field.inputConfig?.checkbox?.selection?.map((option, idx) => {
                     if (currentValue instanceof Array && currentValue.includes(option.value)) {
                         setTimeout(() => {
-                            if (checkRef?.current) {
-                                checkRef.current.play()
-                            }
+                            checkRefs.current[idx]?.play()
                         }, 250)
                     }
+                    // @ts-ignore
+                    // @ts-ignore
                     return (
                         <div className={styles.checkbox} key={option.label}>
                             <div className={styles.checkboxContainer}>
                                 <SvgDraw
-                                    ref={checkRef}
+                                    ref={(el) => {
+                                        checkRefs.current[idx] = el
+                                    }}
                                     duration={.2}
                                     className={styles.checkDraw}
                                 >
@@ -73,7 +75,9 @@ const CheckboxInput = <T extends FieldValues, >({
                                     </svg>
                                 </SvgDraw>
                                 <input
-                                    onClick={() => clickMe(checkRef, option.value)}
+                                    id={`${String(field.name)}-${option.value}`}
+                                    //@ts-ignore
+                                    onClick={() => clickMe(checkRefs.current[idx], option.value)}
                                     type="checkbox"
                                     value={option.value}
                                     {...registerFn(field.name as Path<T>, {
@@ -82,7 +86,8 @@ const CheckboxInput = <T extends FieldValues, >({
                                     })}
                                 />
                             </div>
-                            <label>{option.label}</label>
+                            <label className={styles.checkboxLabel}
+                                   htmlFor={`${String(field.name)}-${option.value}`}>{option.label}</label>
                         </div>)
                 })}
             </div>
