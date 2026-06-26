@@ -319,7 +319,7 @@ const Form = <T extends FieldValues, >({
         <form className={finalClass} onSubmit={handleSubmit(onSubmitFn)} ref={formRef}>
             {
                 fields.map((field) => (
-                    <div key={field.label}>
+                    <div key={field.name as string}>
                         {getInput(field)}
                     </div>
                 ))

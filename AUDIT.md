@@ -37,17 +37,7 @@ These are already correct. Use them as the reference pattern when fixing the iss
   `countriesSelection` is module-level, then filtered in-place based on `whiteList` prop. Second instance or remount receives an already-mutated list. Move inside component or `useMemo`.  
   *Effort: quick win — Priority: high*
 
-- [ ] **BasicCarousel: resize listener not cleaned up**  
-  `src/components/carousel/basic-carousel/BasicCarousel.tsx:72`  
-  `window.addEventListener('resize', resizeItems)` has no matching `removeEventListener` in the `useEffect` cleanup return.  
-  *Effort: quick win — Priority: medium*
-
-- [ ] **SvgDraw: dependency array incomplete**  
-  `src/components/svg/draw/SvgDraw.tsx:88`  
-  Array is `[triggerMode, duration, ease]` — missing `scroller`, `trigger`, `pin`, `className`. Causes stale closures when those props change. Mirror `SvgMorph`'s complete dependency array.  
-  *Effort: quick win — Priority: medium*
-
-- [ ] **Form: `field.label` used as list key**  
+- [x] **Form: `field.label` used as list key**  
   `src/components/form/Form.tsx:322`  
   Labels may not be unique; use `field.name` which is guaranteed unique by `FieldValues`.  
   *Effort: quick win — Priority: medium*
