@@ -32,7 +32,7 @@ These are already correct. Use them as the reference pattern when fixing the iss
   Violates Rules of Hooks; ref recreated every render, breaks animation targeting. Pre-create a ref array at component level (same pattern `TabMenu` uses with `tabItemsRef`).  
   *Effort: quick win — Priority: high*
 
-- [ ] **PhoneNumberInput: module-level array mutated on each mount**  
+- [x] **PhoneNumberInput: module-level array mutated on each mount**  
   `src/components/form/input/phone/PhoneNumberInput.tsx:30,70`  
   `countriesSelection` is module-level, then filtered in-place based on `whiteList` prop. Second instance or remount receives an already-mutated list. Move inside component or `useMemo`.  
   *Effort: quick win — Priority: high*

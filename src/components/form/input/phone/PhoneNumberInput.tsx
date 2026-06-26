@@ -1,5 +1,5 @@
 import {FieldValues, Path, useForm} from "react-hook-form";
-import {useEffect, useLayoutEffect, useRef, useState} from "react";
+import {useEffect, useLayoutEffect, useMemo, useRef, useState} from "react";
 import {InputProps, SelectionNode} from "../../Form";
 import {Dropdown} from "../dropdown/Dropdown";
 import countries from "./assets/countries.json"
@@ -27,21 +27,25 @@ const OptionComp = ({country}: {country:Country}) => {
     )
 }
 
-let countriesSelection: SelectionNode[] = countries.map((c1: Country) => {
-    return {
-        label: c1.full_name,
-        value: c1.full_name,
-        option: <OptionComp country={c1}/>,
-        placeholderOption: <img src={c1.flag} width={18} alt={c1.full_name}/>
-    }})
-    .sort((c1, c2) => c1.label.localeCompare(c2.label))
-
 const PhoneNumberInput = <T extends FieldValues,> ({field, registerFn, errorMsg, currentValue, setValueFn, className}: InputProps<T>) => {
     const {register, watch, setValue} = useForm<FlagFormType>()
     const divRef = useRef<HTMLDivElement>(null)
     const errorRef = useRef<HTMLSpanElement>(null)
 
     const [dialCode, setDialCode] = useState<string | undefined>(undefined)
+
+    const countriesSelection = useMemo<SelectionNode[]>(() => {
+        const whitelist = field.inputConfig?.phone?.countryWhiteList
+        return (countries as Country[])
+            .map((c1) => ({
+                label: c1.full_name,
+                value: c1.full_name,
+                option: <OptionComp country={c1}/>,
+                placeholderOption: <img src={c1.flag} width={18} alt={c1.full_name}/>
+            }))
+            .sort((a, b) => a.label.localeCompare(b.label))
+            .filter((c) => !whitelist || whitelist.includes(c.label.toLowerCase()))
+    }, [field.inputConfig?.phone?.countryWhiteList])
 
     const containerClasses = [className, style.container, errorMsg ? style.error : '', styles[field?.inputConfig?.size ?? 'md']].filter(Boolean).join(' ')
     const inputWrapperClasses = [style.inputContainer, (watch('country') || currentValue) ? style.selected : '' ].filter(Boolean).join(' ')
@@ -64,12 +68,6 @@ const PhoneNumberInput = <T extends FieldValues,> ({field, registerFn, errorMsg,
         }
         setValueFn(field.name as Path<T>, dialCode + watch('phoneNr') as any)
     }, [dialCode, watch('phoneNr')]);
-
-    useEffect(() => {
-        if (field.inputConfig?.phone?.countryWhiteList) {
-            countriesSelection = countriesSelection.filter(c => field.inputConfig?.phone?.countryWhiteList?.includes(c.label.toLowerCase()))
-        }
-    }, []);
 
     useEffect(() => {
         if (!currentValue) return
