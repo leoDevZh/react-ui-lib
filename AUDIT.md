@@ -47,7 +47,7 @@ These are already correct. Use them as the reference pattern when fixing the iss
 ## Phase 2 — Accessibility
 *High aggregate impact. Each component is self-contained — pick off one at a time.*
 
-- [ ] **Dialog: missing all semantic dialog structure**  
+- [x] **Dialog: missing all semantic dialog structure**  
   `src/components/dialog/Dialog.tsx`  
   Add `role="dialog"`, `aria-modal="true"`, `aria-labelledby`/`aria-describedby`. Add focus trap (small utility or `<FocusTrap>`). Add ESC key handler and backdrop-click dismiss.  
   *Effort: medium — Priority: high*
@@ -183,7 +183,7 @@ These are already correct. Use them as the reference pattern when fixing the iss
   Should be `(value: T[keyof T]) => boolean | string`.  
   *Effort: medium — Priority: high*
 
-- [ ] **`DialogCTO.props?: any`**  
+- [x] **`DialogCTO.props?: any`**  
   `src/components/dialog/utils/DialogCTOs.tsx:3`  
   Use a generic `P` or at minimum `Record<string, unknown>`.  
   *Effort: quick win — Priority: medium*

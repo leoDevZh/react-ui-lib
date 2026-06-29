@@ -1,6 +1,6 @@
 import {ComponentType} from "react";
 
-type DialogCTO = { component: ComponentType<any>; props?: any }
+type DialogCTO = { component: ComponentType<any>; props?: Record<string, unknown> }
 
 const renderDialogCTO = (
     dto: DialogCTO

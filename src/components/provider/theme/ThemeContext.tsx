@@ -114,6 +114,20 @@ type Theme = {
             active: string
         }
     }
+    morphism: {
+        glass: {
+            bg: string
+            bgSubtle: string
+            border: string
+            shadow: string
+            overlay: string
+        }
+        blur: {
+            heavy: string
+            medium: string
+            subtle: string
+        }
+    }
     style: 'morphism' | 'classic'
 }
 

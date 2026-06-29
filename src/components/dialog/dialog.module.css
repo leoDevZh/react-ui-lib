@@ -1,7 +1,9 @@
 .container {
     position: fixed;
     inset: 0;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: var(--zIndex-full);
     padding: var(--spacing-lg);
     font-family: var(--typography-fontFamily);
@@ -10,23 +12,56 @@
 
 .backdrop {
     position: absolute;
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
     inset: 0;
+    background-color: var(--morphism-glass-overlay);
+    backdrop-filter: blur(var(--morphism-blur-subtle));
+    -webkit-backdrop-filter: blur(var(--morphism-blur-subtle));
 }
 
 .dialog {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--colors-background-primary);
-    border: 2px solid var(--colors-border-strong);
     border-radius: var(--radius-md);
     padding: var(--spacing-lg);
-    overflow-y: scroll;
+    overflow-y: auto;
     max-width: 100%;
     max-height: 100%;
+}
+
+.classic {
+    background-color: var(--colors-background-primary);
+    border: 2px solid var(--colors-border-strong);
+}
+
+.morphism {
+    background: var(--morphism-glass-bg);
+    border: 1.5px solid var(--morphism-glass-border);
+    backdrop-filter: blur(var(--morphism-blur-heavy));
+    -webkit-backdrop-filter: blur(var(--morphism-blur-heavy));
+    box-shadow: var(--morphism-glass-shadow);
+}
+
+.close {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--colors-text-secondary);
+    font-size: var(--typography-fontSize-lg);
+    line-height: 1;
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    transition: color var(--motion-duration-fast), background-color var(--motion-duration-fast);
+    z-index: 1;
+}
+
+.close:hover {
+    color: var(--colors-text-primary);
+    background-color: var(--colors-background-secondary);
+}
+
+.morphism .close:hover {
+    background-color: var(--morphism-glass-bgSubtle);
 }
 
 .dialog > .wrapper {
@@ -37,6 +72,18 @@
     width: 100%;
 }
 
+.body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.text {
+    color: var(--colors-text-secondary);
+    line-height: var(--typography-lineHeight-para);
+    font-size: var(--typography-fontSize-md);
+}
+
 .cto {
     display: flex;
     width: 100%;
@@ -45,31 +92,54 @@
     gap: var(--spacing-lg);
 }
 
-.xs .dialog, .sm .dialog {
+/* Size variants — fluid sizing: fixed value on large screens, vw/vh on small screens */
+
+.xs .dialog {
     padding: var(--spacing-sm);
-    width: 260px;
-    height: 140px;
+    width: min(280px, 92vw);
+    height: min(160px, 50vh);
 }
 
-.xs .title, .sm .title {
+.xs .title {
     margin-bottom: var(--spacing-sm);
 }
 
-.md .dialog, .lg .dialog {
-    padding: var(--spacing-md);
-    width: 450px;
-    height: 350px;
+.sm .dialog {
+    padding: var(--spacing-sm);
+    width: min(360px, 92vw);
+    height: min(224px, 60vh);
 }
 
-.md .title, .lg .title {
+.sm .title {
+    margin-bottom: var(--spacing-sm);
+}
+
+.md .dialog {
+    padding: var(--spacing-md);
+    width: min(460px, 90vw);
+    height: min(370px, 75vh);
+}
+
+.md .title {
+    margin-bottom: var(--spacing-lg);
+}
+
+.lg .dialog {
+    padding: var(--spacing-md);
+    width: min(640px, 90vw);
+    height: min(500px, 82vh);
+}
+
+.lg .title {
     margin-bottom: var(--spacing-lg);
 }
 
 .xl .dialog {
     padding: var(--spacing-xl);
+    width: min(1020px, 92vw);
+    height: min(840px, 90vh);
 }
 
 .xl .title {
     margin-bottom: var(--spacing-xl);
 }
-

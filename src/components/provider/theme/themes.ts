@@ -121,6 +121,20 @@ export const defaultTheme: Theme = {
         heigh: 8,
         full: 16
     },
+    morphism: {
+        glass: {
+            bg: 'rgba(255, 255, 255, 0.12)',
+            bgSubtle: 'rgba(255, 255, 255, 0.08)',
+            border: 'rgba(255, 255, 255, 0.20)',
+            shadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+            overlay: 'rgba(0, 0, 0, 0.45)',
+        },
+        blur: {
+            heavy: '24px',
+            medium: '12px',
+            subtle: '4px',
+        }
+    },
     motion: {
         duration: {
             fast: '100ms',
