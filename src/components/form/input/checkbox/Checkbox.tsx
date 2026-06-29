@@ -41,10 +41,10 @@ const CheckboxInput = <T extends FieldValues, >({
 
     return (
         <div className={finalClasses} ref={divRef}>
-            <label className={styles.label}>
+            <span id={`${String(field.name)}-group-label`} className={styles.label}>
                 {field.label}
-            </label>
-            <div className={styles.gridContainer} ref={gridRef}>
+            </span>
+            <div className={styles.gridContainer} ref={gridRef} role="group" aria-labelledby={`${String(field.name)}-group-label`}>
                 {field.inputConfig?.checkbox?.selection?.map((option, idx) => {
                     if (currentValue instanceof Array && currentValue.includes(option.value)) {
                         setTimeout(() => {

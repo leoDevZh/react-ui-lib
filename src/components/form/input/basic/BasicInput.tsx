@@ -25,11 +25,12 @@ const BasicInput = <T extends FieldValues,>({field, registerFn, errorMsg, curren
             className={finalClasses}
             ref={divRef}
         >
-            <label className={styles.label}>
+            <label className={styles.label} htmlFor={String(field.name)}>
                 {field.label}
             </label>
             <div className={styles.wrapper}>
                 <input
+                    id={String(field.name)}
                     type={field.type}
                     autoComplete={field.inputConfig?.autocomplete}
                     {...registerFn(field.name as Path<T>,

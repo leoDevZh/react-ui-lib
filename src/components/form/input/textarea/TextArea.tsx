@@ -34,8 +34,9 @@ const TextArea = <T extends FieldValues,>({ field, registerFn, currentValue, set
             className={containerClasses}
             ref={divRef}
         >
-            <label className={style.label}>{field.label}</label>
+            <label className={style.label} htmlFor={String(field.name)}>{field.label}</label>
             <textarea
+                id={String(field.name)}
                 className={textClasses}
                 rows={field.inputConfig?.textArea?.rows ?? 10}
                 {...registerFn(field.name as Path<T>, {

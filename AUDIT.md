@@ -57,7 +57,7 @@ These are already correct. Use them as the reference pattern when fixing the iss
   `role="tablist"` and `aria-selected` exist but: tab buttons have no `id="tab-{idx}"` so `aria-labelledby` on the panel points to nothing; `aria-controls` on tabs is absent; no `ArrowLeft`/`ArrowRight` key navigation.  
   *Effort: quick win (attrs) + small key handler — Priority: high*
 
-- [ ] **All form inputs: labels not associated with inputs**  
+- [x] **All form inputs: labels not associated with inputs**  
   `BasicInput.tsx`, `TextArea.tsx`, `Checkbox.tsx`, `PhoneNumberInput.tsx`  
   `<label>` wraps text but has no `htmlFor`; input has no `id`. Screen readers can't announce the label on focus.  
   *Effort: quick win per component — Priority: high*

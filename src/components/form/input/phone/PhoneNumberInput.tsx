@@ -90,7 +90,7 @@ const PhoneNumberInput = <T extends FieldValues,> ({field, registerFn, errorMsg,
             ref={divRef}
             className={containerClasses}
         >
-            <label className={style.label}>{field.label}</label>
+            <label className={style.label} htmlFor={`${String(field.name)}-tel`}>{field.label}</label>
             <div
                 className={inputWrapperClasses}
             >
@@ -120,6 +120,7 @@ const PhoneNumberInput = <T extends FieldValues,> ({field, registerFn, errorMsg,
                 />
                 <span>{dialCode}</span>
                 <input
+                    id={`${String(field.name)}-tel`}
                     type={'tel'}
                     {...register('phoneNr')}
                 />
