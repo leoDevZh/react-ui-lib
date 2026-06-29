@@ -1,5 +1,5 @@
 import styles from './tabmenu.module.css'
-import {ComponentType, HTMLAttributes, ReactNode, useLayoutEffect, useRef, useState} from "react";
+import {ComponentType, HTMLAttributes, KeyboardEvent, ReactNode, useId, useLayoutEffect, useRef, useState} from "react";
 import {useButtonStyles} from "../button/hooks/useButtonStyles";
 import {ComponentSize} from "../provider";
 
@@ -28,8 +28,25 @@ const TabMenu = ({items, arrowLeft, arrowRight, className, size = 'md', displayA
     const activeIndexRef = useRef(activeIndex)
     const isInitialRender = useRef(true)
 
+    const uid = useId()
+    const panelId = `${uid}-panel`
+    const tabId = (idx: number) => `${uid}-tab-${idx}`
+
     const {pressed, onTouchStart, onTouchEnd, className: buttonClass} = useButtonStyles({size, className})
     const finalClass = [styles.container, className].filter(Boolean).join(' ')
+
+    function handleTabKeyDown(e: KeyboardEvent<HTMLButtonElement>, idx: number) {
+        let nextIdx: number | null = null
+        if (e.key === 'ArrowRight') nextIdx = (idx + 1) % items.length
+        else if (e.key === 'ArrowLeft') nextIdx = (idx - 1 + items.length) % items.length
+        else if (e.key === 'Home') nextIdx = 0
+        else if (e.key === 'End') nextIdx = items.length - 1
+        else return
+
+        e.preventDefault()
+        setActiveIndex(nextIdx)
+        tabItemsRef.current[nextIdx]?.focus()
+    }
 
     useLayoutEffect(() => {
         const el = scrollDivRef.current
@@ -138,12 +155,16 @@ const TabMenu = ({items, arrowLeft, arrowRight, className, size = 'md', displayA
                                 ref={(el) => {
                                     if (el) tabItemsRef.current[idx] = el
                                 }}
+                                id={tabId(idx)}
                                 className={`${styles.tabItem} ${buttonClass} ${activeIndex === idx ? styles.activeTab : ''}`}
                                 onTouchStart={onTouchStart}
                                 onTouchEnd={onTouchEnd}
                                 role='tab'
                                 aria-selected={activeIndex === idx}
+                                aria-controls={panelId}
+                                tabIndex={activeIndex === idx ? 0 : -1}
                                 onClick={() => setActiveIndex(idx)}
+                                onKeyDown={(e) => handleTabKeyDown(e, idx)}
                             >
                                 {tabItem.title}
                             </button>
@@ -171,8 +192,8 @@ const TabMenu = ({items, arrowLeft, arrowRight, className, size = 'md', displayA
             <div
                 className={styles.tabPanel}
                 role='tabpanel'
-                id={`panel-${activeIndex}`}
-                aria-labelledby={`tab-${activeIndex}`}
+                id={panelId}
+                aria-labelledby={tabId(activeIndex)}
             >
                 {renderActiveTab()}
             </div>

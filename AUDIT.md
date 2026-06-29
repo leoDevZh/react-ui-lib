@@ -52,7 +52,7 @@ These are already correct. Use them as the reference pattern when fixing the iss
   Add `role="dialog"`, `aria-modal="true"`, `aria-labelledby`/`aria-describedby`. Add focus trap (small utility or `<FocusTrap>`). Add ESC key handler and backdrop-click dismiss.  
   *Effort: medium — Priority: high*
 
-- [ ] **TabMenu: ARIA wiring half-done**  
+- [x] **TabMenu: ARIA wiring half-done**  
   `src/components/tab/TabMenu.tsx`  
   `role="tablist"` and `aria-selected` exist but: tab buttons have no `id="tab-{idx}"` so `aria-labelledby` on the panel points to nothing; `aria-controls` on tabs is absent; no `ArrowLeft`/`ArrowRight` key navigation.  
   *Effort: quick win (attrs) + small key handler — Priority: high*
