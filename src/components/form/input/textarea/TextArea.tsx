@@ -39,6 +39,8 @@ const TextArea = <T extends FieldValues,>({ field, registerFn, currentValue, set
                 id={String(field.name)}
                 className={textClasses}
                 rows={field.inputConfig?.textArea?.rows ?? 10}
+                aria-invalid={!!errorMsg}
+                aria-describedby={errorMsg ? `${String(field.name)}-error` : undefined}
                 {...registerFn(field.name as Path<T>, {
                     onChange: limitChars,
                     required: field.required,
@@ -48,7 +50,7 @@ const TextArea = <T extends FieldValues,>({ field, registerFn, currentValue, set
             <span className={limitClasses}>
                 {`${currentValue?.length ?? 0}/${field.inputConfig?.textArea?.max ?? 200}`}
             </span>
-            <span ref={errorRef} className={style.errorSpan}>{errorMsg}</span>
+            <span ref={errorRef} id={`${String(field.name)}-error`} className={style.errorSpan}>{errorMsg}</span>
         </div>
     )
 }

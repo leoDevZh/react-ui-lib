@@ -73,6 +73,8 @@ const ProgressInput = <T extends FieldValues, >({
             </label>
             <div
                 className={styles.wrapper}
+                aria-invalid={!!errorMsg}
+                aria-describedby={errorMsg ? `${String(field.name)}-error` : undefined}
                 {...registerFn(field.name as Path<T>,
                     {
                         required: field.required,
@@ -100,7 +102,7 @@ const ProgressInput = <T extends FieldValues, >({
                     })}
                 </StoryTellingOrchestrator>
             </div>
-            <span className={styles.errorSpan}>{errorMsg}</span>
+            <span id={`${String(field.name)}-error`} className={styles.errorSpan}>{errorMsg}</span>
         </div>
     )
 }

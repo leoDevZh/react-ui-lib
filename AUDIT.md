@@ -62,7 +62,7 @@ These are already correct. Use them as the reference pattern when fixing the iss
   `<label>` wraps text but has no `htmlFor`; input has no `id`. Screen readers can't announce the label on focus.  
   *Effort: quick win per component — Priority: high*
 
-- [ ] **All form inputs: no `aria-invalid` / `aria-describedby` on errors**  
+- [x] **All form inputs: no `aria-invalid` / `aria-describedby` on errors**  
   All files under `src/components/form/input/`  
   Validation errors render visually but inputs don't carry `aria-invalid="true"` or `aria-describedby` linking to the error message.  
   *Effort: quick win per component — Priority: high*

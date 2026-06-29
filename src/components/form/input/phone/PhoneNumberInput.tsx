@@ -122,6 +122,8 @@ const PhoneNumberInput = <T extends FieldValues,> ({field, registerFn, errorMsg,
                 <input
                     id={`${String(field.name)}-tel`}
                     type={'tel'}
+                    aria-invalid={!!errorMsg}
+                    aria-describedby={errorMsg ? `${String(field.name)}-error` : undefined}
                     {...register('phoneNr')}
                 />
             </div>
@@ -131,7 +133,7 @@ const PhoneNumberInput = <T extends FieldValues,> ({field, registerFn, errorMsg,
                     validate: field.validationFn
                 })}>
             </div>
-            <span ref={errorRef} className={style.errorSpan}>{errorMsg}</span>
+            <span ref={errorRef} id={`${String(field.name)}-error`} className={style.errorSpan}>{errorMsg}</span>
         </div>
     )
 }

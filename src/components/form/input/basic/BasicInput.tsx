@@ -33,6 +33,8 @@ const BasicInput = <T extends FieldValues,>({field, registerFn, errorMsg, curren
                     id={String(field.name)}
                     type={field.type}
                     autoComplete={field.inputConfig?.autocomplete}
+                    aria-invalid={!!errorMsg}
+                    aria-describedby={errorMsg ? `${String(field.name)}-error` : undefined}
                     {...registerFn(field.name as Path<T>,
                         {
                             required: field.required,
@@ -41,7 +43,7 @@ const BasicInput = <T extends FieldValues,>({field, registerFn, errorMsg, curren
                     )}
                 />
             </div>
-            <span ref={errorRef}>{errorMsg}</span>
+            <span ref={errorRef} id={`${String(field.name)}-error`}>{errorMsg}</span>
         </div>
     )
 }

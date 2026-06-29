@@ -65,6 +65,8 @@ const CalendarInput = <T extends FieldValues, >({
             <label className={stylesInput.label}>{field.label}</label>
             <div
                 className={wrapperClasses}
+                aria-invalid={!!errorMsg}
+                aria-describedby={errorMsg ? `${String(field.name)}-error` : undefined}
                 {...registerFn(field.name as Path<T>,
                     {
                         required: field.required,
@@ -78,7 +80,7 @@ const CalendarInput = <T extends FieldValues, >({
             <div className={stylesInput.calendar}>
                 <Calendar field={field} setSelectedDate={setSelectedDate}/>
             </div>
-            <span className={stylesInput.errorSpan}>{errorMsg}</span>
+            <span id={`${String(field.name)}-error`} className={stylesInput.errorSpan}>{errorMsg}</span>
         </div>
     )
 }

@@ -44,7 +44,7 @@ const CheckboxInput = <T extends FieldValues, >({
             <span id={`${String(field.name)}-group-label`} className={styles.label}>
                 {field.label}
             </span>
-            <div className={styles.gridContainer} ref={gridRef} role="group" aria-labelledby={`${String(field.name)}-group-label`}>
+            <div className={styles.gridContainer} ref={gridRef} role="group" aria-labelledby={`${String(field.name)}-group-label`} aria-describedby={errorMsg ? `${String(field.name)}-error` : undefined}>
                 {field.inputConfig?.checkbox?.selection?.map((option, idx) => {
                     if (currentValue instanceof Array && currentValue.includes(option.value)) {
                         setTimeout(() => {
@@ -80,6 +80,7 @@ const CheckboxInput = <T extends FieldValues, >({
                                     onClick={() => clickMe(checkRefs.current[idx], option.value)}
                                     type="checkbox"
                                     value={option.value}
+                                    aria-invalid={!!errorMsg}
                                     {...registerFn(field.name as Path<T>, {
                                         required: field.required,
                                         validate: field.validationFn
@@ -91,7 +92,7 @@ const CheckboxInput = <T extends FieldValues, >({
                         </div>)
                 })}
             </div>
-            <span className={styles.errorSpan}>{errorMsg}</span>
+            <span id={`${String(field.name)}-error`} className={styles.errorSpan}>{errorMsg}</span>
         </div>
     )
 

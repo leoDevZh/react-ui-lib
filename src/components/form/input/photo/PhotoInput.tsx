@@ -89,6 +89,8 @@ const PhotoInput = <T extends FieldValues, >({
                 type='file'
                 accept='image/*'
                 className={styles.hidden}
+                aria-invalid={!!errorMsg}
+                aria-describedby={errorMsg ? `${String(field.name)}-error` : undefined}
                 {...registerFn(field.name as Path<T>,
                     {
                         required: field.required,
@@ -98,7 +100,7 @@ const PhotoInput = <T extends FieldValues, >({
                 onChange={handleFileChange}
                 ref={fileInputRef}
             />
-            <span className={style.errorSpan}>{errorMsg}</span>
+            <span id={`${String(field.name)}-error`} className={style.errorSpan}>{errorMsg}</span>
         </div>
     )
 }

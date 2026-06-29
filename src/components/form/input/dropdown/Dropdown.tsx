@@ -82,6 +82,8 @@ const Dropdown = <T extends FieldValues,> ({ field, registerFn, errorMsg, setVal
                     if (event.key === 'Enter') setOpenDropDown(true)
                 }}
                 tabIndex={0}
+                aria-invalid={!!errorMsg}
+                aria-describedby={errorMsg ? `${String(field.name)}-error` : undefined}
             >
                 <div className={style.placeholderWrapper}>
                     {renderPlaceholder()}
@@ -101,7 +103,7 @@ const Dropdown = <T extends FieldValues,> ({ field, registerFn, errorMsg, setVal
                     {field.inputConfig?.dropDown?.selection?.map((opt) => renderOption(opt))}
                 </div>
             </div>
-            <span className={style.errorSpan}>{errorMsg}</span>
+            <span id={`${String(field.name)}-error`} className={style.errorSpan}>{errorMsg}</span>
         </div>
     )
 }
