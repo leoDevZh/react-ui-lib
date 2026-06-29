@@ -1,0 +1,97 @@
+/* CSS Grid layout — display: contents on thead/tbody/tr makes th/td direct grid children */
+.table {
+    display: grid;
+    grid-template-columns: var(--table-cols);
+    width: 100%;
+    font-family: var(--typography-fontFamily);
+    font-size: var(--typography-fontSize-sm);
+    color: var(--colors-text-primary);
+}
+
+.thead,
+.tbody,
+.tr {
+    display: contents;
+}
+
+/* Header cells */
+.th {
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-align: left;
+    font-size: var(--typography-fontSize-xs);
+    font-weight: 600;
+    letter-spacing: var(--typography-letterSpacing-cta);
+    text-transform: uppercase;
+    color: var(--colors-text-tertiary);
+    border-bottom: 0.5px solid var(--colors-border-subtle);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: var(--table-header-bg, var(--colors-background-primary));
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* Body cells */
+.td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 0.5px solid var(--colors-border-subtle);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: transparent;
+    transition: background-color var(--motion-duration-fast) var(--motion-easing);
+}
+
+/* Remove bottom border from the last row's cells */
+.tr:last-child .td {
+    border-bottom: none;
+}
+
+/* Clickable rows */
+.trClickable {
+    cursor: pointer;
+}
+
+.trClickable:hover .td {
+    background-color: var(--colors-background-secondary);
+}
+
+.trClickable:focus-visible .td {
+    outline: 2px solid var(--colors-action-primary);
+    outline-offset: -1px;
+}
+
+/* Clickable cells — take priority over row hover */
+.tdClickable {
+    cursor: pointer;
+}
+
+.tdClickable:hover {
+    background-color: var(--colors-background-tertiary) !important;
+}
+
+/* Classic variant */
+.classic .th,
+.classic .td {
+    border-color: var(--colors-border-subtle);
+}
+
+/* Morphism variant */
+.morphism .th,
+.morphism .td {
+    border-color: var(--morphism-glass-border);
+}
+
+.morphism .th {
+    background-color: transparent;
+}
+
+.morphism .trClickable:hover .td {
+    background-color: var(--morphism-glass-bgSubtle);
+}
+
+.morphism .tdClickable:hover {
+    background-color: var(--morphism-glass-bg) !important;
+}
