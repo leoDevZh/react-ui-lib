@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react'
-import { fn } from '@storybook/test'
-import { Table } from './Table'
-import type { ColumnDef } from './Table'
-import { sampleUsers, SampleUser } from './__stories__/tableFixtures'
+import type {Meta, StoryObj} from '@storybook/react'
+import {fn} from '@storybook/test'
+import type {ColumnDef} from './Table'
+import {Table} from './Table'
+import {SampleUser, sampleUsers} from './__stories__/tableFixtures'
 
 const STATUS_COLORS: Record<string, string> = {
     active:   'var(--colors-status-success)',
@@ -124,6 +124,7 @@ export const NoClickHandlers: Story = {
 }
 
 // Generates enough rows to make the table scroll so the sticky header is observable.
+// @ts-ignore
 const manyUsers: SampleUser[] = Array.from({ length: 40 }, (_, i) => ({
     id:     100 + i,
     name:   `User ${i + 1}`,
@@ -132,6 +133,31 @@ const manyUsers: SampleUser[] = Array.from({ length: 40 }, (_, i) => ({
     status: (['active', 'inactive', 'pending'] as const)[i % 3],
     joined: `202${(i % 4) + 1}-${String((i % 12) + 1).padStart(2, '0')}-01`,
 }))
+
+export const InitialLoading: Story = {
+    name: 'Loading (initial fetch, no data yet)',
+    render: () => (
+        <Table<SampleUser>
+            columns={baseColumns}
+            data={[]}
+            rowKey="id"
+            loading
+        />
+    ),
+}
+
+export const Refetching: Story = {
+    name: 'Loading (refetch, stale data dimmed)',
+    render: () => (
+        <Table<SampleUser>
+            columns={baseColumns}
+            data={sampleUsers}
+            rowKey="id"
+            onRowClick={rowClick}
+            loading
+        />
+    ),
+}
 
 export const StickyHeader: Story = {
     name: 'Sticky header (scroll to verify)',

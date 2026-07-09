@@ -1,3 +1,7 @@
+.wrapper {
+    position: relative;
+}
+
 /* CSS Grid layout — display: contents on thead/tbody/tr makes th/td direct grid children */
 .table {
     display: grid;
@@ -94,4 +98,32 @@
 
 .morphism .tdClickable:hover {
     background-color: var(--morphism-glass-bg) !important;
+}
+
+/* Loading state */
+.loadingCell {
+    padding: var(--spacing-xl) var(--spacing-md);
+    text-align: center;
+    font-size: var(--typography-fontSize-xl);
+    color: var(--colors-action-primary);
+}
+
+.tdLoading {
+    opacity: 0.4;
+    transition: opacity var(--motion-duration-normal) var(--motion-easing);
+    pointer-events: none;
+}
+
+.loadingOverlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--typography-fontSize-xl);
+    color: var(--colors-action-primary);
+    background-color: var(--morphism-glass-overlay);
+    backdrop-filter: blur(var(--morphism-blur-subtle));
+    -webkit-backdrop-filter: blur(var(--morphism-blur-subtle));
 }
