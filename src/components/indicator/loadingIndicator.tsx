@@ -1,14 +1,13 @@
-// submittingIndicator.tsx
 import {ComponentType} from "react";
 import {Spinner, SpinnerProps} from "./spinner/Spinner";
 
-type SubmittingIndicator =
+type LoadingIndicator =
     | "spinner"
     | { type: "spinner"; props?: SpinnerProps }
     | { component: ComponentType<any>; props?: any }
 
-const renderSubmittingIndicator = (
-    indicator?: SubmittingIndicator
+const renderLoadingIndicator = (
+    indicator?: LoadingIndicator
 ) => {
     if (!indicator || indicator === "spinner") {
         return <Spinner/>
@@ -26,4 +25,4 @@ const renderSubmittingIndicator = (
     return <Spinner/>
 }
 
-export {renderSubmittingIndicator, type SubmittingIndicator}
+export {renderLoadingIndicator, type LoadingIndicator}

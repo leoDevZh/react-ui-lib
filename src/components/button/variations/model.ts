@@ -1,5 +1,6 @@
 import {ButtonHTMLAttributes, ReactNode} from "react";
 import {ComponentSize} from "../../provider";
+import {LoadingIndicator} from "../../indicator";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     label?: string
@@ -9,5 +10,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     invert?: boolean
     simpleColor?: boolean
     accentColor?: string
-
+    loading?: boolean
+    loadingIndicator?: LoadingIndicator
 }

@@ -13,7 +13,7 @@ import React, {
 } from "react";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {ComponentSize} from "../../provider";
-import {Spinner} from "../utils/spinner/Spinner";
+import {LoadingIndicator, renderLoadingIndicator} from "../../indicator";
 
 interface SearchValue {
     search: string
@@ -30,6 +30,7 @@ interface SearchFormProps extends PropsWithChildren, React.FormHTMLAttributes<HT
     onValuesChange?: (values: SearchValue) => void
     defaultValues?: Partial<SearchValue>
     submitting?: boolean
+    submitIndicator?: LoadingIndicator
 }
 
 interface SearchFormRef {
@@ -47,7 +48,8 @@ const SearchForm = forwardRef<SearchFormRef, SearchFormProps>(({
                                                                    setErrorMsg,
                                                                    onValuesChange,
                                                                    defaultValues,
-                                                                   submitting
+                                                                   submitting,
+                                                                   submitIndicator
                                                                }: SearchFormProps, ref) => {
         const {
             handleSubmit,
@@ -115,9 +117,9 @@ const SearchForm = forwardRef<SearchFormRef, SearchFormProps>(({
                            )}
                            onBlur={() => setIsFocused(false)}
                     />
-                    <button disabled={isSubmitting}>
+                    <button disabled={isSubmitting} aria-busy={isSubmitting || submitting}>
                         {(isSubmitting || submitting) ?
-                            (<Spinner/>) : (
+                            renderLoadingIndicator(submitIndicator) : (
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                      fill="currentColor">
                                     <path

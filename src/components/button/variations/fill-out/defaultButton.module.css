@@ -39,6 +39,10 @@
     background-color: var(--colors-action-primary);
 }
 
+.btnClassic>span:last-child, .btnMorph>span:last-child {
+    display: flex;
+}
+
 @media (hover: hover) and (pointer: fine) {
     .btnClassic:hover {
         --circle-radius: 100%;

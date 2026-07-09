@@ -9,7 +9,6 @@ import {
 import {BasicInput} from "./input/basic/BasicInput";
 import React, {
     Dispatch,
-    PropsWithChildren,
     SetStateAction,
     useEffect,
     useLayoutEffect,
@@ -26,7 +25,7 @@ import {PhoneNumberInput} from "./input/phone/PhoneNumberInput";
 import {CalendarInput} from "./input/calendar/Calendar";
 import {CheckboxInput} from "./input/checkbox/Checkbox";
 import {PlainInput} from "./input/plain/PlainInput";
-import {renderSubmittingIndicator, SubmittingIndicator} from "./utils/submittingIndicator";
+import {LoadingIndicator} from "../indicator";
 import {PhotoInput} from "./input/photo/PhotoInput";
 import {BasicSuccessIndication} from "./utils/interaction/success/BasicSuccessIndication";
 import {ProgressInput} from "./input/slider/ProgressInput";
@@ -115,7 +114,11 @@ interface FieldConfig<T extends FieldValues> {
     inputConfig?: InputConfig
 }
 
-interface FormProps<T extends FieldValues> extends PropsWithChildren, React.FormHTMLAttributes<HTMLFormElement> {
+interface FormCtaState {
+    isSubmitting: boolean
+}
+
+interface FormProps<T extends FieldValues> extends Omit<React.FormHTMLAttributes<HTMLFormElement>, 'children'> {
     fields: FieldConfig<T>[],
     onSubmitFn: SubmitHandler<T>
     submitLabel?: string
@@ -124,9 +127,10 @@ interface FormProps<T extends FieldValues> extends PropsWithChildren, React.Form
     setErrorMsg?: Dispatch<SetStateAction<string | undefined>>
     onValuesChange?: (values: T) => void
     defaultValues?: Partial<T>,
-    submitIndicator?: SubmittingIndicator,
+    submitIndicator?: LoadingIndicator,
     submitting?: boolean
     successLabel?: string
+    children?: React.ReactNode | ((state: FormCtaState) => React.ReactNode)
 }
 
 interface InputProps<T extends FieldValues> extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -306,12 +310,13 @@ const Form = <T extends FieldValues, >({
     }
 
     function renderCTA() {
-        if (isSubmitting || submitting) {
-            return renderSubmittingIndicator(submitIndicator)
+        const pending = isSubmitting || !!submitting
+        if (typeof children === 'function') {
+            return children({isSubmitting: pending})
         } else if (children) {
             return children
         } else {
-            return <Button disabled={isSubmitting} label={submitLabel ?? "Submit"} type="submit" size={componentSize}/>
+            return <Button loading={pending} loadingIndicator={submitIndicator} label={submitLabel ?? "Submit"} type="submit" size={componentSize}/>
         }
     }
 
@@ -337,4 +342,4 @@ const Form = <T extends FieldValues, >({
     )
 }
 
-export { Form, type FieldConfig, type FormProps, type SelectionNode, type InputProps, type StepConfig }
+export { Form, type FieldConfig, type FormProps, type SelectionNode, type InputProps, type StepConfig, type FormCtaState }

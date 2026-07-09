@@ -2,6 +2,7 @@ import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { Form } from './Form'
 import type { FormProps } from './Form'
+import { LightButton } from '../button'
 import {
     noopSubmit,
     textFields,
@@ -87,6 +88,19 @@ export const Submitting: Story = {
     render: ({ componentSize, submitting }) => (
         <div style={{ maxWidth: '480px', padding: '1rem' }}>
             <Form componentSize={componentSize} submitting={submitting} fields={textFields} onSubmitFn={noopSubmit} />
+        </div>
+    ),
+}
+
+export const CustomSubmitButton: Story = {
+    args: { componentSize: 'sm' },
+    render: ({ componentSize }) => (
+        <div style={{ maxWidth: '480px', padding: '1rem' }}>
+            <Form componentSize={componentSize} fields={textFields} onSubmitFn={noopSubmit}>
+                {({ isSubmitting }) => (
+                    <LightButton type="submit" label="Save Changes" loading={isSubmitting} />
+                )}
+            </Form>
         </div>
     ),
 }

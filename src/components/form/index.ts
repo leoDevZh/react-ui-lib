@@ -16,7 +16,7 @@ export type {PlainInputProps} from "./input/plain/PlainInput"
 
 export {SearchForm, type SearchFormProps, type SearchValue, type SearchFormRef} from './searchform/SearchForm'
 
-export {Spinner, type SpinnerProps} from "./utils/spinner/Spinner"
-export {renderSubmittingIndicator, type SubmittingIndicator} from "./utils/submittingIndicator"
+export {Spinner, type SpinnerProps} from "../indicator"
+export {renderLoadingIndicator as renderSubmittingIndicator, type LoadingIndicator as SubmittingIndicator} from "../indicator"
 export {type InteractionProps} from "./utils/interaction/model"
 export {BasicSuccessIndication} from "./utils/interaction/success/BasicSuccessIndication"

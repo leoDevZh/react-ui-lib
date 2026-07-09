@@ -36,3 +36,11 @@ export const Large: Story = {
     size: 'lg',
   },
 }
+
+export const Loading: Story = {
+  args: {
+    label: 'Submitting',
+    size: 'md',
+    loading: true,
+  },
+}

@@ -3,8 +3,9 @@ import {useButtonStyles} from "../../hooks/useButtonStyles";
 import React, {useLayoutEffect, useRef} from "react";
 import styles from './defaultButton.module.css'
 import {ButtonProps} from "../model";
+import {renderLoadingIndicator} from "../../../indicator";
 
-const Button: React.FC<ButtonProps> = ({label, size, onClick, className, ...props}) => {
+const Button: React.FC<ButtonProps> = ({label, size, onClick, className, loading, loadingIndicator, ...props}) => {
 
     const {pressed, onTouchStart, onTouchEnd, className: buttonClass} = useButtonStyles({size, className})
     const { theme } = useTheme()
@@ -42,6 +43,8 @@ const Button: React.FC<ButtonProps> = ({label, size, onClick, className, ...prop
 	return (
         <button
             {...props}
+            disabled={props.disabled || loading}
+            aria-busy={loading}
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
             onClick={onBtnClick}
@@ -49,7 +52,7 @@ const Button: React.FC<ButtonProps> = ({label, size, onClick, className, ...prop
             ref={buttonRef}
         >
             <span ref={circleRef}></span>
-            <span>{label ?? 'Click me'}</span>
+            <span>{loading ? renderLoadingIndicator(loadingIndicator) : (label ?? 'Click me')}</span>
         </button>)
 }
 

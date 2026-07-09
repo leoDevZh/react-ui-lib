@@ -1,4 +1,6 @@
 .rotate {
+    width: 1em;
+    height: 1em;
     animation: rotateAn 1s linear infinite;
     opacity: .8;
 }

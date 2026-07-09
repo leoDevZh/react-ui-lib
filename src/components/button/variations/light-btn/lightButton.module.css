@@ -10,6 +10,7 @@
 .container span {
     position: relative;
     z-index: var(--zIndex-full);
+    display: flex;
 }
 
 .negative span {

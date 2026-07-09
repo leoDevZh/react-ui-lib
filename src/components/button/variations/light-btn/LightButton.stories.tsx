@@ -53,6 +53,14 @@ export const WithIconOnHover: Story = {
   render: () => <LightButton label="Hover me" size="md" icon={<ArrowIcon />} drawIcon />,
 }
 
+export const Loading: Story = {
+  args: {
+    label: 'Submitting',
+    size: 'md',
+    loading: true,
+  },
+}
+
 export const AllSizes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>

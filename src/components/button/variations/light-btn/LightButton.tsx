@@ -3,6 +3,7 @@ import style from "./lightButton.module.css";
 import simpleStyle from './simpleLightButton.module.css'
 import {useButtonStyles} from "../../hooks/useButtonStyles";
 import {useLayoutEffect, useRef} from "react";
+import {renderLoadingIndicator} from "../../../indicator";
 
 
 /**
@@ -18,7 +19,10 @@ const LightButton = ({
                          drawIcon,
                          invert,
                          simpleColor,
-                         accentColor
+                         accentColor,
+                         loading,
+                         loadingIndicator,
+                         disabled
                      }: ButtonProps) => {
 
     const {pressed, onTouchStart, onTouchEnd, className: buttonClass} = useButtonStyles({size, className})
@@ -47,12 +51,14 @@ const LightButton = ({
         <button
             ref={btnRef}
             className={simpleColor ? simpleClass : basicClass}
+            disabled={disabled || loading}
+            aria-busy={loading}
             onTouchStart={onTouchStart}
             onTouchEnd={onTouchEnd}
             onClick={onClick}
         >
             <div className={simpleColor ? simpleStyle.wrapper : style.wrapper}>
-                <span>{label}</span>
+                <span>{loading ? renderLoadingIndicator(loadingIndicator) : label}</span>
                 <span>{Icon && Icon}</span>
             </div>
         </button>
